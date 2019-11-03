@@ -1,0 +1,4 @@
+﻿namespace Zek.Model.ViewModel
+{
+
+}

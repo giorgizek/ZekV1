@@ -1,0 +1,14 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Zek.Data.Entity;
+
+namespace Zek.Model.Membership.Identity
+{
+    public class UserToken : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<int> { }
+    public class UserTokenMap : EntityTypeMap<UserToken>
+    {
+        public UserTokenMap(ModelBuilder builder) : base(builder)
+        {
+            ToTable("T_UserToken", "Membership");
+        }
+    }
+}

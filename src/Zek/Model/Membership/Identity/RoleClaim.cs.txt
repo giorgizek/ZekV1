@@ -1,0 +1,16 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Zek.Data.Entity;
+
+namespace Zek.Model.Membership.Identity
+{
+    public class RoleClaim : Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<int> { }
+
+
+    public class RoleClaimMap : EntityTypeMap<RoleClaim>
+    {
+        public RoleClaimMap(ModelBuilder builder) : base(builder)
+        {
+            ToTable("T_RoleClaim", "Membership");
+        }
+    }
+}
