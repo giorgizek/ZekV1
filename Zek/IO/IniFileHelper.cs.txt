@@ -1,0 +1,64 @@
+﻿using System.Text;
+
+using System.Runtime.InteropServices;
+
+namespace Zek.IO
+{
+    /// <summary>
+    /// INI File Helper Class.
+    /// </summary>
+    public class IniFileHelper
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lpAppName">Section</param>
+        /// <param name="lpKeyName">Entry</param>
+        /// <param name="lpString">EntryValue</param>
+        /// <param name="lpFileName">FileName</param>
+        /// <returns></returns>
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string lpAppName, string lpKeyName, string lpString, string lpFileName);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lpAppName">Section</param>
+        /// <param name="lpKeyName">Entry</param>
+        /// <param name="lpDefault">DefaultValue</param>
+        /// <param name="lpReturnedString">EntryValue</param>
+        /// <param name="nSize"></param>
+        /// <param name="lpFileName">FileName</param>
+        /// <returns></returns>
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string lpAppName, string lpKeyName, string lpDefault, StringBuilder lpReturnedString, int nSize, string lpFileName);
+
+        /// <summary>
+        /// Saves value into ini file.
+        /// </summary>
+        
+        /// <param name="section">Section name</param>
+        /// <param name="key">Key Name</param>
+        /// <param name="value">Value Name</param>
+        /// <param name="iniFile">Ini file path</param>
+        public static void IniWriteValue(string section, string key, string value, string iniFile)
+        {
+            WritePrivateProfileString(section, key, value, iniFile);
+        }
+
+        /// <summary>
+        /// Read ini file value.
+        /// </summary>
+        
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="iniFile"></param>
+        /// <returns></returns>
+        public static string IniReadValue(string section, string key, string iniFile)
+        {
+            var temp = new StringBuilder(255);
+            GetPrivateProfileString(section, key, string.Empty, temp, 255, iniFile);
+            return temp.ToString();
+        }
+    }
+}

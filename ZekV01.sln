@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek", "Zek\Zek.csproj", "{7E0CF688-540D-48B4-892F-82BF3E1B23AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek.Test", "Zek.Test\Zek.Test.csproj", "{46DE1072-8C9D-4203-A296-7030A75ACBAF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4576223E-44D7-4ACD-B26E-6F6D1B49F950} = {4576223E-44D7-4ACD-B26E-6F6D1B49F950}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek.Updater.Server", "Zek.Updater.Server\Zek.Updater.Server.csproj", "{B9B121DA-F618-4E67-AED4-EC262D6342BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek.Updater.Client", "Zek.Updater.Client\Zek.Updater.Client.csproj", "{01F27654-BBEA-4B84-8FB6-33997DCEE282}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek.Web", "Zek.Web\Zek.Web.csproj", "{4576223E-44D7-4ACD-B26E-6F6D1B49F950}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek.Model", "Zek.Model\Zek.Model.csproj", "{6EC8A1C6-B318-46D5-9774-7AC58A9C4B06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zek.Localization", "Zek.Localization\Zek.Localization.csproj", "{6B641BB5-640D-4D13-8746-583886DB5702}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E0CF688-540D-48B4-892F-82BF3E1B23AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E0CF688-540D-48B4-892F-82BF3E1B23AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E0CF688-540D-48B4-892F-82BF3E1B23AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E0CF688-540D-48B4-892F-82BF3E1B23AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46DE1072-8C9D-4203-A296-7030A75ACBAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46DE1072-8C9D-4203-A296-7030A75ACBAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46DE1072-8C9D-4203-A296-7030A75ACBAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46DE1072-8C9D-4203-A296-7030A75ACBAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B121DA-F618-4E67-AED4-EC262D6342BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B121DA-F618-4E67-AED4-EC262D6342BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B121DA-F618-4E67-AED4-EC262D6342BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B121DA-F618-4E67-AED4-EC262D6342BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F27654-BBEA-4B84-8FB6-33997DCEE282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F27654-BBEA-4B84-8FB6-33997DCEE282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F27654-BBEA-4B84-8FB6-33997DCEE282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F27654-BBEA-4B84-8FB6-33997DCEE282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4576223E-44D7-4ACD-B26E-6F6D1B49F950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4576223E-44D7-4ACD-B26E-6F6D1B49F950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4576223E-44D7-4ACD-B26E-6F6D1B49F950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4576223E-44D7-4ACD-B26E-6F6D1B49F950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC8A1C6-B318-46D5-9774-7AC58A9C4B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC8A1C6-B318-46D5-9774-7AC58A9C4B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC8A1C6-B318-46D5-9774-7AC58A9C4B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC8A1C6-B318-46D5-9774-7AC58A9C4B06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B641BB5-640D-4D13-8746-583886DB5702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B641BB5-640D-4D13-8746-583886DB5702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B641BB5-640D-4D13-8746-583886DB5702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B641BB5-640D-4D13-8746-583886DB5702}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://giorgizek.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Zek.Test\\Zek.Test.csproj
+		SccProjectName1 = Zek.Test
+		SccLocalPath1 = Zek.Test
+		SccProjectUniqueName2 = Zek\\Zek.csproj
+		SccProjectName2 = Zek
+		SccLocalPath2 = Zek
+		SccProjectUniqueName3 = Zek.Updater.Server\\Zek.Updater.Server.csproj
+		SccProjectName3 = Zek.Updater.Server
+		SccLocalPath3 = Zek.Updater.Server
+		SccProjectUniqueName4 = Zek.Updater.Client\\Zek.Updater.Client.csproj
+		SccProjectName4 = Zek.Updater.Client
+		SccLocalPath4 = Zek.Updater.Client
+		SccProjectUniqueName5 = Zek.Web\\Zek.Web.csproj
+		SccProjectName5 = Zek.Web
+		SccLocalPath5 = Zek.Web
+		SccProjectUniqueName6 = Zek.Model\\Zek.Model.csproj
+		SccProjectName6 = Zek.Model
+		SccLocalPath6 = Zek.Model
+		SccProjectUniqueName7 = Zek.Localization\\Zek.Localization.csproj
+		SccProjectName7 = Zek.Localization
+		SccLocalPath7 = Zek.Localization
+	EndGlobalSection
+EndGlobal

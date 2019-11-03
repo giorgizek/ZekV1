@@ -1,0 +1,43 @@
+﻿using System.Web.Mvc;
+
+namespace Zek.Extensions.Web.Mvc
+{
+    public static class ViewContextExtensions
+    {
+        public static string Id(this ViewContext viewContext)
+        {
+            return (string)viewContext.RouteData.Values["controller"];
+
+            //var routeValues = viewContext.RouteData.Values;
+
+            //if (routeValues.ContainsKey("id"))
+            //    return (string)routeValues["id"];
+
+            //return HttpContext.Current.Request.QueryString.AllKeys.Contains("id") ? HttpContext.Current.Request.QueryString["id"] : string.Empty;
+        }
+
+
+        public static string Controller(this ViewContext viewContext)
+        {
+            return (string)viewContext.RouteData.Values["controller"];
+
+            //var routeValues = viewContext.RouteData.Values;
+
+            //if (routeValues.ContainsKey("controller"))
+            //    return (string)routeValues["controller"];
+
+            //return string.Empty;
+        }
+
+        public static string Action(this ViewContext viewContext)
+        {
+            return (string)viewContext.RouteData.Values["action"];
+            //var routeValues = viewContext.RouteData.Values;
+
+            //if (routeValues.ContainsKey("action"))
+            //    return (string)routeValues["action"];
+
+            //return string.Empty;
+        }
+    }
+}

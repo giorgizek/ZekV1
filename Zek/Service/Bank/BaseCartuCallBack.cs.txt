@@ -1,0 +1,93 @@
+﻿using System;
+using System.Web;
+using Zek.Extensions;
+
+namespace Zek.Service.Bank
+{
+    public class BaseCartuCallBack : IHttpHandler
+    {
+        public virtual bool IsReusable => false;
+
+        public virtual void ProcessRequest(HttpContext context)
+        {
+            if (!VerifySignature())
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("signature error");
+                return;
+            }
+
+            var request = GetConfirmRequest();
+            if (request == null)
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("serialization error");
+                return;
+            }
+
+
+            OnSwitch(context, request);
+        }
+
+        protected virtual bool VerifySignature()
+        {
+            return CartuHelper.VerifySignature();
+        }
+
+        protected virtual CartuHelper.ConfirmRequest GetConfirmRequest()
+        {
+            return CartuHelper.GetConfirmRequest();
+        }
+
+        protected virtual void OnSwitch(HttpContext context, CartuHelper.ConfirmRequest request)
+        {
+            switch (request.Status.IfNullEmpty().ToUpperInvariant())
+            {
+                case "C"://შემოწმება
+                    OnCheck(context, request);
+                    return;
+
+                case "Y"://წარმატებული
+                    OnSuccess(context, request);
+                    return;
+
+                case "N"://წარუმატებელი
+                    OnNotSuccess(context, request);
+                    return;
+
+                case "U"://შეწყვეტილი/დაუსრულებელი
+                    OnUnfinished(context, request);
+                    return;
+
+                default:
+                    OnUnknown(context, request);
+                    return;
+            }
+        }
+
+        protected virtual void OnSuccess(HttpContext context, CartuHelper.ConfirmRequest request)
+        {
+            throw new NotImplementedException();
+            //context.Response.Write(request.GetResponseToBank(true));
+        }
+        protected virtual void OnCheck(HttpContext context, CartuHelper.ConfirmRequest request)
+        {
+            throw new NotImplementedException();
+            //context.Response.Write(request.GetResponseToBank(true));
+        }
+        protected virtual void OnNotSuccess(HttpContext context, CartuHelper.ConfirmRequest request)
+        {
+            throw new NotImplementedException();
+            //context.Response.Write(request.GetResponseToBank(true));
+        }
+        protected virtual void OnUnfinished(HttpContext context, CartuHelper.ConfirmRequest request)
+        {
+            throw new NotImplementedException();
+            //context.Response.Write(request.GetResponseToBank(true));
+        }
+        protected virtual void OnUnknown(HttpContext context, CartuHelper.ConfirmRequest request)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

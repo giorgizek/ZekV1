@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>დამატება</value>
+  </data>
+  <data name="AddHint" xml:space="preserve">
+    <value>ჩანაწერის დამატება</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>დადასტურება</value>
+  </data>
+  <data name="ApprovedNotApproved" xml:space="preserve">
+    <value>დადასტურებული/დაუდასტურებელი</value>
+  </data>
+  <data name="ApprovedNotApprovedHint" xml:space="preserve">
+    <value>დადასტურებული/დაუდასტურებელი ჩანაწერებზე გადასვლა</value>
+  </data>
+  <data name="ApproveHint" xml:space="preserve">
+    <value>ჩანაწერის(ების) დადასტურება</value>
+  </data>
+  <data name="AutoRefresh" xml:space="preserve">
+    <value>ავტომატური განახლება</value>
+  </data>
+  <data name="AutoRefreshHint" xml:space="preserve">
+    <value>ცხრილის ავტომატური განახლება, როცა შვილობილი ფორმა დაუხურება</value>
+  </data>
+  <data name="BestFit" xml:space="preserve">
+    <value>საუკეთესო ზომა</value>
+  </data>
+  <data name="BestFitHint" xml:space="preserve">
+    <value>სვეტების საუკეთესო ზომა</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>დაბლოკვა</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>გაუქმება</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>არჩევა</value>
+  </data>
+  <data name="ChooseHint" xml:space="preserve">
+    <value>ჩანაწერის(ების) არჩევა</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>კოპირება</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>წაშლა</value>
+  </data>
+  <data name="DeleteHint" xml:space="preserve">
+    <value>ჩანაწერის(ების) წაშლა</value>
+  </data>
+  <data name="Disapprove" xml:space="preserve">
+    <value>დადასტურების მოხსნა</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>შეცვლა</value>
+  </data>
+  <data name="EditHint" xml:space="preserve">
+    <value>ჩანაწერის შეცვლა</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>შეცდომა</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>ექსპორტი</value>
+  </data>
+  <data name="ExportHint" xml:space="preserve">
+    <value>ცხრილის ექსპორტი</value>
+  </data>
+  <data name="FilterEnableDisable" xml:space="preserve">
+    <value>ფილტრის ჩართვა/გამორთვა</value>
+  </data>
+  <data name="FilterEnableDisableHint" xml:space="preserve">
+    <value>ფილტრის ჩართვა/გამორთვა</value>
+  </data>
+  <data name="FilterPanel" xml:space="preserve">
+    <value>ფილტრის პანელი</value>
+  </data>
+  <data name="FilterPanelHint" xml:space="preserve">
+    <value>ფილტრის პანელის ნახვა/დამალვა</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>ამობეჭდვა</value>
+  </data>
+  <data name="PrintHint" xml:space="preserve">
+    <value>ჩანაწერის(ების) ამობეჭდვა</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>კითხვა</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>განახსლება</value>
+  </data>
+  <data name="RefreshHint" xml:space="preserve">
+    <value>ცხრილის განახლება</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>შენახვა</value>
+  </data>
+  <data name="SaveAndClose" xml:space="preserve">
+    <value>შენახვა &amp;&amp; დახურვა</value>
+  </data>
+  <data name="SystemColumns" xml:space="preserve">
+    <value>სისტემური სვეტები</value>
+  </data>
+  <data name="SystemColumnsHint" xml:space="preserve">
+    <value>სისტემური სვეტების ნახვა/დამალვა</value>
+  </data>
+  <data name="TopRecordsCaptionFormat" xml:space="preserve">
+    <value>ტოპ {0}</value>
+  </data>
+  <data name="TopRecordsHintFormat" xml:space="preserve">
+    <value>ტოპ {0} ჩანაწერი</value>
+  </data>
+  <data name="Unblock" xml:space="preserve">
+    <value>დაბლოკვის მოხსნა</value>
+  </data>
+  <data name="Sum" xml:space="preserve">
+    <value>ჯამი</value>
+  </data>
+  <data name="SumHint" xml:space="preserve">
+    <value>დაჯამება მონიშნული ჩანაწერების</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>სახელი</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>მნიშვნელობა</value>
+  </data>
+  <data name="SelectedRowsCount" xml:space="preserve">
+    <value>მონიშნული სტრიქონების რაოდენობა</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>რაოდენობა</value>
+  </data>
+  <data name="InvalidDayErrorText" xml:space="preserve">
+    <value>არასწორი დღე</value>
+  </data>
+  <data name="InvalidMonthErrorText" xml:space="preserve">
+    <value>არასწორი თვე</value>
+  </data>
+  <data name="InvalidQuarterErrorText" xml:space="preserve">
+    <value>არასწორი კვარტალი</value>
+  </data>
+  <data name="NumToStrMaximumDecimalsErrorText" xml:space="preserve">
+    <value>მაქსიმალური დასაშვები მნიშვნელობა შეიძლება იყოს 6</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>გახსნა</value>
+  </data>
+  <data name="ExecutingEtc" xml:space="preserve">
+    <value>Executing...</value>
+  </data>
+  <data name="PressESCToExitEtc" xml:space="preserve">
+    <value>დააჭირეთ ESC რომ გამოხვიდეთ...</value>
+  </data>
+  <data name="SchedulerServiceIntervalLable" xml:space="preserve">
+    <value>ინტერვალი (d:hh:mm:ss):</value>
+  </data>
+  <data name="Validate" xml:space="preserve">
+    <value>ვალიდაცია</value>
+  </data>
+</root>

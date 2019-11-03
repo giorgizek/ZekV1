@@ -1,0 +1,235 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Web;
+using Zek.Extensions;
+
+namespace Zek.Web
+{
+    public class QueryStringHelper
+    {
+        /// <summary>
+        /// Gets query string value by name
+        /// </summary>
+        /// <param name="name">Parameter name</param>
+        /// <returns>Query string value</returns>
+        public static string GetString(string name)
+        {
+            var result = string.Empty;
+            if (HttpContext.Current != null && HttpContext.Current.Request.QueryString[name] != null)
+                result = HttpContext.Current.Request.QueryString[name];
+            return result;
+        }
+
+        /// <summary>
+        /// Gets boolean value from query string 
+        /// </summary>
+        /// <param name="name">Parameter name</param>
+        /// <returns>Query string value</returns>
+        public static bool GetBool(string name)
+        {
+            return GetString(name).ToBoolean();
+        }
+
+        /// <summary>
+        /// Gets integer value from query string 
+        /// </summary>
+        /// <param name="name">Parameter name</param>
+        /// <returns>Query string value</returns>
+        public static int GetInt32(string name)
+        {
+            return GetString(name).ToInt32();
+        }
+
+        /// <summary>
+        /// Gets integer value from query string 
+        /// </summary>
+        /// <param name="name">Parameter name</param>
+        /// <param name="defaultValue">Default value</param>
+        /// <returns>Query string value</returns>
+        public static int GetInt32(string name, int defaultValue)
+        {
+            return GetString(name).ToInt32(defaultValue);
+        }
+
+        /// <summary>
+        /// Gets GUID value from query string 
+        /// </summary>
+        /// <param name="name">Parameter name</param>
+        /// <returns>Query string value</returns>
+        public static Guid? GetGuid(string name)
+        {
+            var resultStr = GetString(name).ToUpperInvariant();
+            Guid? result = null;
+            try
+            {
+                result = new Guid(resultStr);
+            }
+            catch { }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Modifies query string
+        /// </summary>
+        /// <param name="url">Url to modify</param>
+        /// <param name="queryStringModification">Query string modification</param>
+        /// <param name="targetLocationModification">Target location modification</param>
+        /// <returns>New url</returns>
+        public static string ModifyQueryString(string url, string queryStringModification, string targetLocationModification)
+        {
+            if (url == null)
+                url = string.Empty;
+            url = url.ToLowerInvariant();
+
+            if (queryStringModification == null)
+                queryStringModification = string.Empty;
+            queryStringModification = queryStringModification.ToLowerInvariant();
+
+            if (targetLocationModification == null)
+                targetLocationModification = string.Empty;
+            targetLocationModification = targetLocationModification.ToLowerInvariant();
+
+
+            var str = string.Empty;
+            var str2 = string.Empty;
+            if (url.Contains("#"))
+            {
+                str2 = url.Substring(url.IndexOf("#", StringComparison.Ordinal) + 1);
+                url = url.Substring(0, url.IndexOf("#", StringComparison.Ordinal));
+            }
+            if (url.Contains("?"))
+            {
+                str = url.Substring(url.IndexOf("?", StringComparison.Ordinal) + 1);
+                url = url.Substring(0, url.IndexOf("?", StringComparison.Ordinal));
+            }
+            if (!string.IsNullOrEmpty(queryStringModification))
+            {
+                if (!string.IsNullOrEmpty(str))
+                {
+                    var dictionary = new Dictionary<string, string>();
+                    foreach (var str3 in str.Split('&'))
+                    {
+                        if (!string.IsNullOrEmpty(str3))
+                        {
+                            var strArray = str3.Split('=');
+                            if (strArray.Length == 2)
+                            {
+                                dictionary[strArray[0]] = strArray[1];
+                            }
+                            else
+                            {
+                                dictionary[str3] = null;
+                            }
+                        }
+                    }
+                    foreach (var str4 in queryStringModification.Split('&'))
+                    {
+                        if (!string.IsNullOrEmpty(str4))
+                        {
+                            var strArray2 = str4.Split('=');
+                            if (strArray2.Length == 2)
+                            {
+                                dictionary[strArray2[0]] = strArray2[1];
+                            }
+                            else
+                            {
+                                dictionary[str4] = null;
+                            }
+                        }
+                    }
+                    var builder = new StringBuilder();
+                    foreach (var str5 in dictionary.Keys)
+                    {
+                        if (builder.Length > 0)
+                        {
+                            builder.Append("&");
+                        }
+                        builder.Append(str5);
+                        if (dictionary[str5] != null)
+                        {
+                            builder.Append("=");
+                            builder.Append(dictionary[str5]);
+                        }
+                    }
+                    str = builder.ToString();
+                }
+                else
+                {
+                    str = queryStringModification;
+                }
+            }
+            if (!string.IsNullOrEmpty(targetLocationModification))
+            {
+                str2 = targetLocationModification;
+            }
+            return (url + (string.IsNullOrEmpty(str) ? "" : "?" + str) + (string.IsNullOrEmpty(str2) ? "" : "#" + str2)).ToLowerInvariant();
+        }
+
+        /// <summary>
+        /// Remove query string from url
+        /// </summary>
+        /// <param name="url">Url to modify</param>
+        /// <param name="queryString">Query string to remove</param>
+        /// <returns>New url</returns>
+        public static string RemoveQueryString(string url, string queryString)
+        {
+            if (url == null)
+                url = string.Empty;
+            url = url.ToLowerInvariant();
+
+            if (queryString == null)
+                queryString = string.Empty;
+            queryString = queryString.ToLowerInvariant();
+
+
+            var str = string.Empty;
+            if (url.Contains("?"))
+            {
+                str = url.Substring(url.IndexOf("?", StringComparison.Ordinal) + 1);
+                url = url.Substring(0, url.IndexOf("?", StringComparison.Ordinal));
+            }
+            if (!string.IsNullOrEmpty(queryString))
+            {
+                if (!string.IsNullOrEmpty(str))
+                {
+                    var dictionary = new Dictionary<string, string>();
+                    foreach (var str3 in str.Split('&'))
+                    {
+                        if (!string.IsNullOrEmpty(str3))
+                        {
+                            var strArray = str3.Split('=');
+                            if (strArray.Length == 2)
+                            {
+                                dictionary[strArray[0]] = strArray[1];
+                            }
+                            else
+                            {
+                                dictionary[str3] = null;
+                            }
+                        }
+                    }
+                    dictionary.Remove(queryString);
+
+                    var builder = new StringBuilder();
+                    foreach (var str5 in dictionary.Keys)
+                    {
+                        if (builder.Length > 0)
+                        {
+                            builder.Append("&");
+                        }
+                        builder.Append(str5);
+                        if (dictionary[str5] != null)
+                        {
+                            builder.Append("=");
+                            builder.Append(dictionary[str5]);
+                        }
+                    }
+                    str = builder.ToString();
+                }
+            }
+            return url + (string.IsNullOrEmpty(str) ? "" : "?" + str);
+        }
+    }
+}

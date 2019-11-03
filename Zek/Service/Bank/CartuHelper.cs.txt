@@ -1,0 +1,699 @@
+﻿using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel;
+using System.Text;
+using System.Web;
+using System.Xml;
+using System.Xml.Serialization;
+using Zek.WSCartuAuthCard;
+using Zek.WSCartuB24;
+using Zek.WSCartuVerifyCards;
+
+namespace Zek.Service.Bank
+{
+    /// <summary>
+    /// Bank Cartu Helper
+    /// </summary>
+    public class CartuHelper
+    {
+        //[Serializable]
+        //[XmlRootAttribute("ConfirmResponse", Namespace = "", IsNullable = false)]
+        //public class ConfirmResponse
+        //{
+        //    [XmlElement]
+        //    public string TransactionId { get; set; }
+
+        //    [XmlElement]
+        //    public string PaymentId { get; set; }
+
+        //    [XmlElement]
+        //    public string Status { get; set; }
+        //}
+
+
+        [Serializable]
+        [XmlRoot("ConfirmRequest", Namespace = "", IsNullable = false)]
+        public class ConfirmRequest
+        {
+            public ConfirmRequest() { }
+            public ConfirmRequest(string transactionId, string clientId, string paymentId, DateTime paymentDate, decimal amount, string cardType, string cardNumber, string status, string reason)
+            {
+                TransactionId = transactionId;
+                ClientId = clientId;
+                PaymentId = paymentId;
+                PaymentDate = paymentDate;
+                Amount = amount;
+                CardType = cardType;
+                CardNumber = cardNumber;
+                Status = status;
+                Reason = reason;
+            }
+
+            [XmlElement]
+            public string TransactionId { get; set; }
+
+            [XmlElement]
+            public string ClientId { get; set; }
+
+            [XmlElement]
+            public string PaymentId { get; set; }
+
+            [XmlElement("PaymentDate")]
+            public string XmlPaymentDate
+            {
+                get { return PaymentDate.ToString(@"dd\.MM\.yyyy HH:mm:ss"); }
+                set { PaymentDate = DateTime.ParseExact(value, @"dd\.MM\.yyyy HH:mm:ss", null); }
+            }
+            [XmlIgnore]
+
+            public DateTime PaymentDate { get; set; }
+
+            [XmlElement]
+            public decimal Amount { get; set; }
+
+            [XmlElement]
+            public string CardType { get; set; }
+            [XmlIgnore]
+            public string CardTypeName
+            {
+                get
+                {
+                    var tmpCardType = CardType ?? string.Empty;
+
+                    if (tmpCardType.Length >= 4)
+                        tmpCardType = tmpCardType.Substring(0, 4);
+
+                    switch (tmpCardType.ToUpperInvariant())
+                    {
+                        case "CRTU":
+                            return "ქართუს ბარათი";
+                        case "AGNT":
+                            return "ქართუს აგენტი ბანკის ბარათი";
+                        case "VISD":
+                            return "ქართული ვიზა ბარათი";
+                        case "EPSD":
+                            return "ქართული მასთერქარდ ბარათი";
+                        case "VISA":
+                            return "უცხოური ვიზა ბარათი";
+                        case "EPSS":
+                            return "უცხოური მასთერქარდ ბარათი";
+                    }
+
+                    return string.Empty;
+                }
+            }
+
+            [XmlElement]
+            public string CardNumber { get; set; }
+
+            [XmlElement]
+            public string Status { get; set; }
+            [XmlIgnore]
+            public string StatusName
+            {
+                get
+                {
+                    var tmpStatus = Status ?? string.Empty;
+                    switch (tmpStatus.ToUpperInvariant())
+                    {
+                        case "C":
+                            return "შემოწმება";
+                        case "Y":
+                            return "წარმატებული";
+                        case "N":
+                            return "წარუმატებული";
+                        case "U":
+                            return "შეწყვეტილი/დაუსრულებელი";
+                    }
+
+                    return string.Empty;
+                }
+            }
+
+
+            [XmlElement]
+            public string Reason { get; set; }
+
+
+
+            public string GetResponseToBank(bool status)
+            {
+                return ResponseToBank(TransactionId, PaymentId, status);
+            }
+        }
+
+
+        [Serializable]
+        [XmlRoot("VerifyRequest", Namespace = "", IsNullable = false)]
+        public class VerifyRequest
+        {
+            public VerifyRequest() { }
+            public VerifyRequest(string transactionId, string clientId, string paymentId, DateTime paymentDate, decimal amount, string cardNumber, string status, string reason)
+            {
+                TransactionId = transactionId;
+                ClientId = clientId;
+                PaymentId = paymentId;
+                PaymentDate = paymentDate;
+                Amount = amount;
+                CardNumber = cardNumber;
+                Status = status;
+                Reason = reason;
+            }
+
+            [XmlElement]
+            public string TransactionId { get; set; }
+
+            [XmlElement]
+            public string ClientId { get; set; }
+
+            [XmlElement]
+            public string PaymentId { get; set; }
+
+
+            [XmlElement("PaymentDate")]
+            public string XmlPaymentDate
+            {
+                get { return PaymentDate.ToString(@"dd\/MM\/yyyy HH:mm:ss"); }
+                set { PaymentDate = DateTime.ParseExact(value, @"dd\/MM\/yyyy HH:mm:ss", null); }
+            }
+            [XmlIgnore]
+            public DateTime PaymentDate { get; set; }
+
+
+            [XmlElement("Amount")]
+            public int XmlAmount
+            {
+                get { return (int)(Amount * 100m); }
+                set { Amount = value / 100m; }
+            }
+            [XmlIgnore]
+            public decimal Amount { get; set; }
+
+            [XmlElement]
+            public string CardNumber { get; set; }
+
+            [XmlElement]
+            public string Status { get; set; }
+
+            [XmlElement]
+            public string Reason { get; set; }
+        }
+
+
+        [Serializable]
+        [XmlRoot("AuthRequest", Namespace = "", IsNullable = false)]
+        public class AuthRequest
+        {
+            public AuthRequest() { }
+            public AuthRequest(string terminalId, string transactionId, string clientId, string paymentId, DateTime paymentDate, string cardNumber, string cvc, decimal amount)
+            {
+                TerminalId = terminalId;
+                TransactionId = transactionId;
+                ClientId = clientId;
+                PaymentId = paymentId;
+                PaymentDate = paymentDate;
+                CardNumber = cardNumber;
+                CVC = cvc;
+                Amount = amount;
+            }
+
+            /// <summary>
+            /// იგივე MerchantID, რომელიც გამოიყოფა ამ ობიექტისთვის
+            /// </summary>
+            [XmlElement]
+            public string TerminalId { get; set; }
+
+            /// <summary>
+            /// ობიექტის მიერ ვერიფიკაციის დროსუნიკალური იდენტიფიკატორი (PurchaseDesc – ის პირველი ველი) 
+            /// </summary>
+            [XmlElement]
+            public string TransactionId { get; set; }
+
+            /// <summary>
+            /// ობიექტის მიერ მოწოდებულ კლიენტის იდენტიფიკატორი
+            /// </summary>
+            [XmlElement]
+            public string ClientId { get; set; }
+
+            /// <summary>
+            /// ბანკის მიერ დაგენერირებული უნიკალური იდენტიფიკატორი, რომელიც გადაეცა ობიექტს ბარათის ვერიფიკაციის პროცესში
+            /// </summary>
+            [XmlElement]
+            public string PaymentId { get; set; }
+
+            /// <summary>
+            /// გადახდის თარიღი და დრო მოწოდებული შემდეგ ფორმატში (dd.MM.yyyy HH:mm:ss) 
+            /// </summary>
+            [XmlElement("PaymentDate")]
+            public string XmlPaymentDate
+            {
+                get { return PaymentDate.ToString(@"dd\/MM\/yyyy HH:mm:ss"); }
+                set { PaymentDate = DateTime.ParseExact(value, @"dd\/MM\/yyyy HH:mm:ss", null); }
+            }
+            [XmlIgnore]
+            public DateTime PaymentDate { get; set; }
+
+
+            /// <summary>
+            /// ბარათის მასკირებული ნომერი შემდეგი ფორმტით ბარათის პირველი 6 ციფრი, შემდეგ 6 * და ბარათის ბოლო 4 ციფრი მაგ. 456789******1234
+            /// </summary>
+            [XmlElement]
+            public string CardNumber { get; set; }
+
+            /// <summary>
+            /// არათის CVC კოდი, ცარიელის გადმოცემის შემთხვევაში თანხის დაბლოკვა მოხდება CVC  ს გარეშე
+            /// </summary>
+            [XmlElement]
+            public string CVC { get; set; }
+
+            /// <summary>
+            /// თანხა თეთრებში, რომელზეც უნდა მოხდეს დაბლოკვა (ათწილადი თანხა მეასედის სიზუსტით გამრავლებული 100- ზე.  მაგ. 157.59  = 15759)
+            /// </summary>
+            [XmlElement("Amount")]
+            public int XmlAmount
+            {
+                get { return (int)(Amount * 100m); }
+                set { Amount = value / 100m; }
+            }
+            /// <summary>
+            /// თანხა ლარებში, რომელზეც უნდა მოხდეს დაბლოკვა (მაგ. 157.79)
+            /// </summary>
+            [XmlIgnore]
+            public decimal Amount { get; set; }
+        }
+
+
+
+
+
+        [Serializable]
+        public enum TransactionStatus
+        {
+            /// <summary>
+            /// დასტური ოპრაციაზე
+            /// </summary>
+            Accepted = 0,
+            /// <summary>
+            /// არასაკმარისი თანხის კოდი
+            /// </summary>
+            InsufficientFunds = 51,
+            /// <summary>
+            /// უარყოფა
+            /// </summary>
+            Decline = 5
+        }
+
+
+        public static byte[] SignData(string data, string certFilePath, string password = null, string algName = "SHA1")
+        {
+            if (string.IsNullOrWhiteSpace(data))
+                throw new ArgumentException(@"Data required.", nameof(data));
+
+            return SignData(Encoding.UTF8.GetBytes(data), certFilePath, password, algName);
+        }
+
+
+        public static byte[] SignData(byte[] data, string certFilePath, string password = null, string algName = "SHA1")
+        {
+            if (data == null || data.Length == 0)
+                throw new ArgumentException(@"Data required.", nameof(data));
+
+            if (string.IsNullOrWhiteSpace(certFilePath))
+                throw new ArgumentException(@"Certificate file path required.", nameof(certFilePath));
+
+            if (string.IsNullOrWhiteSpace(algName))
+                throw new ArgumentException(@"Algorithm Name required.", nameof(algName));
+
+            if (password == null)
+                password = string.Empty;
+
+            try
+            {
+                var cert = new X509Certificate2(certFilePath, password);
+                var rsaCryptoIPT = (RSACryptoServiceProvider)cert.PrivateKey;
+                return rsaCryptoIPT.SignData(data, 0, data.Length, CryptoConfig.MapNameToOID(algName));
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Can't sign data", ex);
+            }
+
+
+        }
+
+
+
+
+
+        public static ConfirmRequest GetConfirmRequest()
+        {
+            try
+            {
+                var confirmRequest = HttpContext.Current.Request["ConfirmRequest"];
+
+                if (string.IsNullOrWhiteSpace(confirmRequest)) return null;
+                var buffer = Encoding.UTF8.GetBytes(confirmRequest);
+                if (buffer.Length == 0) return null;
+
+                using (var ms = new MemoryStream(buffer))
+                {
+                    var ser = new XmlSerializer(typeof(ConfirmRequest));
+                    return (ConfirmRequest)ser.Deserialize(ms);
+                }
+            }
+            catch { return null; }
+        }
+
+
+
+        public static bool VerifyData(string data, string signatureBase64Encoded, string publicKeyPath, string password = null, string algName = "SHA1")
+        {
+            if (string.IsNullOrEmpty(data) || string.IsNullOrEmpty(signatureBase64Encoded)) return false;
+            byte[] signature;
+            try
+            {
+                signature = Convert.FromBase64String(signatureBase64Encoded);
+            }
+            catch { return false; }
+
+            return VerifyData(Encoding.UTF8.GetBytes(data), signature, publicKeyPath, password, algName);
+        }
+        public static bool VerifyData(string data, byte[] signature, string publicKeyPath, string password = null, string algName = "SHA1")
+        {
+            if (string.IsNullOrEmpty(data) || signature == null || signature.Length == 0) return false;
+
+            return VerifyData(Encoding.UTF8.GetBytes(data), signature, publicKeyPath, password, algName);
+        }
+        public static bool VerifyData(byte[] data, byte[] signature, string publicKeyPath, string password = null, string algName = "SHA1")
+        {
+            if (string.IsNullOrWhiteSpace(publicKeyPath))
+                throw new ArgumentException(@"Public key path required.", nameof(publicKeyPath));
+
+            if (password == null)
+                password = string.Empty;
+            try
+            {
+                //HttpContext.Current.Request.MapPath(publicKeyPath)
+                var cert = new X509Certificate2(publicKeyPath, password);
+                var rsaCryptoIPT = (RSACryptoServiceProvider)cert.PublicKey.Key;
+                if (!rsaCryptoIPT.VerifyData(data, CryptoConfig.MapNameToOID(algName), signature))
+                    throw new InvalidOperationException("Invalid signature ! ");
+                return true;
+            }
+            catch { return false; }
+        }
+
+
+
+        public static bool VerifySignature(string virtualPublicKeyPath = null)
+        {
+            if (string.IsNullOrEmpty(virtualPublicKeyPath))
+                virtualPublicKeyPath = "~/App_Data/CartuBankKEY.pem";
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(virtualPublicKeyPath) || HttpContext.Current == null) return false;
+
+                var confirmRequest = HttpContext.Current.Request["ConfirmRequest"];
+                var signature = HttpContext.Current.Request["signature"];
+
+                return VerifySignature(confirmRequest, signature, HttpContext.Current.Request.MapPath(virtualPublicKeyPath));
+            }
+            catch { return false; }
+        }
+        public static bool VerifySignature(string confirmRequest, string signature, string publicKeyPath)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(confirmRequest) || string.IsNullOrWhiteSpace(signature)) return false;
+
+                return VerifyData("ConfirmRequest=" + confirmRequest, signature, publicKeyPath, string.Empty, "SHA1");
+            }
+            catch { return false; }
+        }
+
+
+        public static string ResponseToBank(string transactionID, string paymentID, bool status)
+        {
+            return $@"<ConfirmResponse>
+  <TransactionId>{transactionID}</TransactionId>
+  <PaymentId>{paymentID}</PaymentId>
+  <Status>{(status ? "ACCEPTED" : "DECLINED")}</Status>
+</ConfirmResponse>";
+        }
+        public static string Get3DPurchaseDesc(string clientID, string transactionID, params string[] args)
+        {
+            return $"{clientID} ! {transactionID}{(args != null && args.Length > 0 ? " ! " + string.Join(" ! ", args) : string.Empty)}";
+        }
+
+
+        #region WSB24
+        public static WSB24SoapClient CreateWSB24SoapClient(string url)
+        {
+            var binding = new BasicHttpBinding();
+            var remoteAddress = new EndpointAddress(url);
+
+            return new WSB24SoapClient(binding, remoteAddress);
+        }
+        /// <summary>
+        /// დაბლოკილი თანხის ჩამოჭრა ბარათზე.
+        /// შესაძლებელია დაბლოკილი თანხის ფარგლებში ნებისმიერი ერთჯერადი ოპერაციის განხორციელება.
+        /// </summary>
+        /// <param name="url">ვებ სერვისის ლინკი</param>
+        /// <param name="clientKey">იდენთიფიკატორი, რომელიც გადაეცემა პროცესინგის მიერ სერვისის მომხმარებელს</param>
+        /// <param name="terminal">ტერმინალის ნომერი, რომლითაც სრულდება ტრანზაქცია.</param>
+        /// <param name="uniqueID"></param>
+        /// <param name="amount">თანხა ლარებში.</param>
+        /// <param name="passKey">კოდური გასაღები, რომელიც გადაეცემა სერვისის მომხმარებელს იდენთიფიკატორთან ერთად.</param>
+        /// <returns>სადაც RespCode შეიძლება იყოს • 00 –Accepted (დასტური ოპრაციაზე) • 05 – Decline (უარყოფა)</returns>
+        public static BR GetCompl(string url, string clientKey, string terminal, string uniqueID, decimal amount, string passKey)
+        {
+            return GetCompl(url, clientKey, terminal, uniqueID, (int)(amount * 100m), passKey);
+        }
+        /// <summary>
+        /// დაბლოკილი თანხის ჩამოჭრა ბარათზე.
+        /// შესაძლებელია დაბლოკილი თანხის ფარგლებში ნებისმიერი ერთჯერადი ოპერაციის განხორციელება.
+        /// </summary>
+        /// <param name="url">ვებ სერვისის ლინკი</param>
+        /// <param name="clientKey">იდენთიფიკატორი, რომელიც გადაეცემა პროცესინგის მიერ სერვისის მომხმარებელს</param>
+        /// <param name="terminal">ტერმინალის ნომერი, რომლითაც სრულდება ტრანზაქცია.</param>
+        /// <param name="uniqueID"></param>
+        /// <param name="amount">თანხა თეთრებში.</param>
+        /// <param name="passKey">კოდური გასაღები, რომელიც გადაეცემა სერვისის მომხმარებელს იდენთიფიკატორთან ერთად.</param>
+        /// <returns>სადაც RespCode შეიძლება იყოს • 00 –Accepted (დასტური ოპრაციაზე) • 05 – Decline (უარყოფა)</returns>
+        public static BR GetCompl(string url, string clientKey, string terminal, string uniqueID, int amount, string passKey)
+        {
+            using (var ws = CreateWSB24SoapClient(url))
+            {
+                return ws.GetCompl(clientKey, terminal, uniqueID, amount, MD5Hex(clientKey + terminal + uniqueID + amount + passKey));
+            }
+        }
+
+        /// <summary>
+        /// ოპერაციის რევერსალი (შესაძლებელია მხოლოდ უახლოეს დილის ცხრა საათამდე).
+        /// </summary>
+        /// <param name="url">ვებ სერვისის ლინკი</param>
+        /// <param name="clientKey">იდენთიფიკატორი რომელიც გადაეცემა პროცესინგის მიერ სერვისის მომხმარებელს.</param>
+        /// <param name="terminal">ტერმინალის ნომერი, რომლითაც სრულდება ტრანზაქცია.</param>
+        /// <param name="uniqueID"></param>
+        /// <param name="passKey">კოდური გასაღები, რომელიც გადაეცემა სერვისის მომხმარებელს იდენთიფიკატორთან ერთად.</param>
+        /// <returns>სადაც RespCode შეიძლება იყოს • 00 –Accepted  (დასტური ოპრაციაზე) • 51 – Insufficient Funds (არასაკმარისი თანხის კოდი) • 05 – Decline (უარყოფა)</returns>
+        public static BR GetReversal(string url, string clientKey, string terminal, string uniqueID, string passKey)
+        {
+            using (var ws = CreateWSB24SoapClient(url))
+            {
+                return ws.GetReversal(clientKey, terminal, uniqueID, MD5Hex(clientKey + terminal + uniqueID + passKey));
+            }
+        }
+
+        /// <summary>
+        /// ოპერაციის დაბრუნება
+        /// </summary>
+        /// <param name="url">ვებ სერვისის ლინკი.</param>
+        /// <param name="clientKey">იდენთიფიკატორი რომელიც გადაეცემა პროცესინგის მიერ სერვისის მომხმარებელს.</param>
+        /// <param name="terminal">ტერმინალის ნომერი, რომლითაც სრულდება ტრანზაქცია.</param>
+        /// <param name="amount">თანხა ლარებში.</param>
+        /// <param name="uniqueID"></param>
+        /// <param name="passKey">კოდური გასაღები, რომელიც გადაეცემა სერვისის მომხმარებელს იდენთიფიკატორთან ერთად.</param>
+        /// <returns>სადაც RespCode შეიძლება იყოს • 00 –Accepted  (დასტური ოპრაციაზე) • 51 – Insufficient Funds (არასაკმარისი თანხის კოდი) • 05 – Decline (უარყოფა)</returns>
+        public static BR GetRefund(string url, string clientKey, string terminal, decimal amount, string uniqueID, string passKey)
+        {
+            return GetRefund(url, clientKey, terminal, (int)(amount * 100m), uniqueID, passKey);
+        }
+        /// <summary>
+        /// ოპერაციის დაბრუნება
+        /// </summary>
+        /// <param name="url">ვებ სერვისის ლინკი.</param>
+        /// <param name="clientKey">იდენთიფიკატორი რომელიც გადაეცემა პროცესინგის მიერ სერვისის მომხმარებელს.</param>
+        /// <param name="terminal">ტერმინალის ნომერი, რომლითაც სრულდება ტრანზაქცია.</param>
+        /// <param name="amount">თანხა თეთრებში.</param>
+        /// <param name="uniqueID"></param>
+        /// <param name="passKey">კოდური გასაღები, რომელიც გადაეცემა სერვისის მომხმარებელს იდენთიფიკატორთან ერთად.</param>
+        /// <returns>სადაც RespCode შეიძლება იყოს • 00 –Accepted  (დასტური ოპრაციაზე) • 51 – Insufficient Funds (არასაკმარისი თანხის კოდი) • 05 – Decline (უარყოფა)</returns>
+        public static BR GetRefund(string url, string clientKey, string terminal, int amount, string uniqueID, string passKey)
+        {
+            using (var ws = CreateWSB24SoapClient(url))
+            {
+                return ws.GetRefund(clientKey, terminal, amount, uniqueID, MD5Hex(clientKey + terminal + amount + uniqueID + passKey));
+            }
+        }
+        #endregion
+
+
+        private static string MD5Hex(string plainText)
+        {
+            using (var md5 = new MD5CryptoServiceProvider())
+            {
+                var buffer = md5.ComputeHash(Encoding.UTF8.GetBytes(plainText));
+                return BitConverter.ToString(buffer).Replace("-", string.Empty).ToUpperInvariant();
+            }
+        }
+
+        private static string SerializeXml(object instance)
+        {
+            MemoryStream ms = null;
+            try
+            {
+                ms = new MemoryStream();
+                var xsn = new XmlSerializerNamespaces();
+                xsn.Add(string.Empty, string.Empty);
+
+                var settings = new XmlWriterSettings
+                {
+                    OmitXmlDeclaration = true,
+                    Encoding = new UTF8Encoding(false)
+                };
+
+                var xmls = new XmlSerializer(instance.GetType());
+                using (var writer = XmlWriter.Create(ms, settings))
+                {
+                    xmls.Serialize(writer, instance, xsn, null, null);
+                }
+
+                return Encoding.UTF8.GetString(ms.ToArray());
+            }
+            finally
+            {
+                if (ms != null)
+                    ms.Dispose();
+            }
+        }
+
+
+
+        #region VerifyCards
+        public static VerifyCardsProxySoapClient CreateVerifyCardsProxySoapClient(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                throw new ArgumentException(@"URL required.", nameof(url));
+
+            var binding = new BasicHttpBinding();
+            var remoteAddress = new EndpointAddress(url);
+            return new VerifyCardsProxySoapClient(binding, remoteAddress);
+        }
+        public static VerifyResponse DeleteVerifyCard(string url, string certFilePath, VerifyRequest verifyequest)
+        {
+            return DeleteVerifyCard(url, certFilePath, string.Empty, verifyequest);
+        }
+        public static VerifyResponse DeleteVerifyCard(string url, string certFilePath, string password, VerifyRequest verifyequest)
+        {
+            try
+            {
+
+                if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(certFilePath) || verifyequest == null) return null;
+
+                verifyequest.Amount = 0;
+                verifyequest.Status = "D";
+                verifyequest.Reason = "OK";
+
+
+                var xml = SerializeXml(verifyequest);
+                var signature = Convert.ToBase64String(SignData("VerifyRequest=" + xml, certFilePath, password));
+                return VerifyCard(url, xml, signature);
+            }
+            catch { return null; }
+        }
+
+        public static VerifyResponse VerifyCard(string url, string certFilePath, VerifyRequest verifyequest)
+        {
+            return VerifyCard(url, certFilePath, string.Empty, verifyequest);
+        }
+        public static VerifyResponse VerifyCard(string url, string certFilePath, string password, VerifyRequest verifyRequest)
+        {
+            if (verifyRequest == null)
+                throw new ArgumentNullException(nameof(verifyRequest), @"Verify request required.");
+
+            try
+            {
+                var xml = SerializeXml(verifyRequest);
+                var signature = Convert.ToBase64String(SignData("VerifyRequest=" + xml, certFilePath, password));
+                return VerifyCard(url, xml, signature);
+            }
+            catch { return null; }
+        }
+        public static VerifyResponse VerifyCard(string url, string verifyRequest, string signature)
+        {
+            if (string.IsNullOrWhiteSpace(verifyRequest))
+                throw new ArgumentException(@"Verify request required.", nameof(verifyRequest));
+
+            if (string.IsNullOrWhiteSpace(signature))
+                throw new ArgumentException(@"Signature required.", nameof(signature));
+
+            using (var ws = CreateVerifyCardsProxySoapClient(url))
+            {
+                return ws.VerifyCard(verifyRequest, signature);
+            }
+        }
+        #endregion
+
+
+
+        #region AuthCards
+        public static WebAuthAutoSoapClient CreateWebAuthAutoSoapClient(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                throw new ArgumentException(@"URL param required.", nameof(url));
+
+            var binding = new BasicHttpBinding();
+            var remoteAddress = new EndpointAddress(url);
+            return new WebAuthAutoSoapClient(binding, remoteAddress);
+        }
+        public static AuthResponse AuthCard(string url, string certFilePath, AuthRequest authRequest)
+        {
+            return AuthCard(url, certFilePath, string.Empty, authRequest);
+        }
+        public static AuthResponse AuthCard(string url, string certFilePath, string password, AuthRequest authRequest)
+        {
+            if (string.IsNullOrWhiteSpace(certFilePath))
+                throw new ArgumentException(@"Certificate file path required.", nameof(certFilePath));
+
+            if (authRequest == null)
+                throw new ArgumentNullException(nameof(authRequest), @"AuthRequest required.");
+
+            if (password == null)
+                password = string.Empty;
+
+
+            var xml = SerializeXml(authRequest);
+            var signature = Convert.ToBase64String(SignData("AuthRequest=" + xml, certFilePath, password));
+            return AuthCard(url, xml, signature);
+        }
+        public static AuthResponse AuthCard(string url, string authRequest, string signature)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                throw new ArgumentException(@"URL required.", nameof(url));
+
+            if (string.IsNullOrWhiteSpace(signature))
+                throw new ArgumentException(@"Signature required.", nameof(signature));
+
+
+            using (var ws = CreateWebAuthAutoSoapClient(url))
+            {
+                return ws.AuthCard(authRequest, signature);
+            }
+        }
+        #endregion
+    }
+}

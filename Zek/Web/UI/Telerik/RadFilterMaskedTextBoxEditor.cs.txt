@@ -1,0 +1,100 @@
+﻿using System.Collections;
+using System.Web.UI;
+using Telerik.Web.UI;
+
+namespace Zek.Web.UI
+{
+    public class RadFilterMaskedTextBoxEditor : RadFilterDataFieldEditor
+    {
+        protected override void CopySettings(RadFilterDataFieldEditor baseEditor)
+        {
+            base.CopySettings(baseEditor);
+            var editor = baseEditor as RadFilterMaskedTextBoxEditor;
+            if (editor != null)
+            {
+                Mask = editor.Mask;
+                DisplayMask = editor.DisplayMask;
+                PromptChar = editor.PromptChar;
+                DisplayPromptChar = editor.DisplayPromptChar;
+            }
+        }
+
+        public override ArrayList ExtractValues()
+        {
+            var list = new ArrayList {_maskedTextBox.Text};
+            return list;
+        }
+
+        public override void InitializeEditor(Control container)
+        {
+            _maskedTextBox = new RadMaskedTextBox
+            {
+                ID = "RadFilterMaskedTextBox",
+                SelectionOnFocus = SelectionOnFocus.None,
+                Mask = Mask,
+                DisplayMask = DisplayMask,
+                PromptChar = PromptChar,
+                DisplayPromptChar = DisplayPromptChar
+            };
+            container.Controls.Add(_maskedTextBox);
+        }
+
+        public override void SetEditorValues(ArrayList values)
+        {
+            if (values != null && values.Count > 0)
+            {
+                if (values[0] == null)
+                    return;
+                _maskedTextBox.Text = values[0].ToString();
+            }
+        }
+
+
+        public string Mask
+        {
+            get
+            {
+                return (string)ViewState["Mask"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["Mask"] = value;
+            }
+        }
+        public string DisplayMask
+        {
+            get
+            {
+                return (string)ViewState["DisplayMask"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DisplayMask"] = value;
+            }
+        }
+        public string PromptChar
+        {
+            get
+            {
+                return (string)ViewState["PromptChar"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["PromptChar"] = value;
+            }
+        }
+        public string DisplayPromptChar
+        {
+            get
+            {
+                return (string)ViewState["DisplayPromptChar"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DisplayPromptChar"] = value;
+            }
+        }
+
+        private RadMaskedTextBox _maskedTextBox;
+    }
+}

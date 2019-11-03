@@ -1,0 +1,239 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Report;
+using Zek.Windows.Forms;
+using Reports;
+using System.IO;
+using System.ComponentModel;
+
+namespace Zek.Report
+{
+    public class ReportHelper
+    {
+        private static StiReport GetReportFromFile(string file)
+        {
+            if (string.IsNullOrEmpty(file)) return null;
+
+            StiReport rpt = new StiReport();
+            rpt.Load(file);
+            rpt.Compile();
+            return rpt;
+        }
+        public static StiReport GetReport(ReportName reportName)
+        {
+            switch (reportName)
+            {
+                case ReportName.ActOfReceipt:
+                    //return GetReportFromFile(@"D:\User\Documents\Projects\Zek\Source\Class Library\Zek.Report\Reports\RptActOfReceipt.mrt");
+                    return new RptActOfReceipt();
+
+                case ReportName.ActOfReceiptThermal:
+                    //return GetReportFromFile(@"D:\User\Documents\Projects\Zek\Source\Class Library\Zek.Report\Reports\RptActOfReceiptThermal.mrt");
+                    return new RptActOfReceiptThermal();
+
+                case ReportName.CardPointTransfer:
+                    return new RptCardPointTransfer();
+
+                case ReportName.CashboxOrder:
+                    return new RptCashboxOrder();
+
+                case ReportName.Enclosure4:
+                    return new RptEnclosure4();
+
+                case ReportName.Enclosure7:
+                    return new RptEnclosure7();
+
+                case ReportName.EnclosureInCountry:
+                    return new RptEnclosureInCountry();
+
+                case ReportName.Receipt:
+                    //eturn GetReportFromFile(@"D:\User\Documents\Projects\Zek\Source\Class Library\Zek.Report\Reports\RptReceipt.mrt");
+                    return new RptReceipt();
+
+                case ReportName.VATOrder:
+                    //return GetReportFromFile(@"D:\User\Documents\Projects\Zek\Source\Class Library\Zek.Report\Reports\RptVATOrder20110401.mrt");
+                    return new RptVATOrder();
+
+                default:
+                    throw new ArgumentException("reportName is not valid.", "reportName");
+            }
+        }
+
+        public static void Show(Form mdiParent, string text, ReportName reportName, DataSet dataSet)
+        {
+            StiReport stiReport = GetReport(reportName);
+            Show(mdiParent, text, stiReport, dataSet);
+        }
+        public static void Show(string text, Component stiReport)
+        {
+            Show(null, text, stiReport);
+        }
+        public static void Show(Form mdiParent, string text, Component report)
+        {
+            Show(mdiParent, text, report, (DataSet)null);
+        }
+
+
+        public static void Show(Form mdiParent, string text, Component report, DataTable dataTable)
+        {
+            Show(mdiParent, text, report, dataTable, -1, -1);
+        }
+        public static void Show(Form mdiParent, string text, Component report, DataTable dataTable, int pageWidth, int pageHeight)
+        {
+            Show(mdiParent, text, report, dataTable, pageWidth, pageHeight, null);
+        }
+        public static void Show(Form mdiParent, string text, Component report, DataTable dataTable, int pageWidth, int pageHeight, Dictionary<string, object> variables)
+        {
+            BaseShow(mdiParent, text, report, null, dataTable, pageWidth, pageHeight, variables);
+        }
+
+        
+       
+        public static void Show(Form mdiParent, string text, Component report, DataSet dataSet)
+        {
+            Show(mdiParent, text, report, dataSet, -1, -1);
+        }
+        public static void Show(Form mdiParent, string text, Component report, DataSet dataSet, int pageWidth, int pageHeight)
+        {
+            Show(mdiParent, text, report, dataSet, pageWidth, pageHeight, null);
+        }
+        public static void Show(Form mdiParent, string text, Component report, DataSet dataSet, int pageWidth, int pageHeight, Dictionary<string, object> variables)
+        {
+            BaseShow(mdiParent, text, report, dataSet, null, pageWidth, pageHeight, variables);
+        }
+
+        private static void BaseShow(Form mdiParent, string text, Component report, DataSet dataSet, DataTable dataTable, int pageWidth, int pageHeight, Dictionary<string, object> variables)
+        {
+            StiReport stiReport = null;
+            if (report is StiReport)
+            {
+                stiReport = (StiReport)report;
+                if (dataSet != null)
+                    InitReport(stiReport, dataSet, pageWidth, pageHeight, variables);
+                if (dataTable != null)
+                    InitReport(stiReport, dataTable, pageWidth, pageHeight, variables);
+            }
+
+
+            ReportViewerForm frm = new ReportViewerForm();
+            if (text != null)
+                frm.Text = text.EndsWith("*") ? text.Remove(text.Length - 1) : text;
+            frm.MdiParent = mdiParent;
+
+            stiReport.Render();
+            frm.stiPreviewControl.Report = stiReport;
+
+            frm.Show();
+        }
+
+
+        public static void Print(ReportName reportName, DataSet dataSet)
+        {
+            var stiReport = GetReport(reportName);
+            Print(stiReport, dataSet);
+        }
+
+        //#region Events
+        //private static void OnPrinted(object sender, EventArgs e)
+        //{
+        //    Printed(sender, e);
+        //}
+        //public static EventHandler Printed;
+        //#endregion
+
+        public static void Print(ReportName reportName, DataSet dataSet, int pageWidth, int pageHeight)
+        {
+            Print(reportName, dataSet, pageWidth, pageHeight, null);
+        }
+        public static void Print(ReportName reportName, DataSet dataSet, int pageWidth, int pageHeight, Dictionary<string, object> variables)
+        {
+            StiReport stiReport = GetReport(reportName);
+            Print(stiReport, dataSet, pageWidth, pageHeight, variables);
+        }
+
+        internal static void Print(StiReport stiReport)
+        {
+            Print(stiReport, null);
+        }
+        internal static void Print(StiReport stiReport, DataSet dataSet)
+        {
+            Print(stiReport, dataSet, -1, -1);
+        }
+        internal static void Print(StiReport stiReport, DataSet dataSet, int pageWidth, int pageHeight)
+        {
+            Print(stiReport, dataSet, pageWidth, pageHeight, null);
+        }
+        internal static void Print(StiReport stiReport, DataSet dataSet, int pageWidth, int pageHeight, Dictionary<string, object> variables)
+        {
+            InitReport(stiReport, dataSet, pageWidth, pageHeight, variables);
+            stiReport.Print(false);
+        }
+
+        private static void BaseInit(StiReport stiReport, int pageWidth, int pageHeight, Dictionary<string, object> variables)
+        {
+            InitEvents(stiReport);
+            SetPageSize(stiReport, pageWidth, pageHeight);
+            SetVariables(stiReport, variables);
+        }
+        private static void InitReport(StiReport stiReport, DataTable dataTable, int pageWidth, int pageHeight, Dictionary<string, object> variables)
+        {
+            BaseInit(stiReport, pageWidth, pageHeight, variables);
+            RegData(stiReport, dataTable);
+
+        }
+        private static void InitReport(StiReport stiReport, DataSet dataSet, int pageWidth, int pageHeight, Dictionary<string, object> variables)
+        {
+            BaseInit(stiReport, pageWidth, pageHeight, variables);
+            RegData(stiReport, dataSet);
+        }
+
+        private static void InitEvents(StiReport stiReport)
+        {
+            //if (Printed != null)
+            //    stiReport.Printed += new EventHandler(OnPrinted);
+        }
+        public static void SetPageSize(StiReport stiReport, int pageWidth, int pageHeight)
+        {
+            if (pageWidth != -1) stiReport.Pages[0].PageWidth = pageWidth;
+            if (pageHeight != -1) stiReport.Pages[0].PageHeight = pageHeight;
+        }
+        public static void SetVariables(StiReport stiReport, Dictionary<string, object> variables)
+        {
+            if (variables == null || variables.Count == 0) return;
+
+            if (stiReport.IsCompiled)
+            {
+                foreach (KeyValuePair<string, object> kvp in variables)
+                {
+                    if (!stiReport.Variables.ContainsKey(kvp.Key)) continue;
+
+                    stiReport.Variables[kvp.Key] = kvp.Value;
+                }
+            }
+            else
+            {
+                foreach (KeyValuePair<string, object> kvp in variables)
+                {
+                    if (!stiReport.Dictionary.Variables.Contains(kvp.Key)) continue;
+
+                    stiReport[kvp.Key] = kvp.Value;
+                    //stiReport.Dictionary.Variables[kvp.Key].Value = kvp.Value.ToString();
+                    //stiReport.Dictionary.Variables[kvp.Key].ValueObject = kvp.Value;
+                }
+            }
+        }
+        private static void RegData(StiReport stiReport, DataTable dataTable)
+        {
+            if (dataTable == null) return;
+            stiReport.RegData(dataTable);
+        }
+        private static void RegData(StiReport stiReport, DataSet dataSet)
+        {
+            if (dataSet == null) return;
+            stiReport.RegData(dataSet);
+        }
+    }
+}

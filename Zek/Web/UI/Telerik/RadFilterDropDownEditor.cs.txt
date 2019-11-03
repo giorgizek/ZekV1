@@ -1,0 +1,105 @@
+﻿using System.Collections;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Telerik.Web.UI;
+using Zek.Extensions.Collections;
+
+namespace Zek.Web.UI
+{
+    public class RadFilterDropDownEditor : RadFilterDataFieldEditor
+    {
+        private DropDownList _dropDownList;
+
+        public override ArrayList ExtractValues()
+        {
+            var list = new ArrayList {_dropDownList.SelectedValue};
+            return list;
+        }
+
+        public override void InitializeEditor(Control container)
+        {
+            _dropDownList = new DropDownList
+            {
+                ID = "RadFilterDropDownList",
+                DataSourceID = DataSourceID,
+                DataTextField = DataTextField,
+                DataValueField = DataValueField,
+                DataSource = DataSource
+            };
+            if (DataSourceID.IsNullOrEmpty() && DataSource != null)
+                _dropDownList.DataBind();
+            container.Controls.Add(_dropDownList);
+        }
+
+        public override void SetEditorValues(ArrayList values)
+        {
+            if (values != null && values.Count > 0)
+            {
+                if (values[0] == null)
+                    return;
+                _dropDownList.SelectedValue = values[0].ToString();
+            }
+        }
+
+        protected override void CopySettings(RadFilterDataFieldEditor baseEditor)
+        {
+            base.CopySettings(baseEditor);
+            var editor = baseEditor as RadFilterDropDownEditor;
+            if (editor != null)
+            {
+                DataSource = editor.DataSource;
+                DataSourceID = editor.DataSourceID;
+                DataTextField = editor.DataTextField;
+                DataValueField = editor.DataValueField;
+            }
+        }
+
+
+        public string DataSourceID
+        {
+            get
+            {
+                return (string)ViewState["DataSourceID"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DataSourceID"] = value;
+            }
+        }
+        public string DataTextField
+        {
+            get
+            {
+                return (string)ViewState["DataTextField"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DataTextField"] = value;
+            }
+        }
+        public string DataValueField
+        {
+            get
+            {
+                return (string)ViewState["DataValueField"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DataValueField"] = value;
+            }
+        }
+        public object DataSource
+        {
+            get
+            {
+                return ViewState["DataSource"];
+            }
+            set
+            {
+                ViewState["DataSource"] = value;
+            }
+        }
+
+       
+    }
+}

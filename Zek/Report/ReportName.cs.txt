@@ -1,0 +1,19 @@
+﻿namespace Reports
+{
+    /// <summary>
+    /// რეპორტის ენუმერატორი.
+    /// </summary>
+    public enum ReportName
+    {
+        ActOfReceipt,
+        ActOfReceiptThermal,
+        CardPointTransfer,
+        CashboxOrder,
+        Enclosure4,
+        Enclosure7,
+        EnclosureInCountry,
+        Receipt,
+        VATOrder,
+        //VATOrder20101231,
+    }
+}

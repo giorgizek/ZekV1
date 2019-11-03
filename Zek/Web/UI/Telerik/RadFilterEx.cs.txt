@@ -1,0 +1,48 @@
+﻿using Telerik.Web.UI;
+
+namespace Zek.Web.UI
+{
+    public class RadFilterEx : RadFilter
+    {
+        public RadFilterEx()
+        {
+            FieldEditorCreating += RadFilterEx_FieldEditorCreating;
+            ApplyExpressions += RadFilterEx_ApplyExpressions;
+        }
+
+        private void RadFilterEx_ApplyExpressions(object sender, RadFilterApplyExpressionsEventArgs e)
+        {
+            var provider = new RadFilterSqlQueryProvider();
+            provider.ProcessGroup(e.ExpressionRoot);
+
+            var grid = FilterContainer as RadGrid;
+            if (grid != null)
+            {
+                grid.MasterTableView.FilterExpression = provider.Result;
+                grid.Rebind();
+            }
+        }
+
+        private void RadFilterEx_FieldEditorCreating(object sender, RadFilterFieldEditorCreatingEventArgs e)
+        {
+            switch (e.EditorType)
+            {
+                case "RadFilterDropDownEditor":
+                    e.Editor = new RadFilterDropDownEditor();
+                    break;
+
+                case "RadFilterRadComboBoxEditor":
+                    e.Editor = new RadFilterRadComboBoxEditor();
+                    break;
+
+                case "RadFilterMaskedTextBoxEditor":
+                    e.Editor = new RadFilterMaskedTextBoxEditor();
+                    break;
+
+                case "RadFilterCustomMonthYearPickerEditor":
+                    e.Editor = new RadFilterCustomMonthYearPickerEditor();
+                    break;
+            }
+        }
+    }
+}

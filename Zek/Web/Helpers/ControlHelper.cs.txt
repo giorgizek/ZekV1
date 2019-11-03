@@ -1,0 +1,231 @@
+﻿using System;
+using System.Globalization;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Zek.Extensions.Collections;
+
+namespace Zek.Web
+{
+    public class WebControlHelper
+    {
+        /// <summary>
+        /// Finds a control recursive
+        /// </summary>
+        /// <typeparam name="T">Control class</typeparam>
+        /// <param name="controls">Input control collection</param>
+        /// <returns>Found control</returns>
+        public static T FindControlRecursive<T>(ControlCollection controls) where T : class
+        {
+            var found = default(T);
+
+            if (controls != null && controls.Count > 0)
+            {
+                for (var i = 0; i < controls.Count; i++)
+                {
+                    if (controls[i] is T)
+                    {
+                        found = controls[i] as T;
+                        break;
+                    }
+                    
+                    found = FindControlRecursive<T>(controls[i].Controls);
+                    if (found != null)
+                        break;
+                }
+            }
+
+            return found;
+        }
+
+        /// <summary>
+        /// Selects item
+        /// </summary>
+        /// <param name="list">List</param>
+        /// <param name="value">Value to select</param>
+        public static void SelectListItem(DropDownList list, object value)
+        {
+            if (list.Items.Count != 0)
+            {
+                var selectedItem = list.SelectedItem;
+                if (selectedItem != null)
+                    selectedItem.Selected = false;
+                if (value != null)
+                {
+                    selectedItem = list.Items.FindByValue(value.ToString());
+                    if (selectedItem != null)
+                        selectedItem.Selected = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Fills drop down list with values of enumaration
+        /// </summary>
+        /// <param name="list">Dropdownlist</param>
+        /// <param name="enumType">Enumeration</param>
+        public static void FillDropDownWithEnum(DropDownList list, Type enumType)
+        {
+            FillDropDownWithEnum(list, enumType, true);
+        }
+
+        /// <summary>
+        /// Fills drop down list with values of enumaration
+        /// </summary>
+        /// <param name="list">Dropdownlist</param>
+        /// <param name="enumType">Enumeration</param>
+        /// <param name="clearListItems">Clear list of exsisting items</param>
+        public static void FillDropDownWithEnum(DropDownList list, Type enumType, bool clearListItems)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException(nameof(list));
+            }
+            if (enumType == null)
+            {
+                throw new ArgumentNullException(nameof(enumType));
+            }
+            if (!enumType.IsEnum)
+            {
+                throw new ArgumentException("enumType must be enum type");
+            }
+
+            if (clearListItems)
+            {
+                list.Items.Clear();
+            }
+            var strArray = Enum.GetNames(enumType);
+            foreach (var str2 in strArray)
+            {
+                var enumValue = (int)Enum.Parse(enumType, str2, true);
+                var ddlItem = new ListItem(str2.FromEnum(), enumValue.ToString(CultureInfo.InvariantCulture));
+                list.Items.Add(ddlItem);
+            }
+        }
+
+        /// <summary>
+        /// ListBox მონიშნული ჩანაწერების რაოდენობის დათვლა.
+        /// </summary>
+        /// <param name="listBox">ლისტბოქსი.</param>
+        /// <returns>აბრუნებს რაოდენობას რამდენი ჩანაწერიც მონიშნულია</returns>
+        public static int GetSelectedItemsCount(ListBox listBox)
+        {
+            var count = 0;
+            for (var i = 0; i < listBox.Items.Count; i++)
+            {
+                if (listBox.Items[i].Selected)
+                    count++;
+            }
+
+            return count;
+        }
+
+        /// <summary>
+        /// Selects a listitem by value, case insensitively.
+        /// </summary>
+        /// <param name="control">The ListControl</param>
+        /// <param name="value">The value to select</param>
+        /// <returns>The ListItem found and selected</returns>
+        public static ListItem SelectListItemByValue(ListControl control, string value)
+        {
+            control.ClearSelection();
+            control.SelectedIndex = -1;
+
+            foreach (ListItem li in control.Items)
+            {
+                if (string.Equals(value, li.Value, StringComparison.OrdinalIgnoreCase))
+                {
+                    li.Selected = true;
+                    return li;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Adds the onfocus and onblur attributes to all input controls found in the specified parent,
+        /// to change their apperance with the control has the focus
+        /// </summary>
+        public static void SetInputControlsHighlight(Control container, string className, bool onlyTextBoxes)
+        {
+            try
+            {
+                foreach (Control ctl in container.Controls)
+                {
+                    if ((onlyTextBoxes && ctl is TextBox) || ctl is TextBox || ctl is DropDownList ||
+                        ctl is ListBox || ctl is CheckBox ||
+                        ctl is RadioButtonList || ctl is CheckBoxList)
+                    {
+                        var wctl = ctl as WebControl;
+                        wctl.Attributes.Add("onfocus", $"this.className = '{className}';");
+                        wctl.Attributes.Add("onblur", "this.className = '';");
+                    }
+                    else
+                    {
+                        if (!(ctl is GridView))
+                        {
+                            if (ctl.Controls.Count > 0)
+                                SetInputControlsHighlight(ctl, className, onlyTextBoxes);
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Recursive FindControl method, to search a control and all child
+        /// controls for a control with the specified ID.
+        /// </summary>
+        /// <returns>Control if found or null</returns>
+        public static Control FindControlRecursive(Control root, string id)
+        {
+            if (id == string.Empty)
+                return null;
+
+            if (root.ID == id)
+                return root;
+
+            foreach (Control c in root.Controls)
+            {
+                var t = FindControlRecursive(c, id);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
+            return null;
+        }
+
+
+
+
+
+        //public static void CategoryNewsSelection(int categoryID, int parentID, bool nocat, string subLevelMarker, DropDownList dropDownList, DataTable dataTable, string dataFieldID, string dataFieldParentID, string dataTextField)
+        //{
+        //    if (nocat)
+        //        dropDownList.Items.Add(string.Empty);
+
+        //    ListItemCollection rootCategories = new ListItemCollection();
+        //    foreach (DataRow row in dataTable)
+        //    {
+        //        if ((int)row[dataFieldParentID] == parentID)
+        //            rootCategories.Add(cat);
+        //    }
+        //    if (rootCategories.Count == 0) return;
+
+        //    if (parentID != 0)
+        //        subLevelMarker += "---";
+
+        //foreach (Category cat in rootCategories)
+        //{
+        //    items.Add(new System.Web.UI.WebControls.ListItem(subLevelMarker + cat.Name, cat.ID.ToString()));
+
+        //    if (cat.ID == categoryID)
+        //        items[0].Selected = true;
+        //    dataTable.Select(
+        //    CategoryNewsSelection(categoryID, cat.ID, false, subLevelMarker, items);
+        //}
+        //}
+    }
+}

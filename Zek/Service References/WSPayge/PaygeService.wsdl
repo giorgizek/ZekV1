@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PaygeService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://pay.ge:1202/PaygeService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://pay.ge:1202/PaygeService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://pay.ge:1202/PaygeService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PaygeRefundWcfService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPaygeService_GetOrderInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderInformation" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetOrderInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_Refund_InputMessage">
+    <wsdl:part name="parameters" element="tns:Refund" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_Refund_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetRefundInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRefundInformation" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetRefundInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRefundInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetOrderDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetails" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetOrderDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_Completion_InputMessage">
+    <wsdl:part name="parameters" element="tns:Completion" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_Completion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompletionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetCompletionInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompletionInfo" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetCompletionInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompletionInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetCreditInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreditInformation" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetCreditInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreditInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_CheckPosPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPosPayment" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_CheckPosPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPosPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_RecurringPosPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecurringPosPayment" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_RecurringPosPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecurringPosPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_RecurringPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecurringPayment" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_RecurringPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecurringPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetRecurringPaymentInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecurringPaymentInformation" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_GetRecurringPaymentInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecurringPaymentInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_CheckClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckClient" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_CheckClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_BalanceInQuiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:BalanceInQuiry" />
+  </wsdl:message>
+  <wsdl:message name="IPaygeService_BalanceInQuiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BalanceInQuiryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPaygeService">
+    <wsdl:operation name="GetOrderInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/GetOrderInformation" message="tns:IPaygeService_GetOrderInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/GetOrderInformationResponse" message="tns:IPaygeService_GetOrderInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/Refund" message="tns:IPaygeService_Refund_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/RefundResponse" message="tns:IPaygeService_Refund_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRefundInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/GetRefundInformation" message="tns:IPaygeService_GetRefundInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/GetRefundInformationResponse" message="tns:IPaygeService_GetRefundInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/GetOrderDetails" message="tns:IPaygeService_GetOrderDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/GetOrderDetailsResponse" message="tns:IPaygeService_GetOrderDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Completion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/Completion" message="tns:IPaygeService_Completion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/CompletionResponse" message="tns:IPaygeService_Completion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletionInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/GetCompletionInfo" message="tns:IPaygeService_GetCompletionInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/GetCompletionInfoResponse" message="tns:IPaygeService_GetCompletionInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/GetCreditInformation" message="tns:IPaygeService_GetCreditInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/GetCreditInformationResponse" message="tns:IPaygeService_GetCreditInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPosPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/CheckPosPayment" message="tns:IPaygeService_CheckPosPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/CheckPosPaymentResponse" message="tns:IPaygeService_CheckPosPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecurringPosPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/RecurringPosPayment" message="tns:IPaygeService_RecurringPosPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/RecurringPosPaymentResponse" message="tns:IPaygeService_RecurringPosPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecurringPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/RecurringPayment" message="tns:IPaygeService_RecurringPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/RecurringPaymentResponse" message="tns:IPaygeService_RecurringPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurringPaymentInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/GetRecurringPaymentInformation" message="tns:IPaygeService_GetRecurringPaymentInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/GetRecurringPaymentInformationResponse" message="tns:IPaygeService_GetRecurringPaymentInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/CheckClient" message="tns:IPaygeService_CheckClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/CheckClientResponse" message="tns:IPaygeService_CheckClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BalanceInQuiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPaygeService/BalanceInQuiry" message="tns:IPaygeService_BalanceInQuiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPaygeService/BalanceInQuiryResponse" message="tns:IPaygeService_BalanceInQuiry_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IPaygeService" type="tns:IPaygeService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrderInformation">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/GetOrderInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/Refund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRefundInformation">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/GetRefundInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetails">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/GetOrderDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Completion">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/Completion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletionInfo">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/GetCompletionInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditInformation">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/GetCreditInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPosPayment">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/CheckPosPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecurringPosPayment">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/RecurringPosPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecurringPayment">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/RecurringPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurringPaymentInformation">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/GetRecurringPaymentInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckClient">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/CheckClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BalanceInQuiry">
+      <soap:operation soapAction="http://tempuri.org/IPaygeService/BalanceInQuiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaygeService">
+    <wsdl:port name="BasicHttpBinding_IPaygeService" binding="tns:BasicHttpBinding_IPaygeService">
+      <soap:address location="http://pay.ge:1202/PaygeService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

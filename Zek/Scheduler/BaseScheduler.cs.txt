@@ -1,0 +1,111 @@
+﻿using System;
+using System.Configuration;
+using System.Linq;
+using Zek.Configuration;
+
+namespace Zek.Scheduler
+{
+
+
+ /*   public class BaseScheduler
+    {
+        public BaseScheduler()
+            : this(true)
+        {
+        }
+        public BaseScheduler(bool loadConfig)
+        {
+            if (loadConfig)
+                LoadConfig();
+        }
+
+        /// <summary>
+        /// ტვირთავს კონფიგურაციას
+        /// </summary>
+        public void LoadConfig()
+        {
+            try
+            {
+                TimeSpan tmp;
+
+                if (TimeSpan.TryParseExact(AppConfigHelper.GetString("SchedulerStartTime"), @"h\:m\:s", null, out tmp))
+                    StartTime = tmp;
+                else
+                    throw new FormatException("Can't parse 'SchedulerStartTime' from app.config (e.g. h:m:s)");
+
+                if (TimeSpan.TryParseExact(AppConfigHelper.GetString("SchedulerEndTime"), @"h\:m\:s", null, out tmp))
+                    EndTime = tmp;
+                else
+                    throw new FormatException("Can't parse 'SchedulerEndTime' from app.config (e.g. h:m:s)");
+
+                var schedulerDays = string.Empty;
+                foreach (var c in AppConfigHelper.GetString("SchedulerDays"))
+                {
+                    if (char.IsNumber(c) || c == ';' || c == ',' || c == '|' || c == '/' || c == '-' || c == '_')
+                        schedulerDays += c;
+                }
+                Days = Array.ConvertAll(schedulerDays.Split(';', ',', '|', '/', '-', '_').Where(x => x.Length == 1).ToArray(), int.Parse);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while loading configuration (see inner exception).", ex);
+            }
+        }
+
+
+
+        /// <summary>
+        /// ინახავს კონფიგურაციას.
+        /// </summary>
+        public void SaveConfig()
+        {
+            try
+            {
+                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                AppConfigHelper.Set(config, "SchedulerStartTime", StartTime.ToString(@"h\:m\:s"));
+                AppConfigHelper.Set(config, "SchedulerEndTime", EndTime.ToString(@"h\:m\:s"));
+                AppConfigHelper.Set(config, "SchedulerDays", string.Join(";", Days));//string.Join(";", Array.ConvertAll<int, string>(Days, Convert.ToString));
+
+                config.Save();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while saving configuration (see inner exception).", ex);
+            }
+        }
+
+
+        /// <summary>
+        /// Execute start time.
+        /// </summary>
+        public TimeSpan StartTime { get; set; }
+
+        /// <summary>
+        /// Execute end time.
+        /// </summary>
+        public TimeSpan EndTime { get; set; }
+        
+        /// <summary>
+        /// Sunday = 0,
+        /// Monday = 1,
+        /// Tuesday = 2,
+        /// Wednesday = 3,
+        /// Thursday = 4,
+        /// Friday = 5,
+        /// Saturday = 6
+        /// </summary>
+        public int[] Days { get; set; }
+
+
+        /// <summary>
+        /// თუ თარიღი და კვირის დღე სწორია.
+        /// </summary>
+        /// <returns>თუ ჯდება დროში და კვირის დღეებში მაშინ დააბრუნებს true-ს.</returns>
+        public bool Check()
+        {
+            return (DateTime.Now.TimeOfDay >= StartTime) && (DateTime.Now.TimeOfDay <= EndTime) && Days.Contains((int)DateTime.Now.DayOfWeek);
+        }
+    }*/
+
+
+}

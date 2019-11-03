@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.0" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="2">
+      <T_Header Ref="2" type="DataTableSource" isKey="true">
+        <Alias>T_Header</Alias>
+        <Columns isList="true" count="11">
+          <value>ID,System.Int32</value>
+          <value>ActNumber,System.String</value>
+          <value>Date,System.DateTime</value>
+          <value>Vendor,System.String</value>
+          <value>BranchCode,System.String</value>
+          <value>BranchAddress,System.String</value>
+          <value>Operator,System.String</value>
+          <value>Customer,System.String</value>
+          <value>CustomerPersonalNumber,System.String</value>
+          <value>CardNumber,System.String</value>
+          <value>CustomerPhone,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_Header</Name>
+        <NameInSource>DS_ActOfReceipt.T_Header</NameInSource>
+      </T_Header>
+      <T_Detail Ref="3" type="DataTableSource" isKey="true">
+        <Alias>T_Detail</Alias>
+        <Columns isList="true" count="6">
+          <value>HeaderID,System.Int32</value>
+          <value>Code,System.String</value>
+          <value>Product,System.String</value>
+          <value>Quantity,System.Decimal</value>
+          <value>Price,System.Decimal</value>
+          <value>Unit,System.Decimal</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_Detail</Name>
+        <NameInSource>DS_ActOfReceipt.T_Detail</NameInSource>
+      </T_Detail>
+    </DataSources>
+    <Relations isList="true" count="1">
+      <T_Header Ref="4" type="DataRelation" isKey="true">
+        <Alias>T_Header</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>HeaderID</value>
+        </ChildColumns>
+        <ChildSource isRef="3" />
+        <Dictionary isRef="1" />
+        <Name>T_Header</Name>
+        <NameInSource>T_ActOfReceipt_T_Detail</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>ID</value>
+        </ParentColumns>
+        <ParentSource isRef="2" />
+      </T_Header>
+    </Relations>
+    <Report isRef="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="5" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="2">
+        <DataT_Header Ref="6" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,4,74.5,80</ClientRectangle>
+          <Components isList="true" count="15">
+            <txtVendor Ref="7" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,74,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtVendor</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>{T_Header.Vendor}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </txtVendor>
+            <Text1 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,6,74,10</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>აფთიაქი №{T_Header.BranchCode}, {T_Header.BranchAddress}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text2 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,16,74,10</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>964e79b1f9e7464b920ad9ec13f77cca</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>ოპერატორი: {T_Header.Operator}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text3 Ref="10" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,26,36,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>{T_Header.Date}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="11" type="CustomFormat" isKey="true">
+                <StringFormat>G</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="12" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>38,26,36,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>9845fe30c1cd4a0198d30c130ad9de39</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>№{T_Header.ActNumber}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text5 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,34,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>76c9d74583004d38802b8255bc9e670e</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>ID:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 Ref="14" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6,34,30,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>be02f95213de433aa7fe0d17fef48104</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>{T_Header.CardNumber}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="15" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,42,74,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>9c805d31a2fe458d84bd2d55e0001094</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>{T_Header.Customer}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text9 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8,50,66,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>9a255c55f66542669a77f3f7180ad393</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>{T_Header.CustomerPersonalNumber}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text8 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,50,6,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>f145643fea5c4ee09a07a361451a48b4</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>პ/ნ:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text10 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,60,20,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>d03ce2ef78e644ad9e045a8219ca2db7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>განაღდებული:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>20,60,16,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>b21a6cb4f1a74373ad59ef46d8c71e13</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>{Sum(DataBand1,T_Detail.Quantity * T_Detail.Unit)}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="20" type="CustomFormat" isKey="true">
+                <StringFormat>n2</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="21" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>36,60,38,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>a42a07750c1d4c808e998c2008d49f0b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>ქულა ({Format("{0:N2}", Sum(DataBand1, T_Detail.Quantity * T_Detail.Price))} ლარი)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,70,20,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>d7a4409678714b78808b68f33cafb413</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>ხელმოწერა:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <HorizontalLinePrimitive1 Ref="23" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>20,74,44,0.254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="24" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <StartCap Ref="25" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>T_Header</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataT_Header</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="0" />
+        </DataT_Header>
+        <DataBand1 Ref="26" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,92,74.5,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <DataRelationName>T_ActOfReceipt_T_Detail</DataRelationName>
+          <DataSourceName>T_Detail</DataSourceName>
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="6" />
+          <Name>DataBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>da69d43d785e4ef8af8227c5bd6632f4</Guid>
+      <Margins>3,2,0,0</Margins>
+      <Name>Page1</Name>
+      <PageHeight>85</PageHeight>
+      <PageWidth>79.5</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="27" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="28" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Rpt Act OfReceipt Thermal</ReportAlias>
+  <ReportAuthor>Programmer.GE</ReportAuthor>
+  <ReportChanged>4/16/2011 2:11:10 PM</ReportChanged>
+  <ReportCreated>5/27/2010 11:06:16 PM</ReportCreated>
+  <ReportFile>D:\User\Documents\Projects\Zek\Source\Class Library\Zek.Report\Reports\RptActOfReceiptThermal.mrt</ReportFile>
+  <ReportGuid>073064f22de04065bbd03dff19e960f4</ReportGuid>
+  <ReportName>RptActOfReceiptThermal</ReportName>
+  <ReportUnit>Millimeters</ReportUnit>
+  <ReportVersion>2010.3.900</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    
+    public class RptActOfReceiptThermal : Stimulsoft.Report.StiReport
+    {
+        
+        public RptActOfReceiptThermal()
+        {
+            this.InitializeComponent();
+        }
+        #region StiReport Designer generated code - do not modify#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="1">
+      <T_CardPointTransfer Ref="2" type="DataTableSource" isKey="true">
+        <Alias>T_CardPointTransfer</Alias>
+        <Columns isList="true" count="7">
+          <value>ID,System.Int32</value>
+          <value>Company,System.String</value>
+          <value>CardNumber,System.String</value>
+          <value>CardHolder,System.String</value>
+          <value>Address,System.String</value>
+          <value>PersonalNumber,System.String</value>
+          <value>Phone,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_CardPointTransfer</Name>
+        <NameInSource>DS_CardPointTransfer.T_CardPointTransfer</NameInSource>
+      </T_CardPointTransfer>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="3" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="1">
+        <DataT_CardPointTransfer Ref="4" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,0.4,19,27.2</ClientRectangle>
+          <Components isList="true" count="15">
+            <Text1 Ref="5" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,19,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>{T_CardPointTransfer.Company}-ს ადმინისტრაციას</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text2 Ref="6" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,0.8,9.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>{T_CardPointTransfer.CardHolder}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text2>
+            <Text3 Ref="7" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,1.4,9.4,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>195fa3ce2dc84b29ae25e9c558a6af35</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>(სახელი, გვარი)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text3>
+            <Text4 Ref="8" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,2.2,9.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>ebe8b9a6c71b4add92b052f9f1ea0ac5</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>{T_CardPointTransfer.Address}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text4>
+            <Text5 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,2.8,9.4,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>55d7ab13ae2c4d7f8d49259fdcabdfa2</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>(მისამართი)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text5>
+            <Text6 Ref="10" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,3.4,9.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>f4157e38342444779ad93f9cd19ec889</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>{T_CardPointTransfer.PersonalNumber}    {T_CardPointTransfer.Phone}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text6>
+            <Text7 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.6,4,9.4,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>ae71fb4fe6404cafb87d70a0c2ebe995</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>(პირადი ნომერი, ტელეფონი)</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text7>
+            <Text8 Ref="12" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,5.2,19,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,11,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>გ ა ნ ც ხ ა დ ე ბ ა</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,6.4,19,7</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,11</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>  გაცნობებთ, რომ დავკარგე {T_CardPointTransfer.Company}-ს დაგროვებითი ბარათი №{T_CardPointTransfer.CardNumber}
+
+  გთხოვ გამიხსნათ ახალი დაგროვებითი ბარათი და გადამიტანოთ მასზე დაკარგული დაგროვებითიდან ქულები.</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text9>
+            <Text10 Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8,19.4,4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,11</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>განმცხადებელი</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8,21,4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,11</Font>
+              <Guid>eb7f9de11fa64d3c985aa0cf0300877b</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>ხელმოწერა</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8,23.4,4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,11</Font>
+              <Guid>60ea5402644f4b428e734a015d5ae85e</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>თარიღი:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.2,23.4,6.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,11</Font>
+              <Guid>042b555423c8424ba87b5c75ced9bc7b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <Text>{Today}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="18" type="DateFormat" isKey="true" />
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <HorizontalLinePrimitive1 Ref="19" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>12.2,19.8,6.8,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="20" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <StartCap Ref="21" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+            <HorizontalLinePrimitive2 Ref="22" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>12.2,21.4,6.8,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="23" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>48b00d3a2a134712b1fac31305913964</Guid>
+              <Name>HorizontalLinePrimitive2</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <StartCap Ref="24" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>T_CardPointTransfer</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Locked>True</Locked>
+          <Name>DataT_CardPointTransfer</Name>
+          <NewPageAfter>True</NewPageAfter>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <Sort isList="true" count="0" />
+        </DataT_CardPointTransfer>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>d3041378a1c04227a1629f6b765cd640</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="25" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="26" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>RptCardPointTransfer</ReportAlias>
+  <ReportAuthor>Zek</ReportAuthor>
+  <ReportChanged>10/25/2011 10:07:04 PM</ReportChanged>
+  <ReportCreated>10/24/2011 10:04:32 PM</ReportCreated>
+  <ReportDescription>ბარათზე დაგროვილი ქულების გადატანა</ReportDescription>
+  <ReportFile>D:\User\Documents\Projects\Zek\Source\Class Library\Zek\Report\Reports\RptCardPointTransfer.mrt</ReportFile>
+  <ReportGuid>cb224405c6c549f08e5fbf7d8b4bdcfa</ReportGuid>
+  <ReportName>RptCardPointTransfer</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2011.2.1028</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class RptCardPointTransfer : Stimulsoft.Report.StiReport
+    {
+        public RptCardPointTransfer()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+        #endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

@@ -1,0 +1,150 @@
+﻿using System.IO;
+using System.Web;
+using System.Web.Caching;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+
+namespace Zek.Web
+{
+    public static class PageExtensions
+    {
+        public static void BindValidatorScript(this Page page)
+        {
+            page.ClientScript.RegisterStartupScript(typeof(PageExtensions), "ValidatorOverrideScripts", $"<script src=\"{page.ClientScript.GetWebResourceUrl(typeof (PageExtensions), "Zek.Web.JS.ValidatorOverride.js")}\" type=\"text/javascript\"></script>", false);
+        }
+        ///// <summary>
+        ///// ადამტებს css-ს სტილებს reset, base, form, validation.
+        ///// </summary>
+        ///// <param name="page"></param>
+        //public static void BindBaseCSS(this Page page)
+        //{
+        //    RegisterCssLink(page, page.ClientScript.GetWebResourceUrl(typeof(PageExtensions), "Zek.Web.CSS.reset.css"));
+        //    RegisterCssLink(page, page.ClientScript.GetWebResourceUrl(typeof(PageExtensions), "Zek.Web.CSS.base.css"));
+        //    RegisterCssLink(page, page.ClientScript.GetWebResourceUrl(typeof(PageExtensions), "Zek.Web.CSS.form.css"));
+        //    RegisterCssLink(page, page.ClientScript.GetWebResourceUrl(typeof(PageExtensions), "Zek.Web.CSS.validation.css"));
+        //}
+
+
+        /// <summary>
+        /// Set meta http equiv (eg. redirects)
+        /// </summary>
+        /// <param name="page">Page</param>
+        /// <param name="httpEquiv">Http Equiv</param>
+        /// <param name="content">Content</param>
+        public static void SetMetaHttpEquiv(this Page page, string httpEquiv, string content)
+        {
+            if (page.Header == null)
+                return;
+
+            var meta = new HtmlMeta();
+            if (page.Header.FindControl("meta" + httpEquiv) != null)
+            {
+                meta = (HtmlMeta)page.Header.FindControl("meta" + httpEquiv);
+                meta.Content = content;
+            }
+            else
+            {
+                meta.ID = "meta" + httpEquiv;
+                meta.HttpEquiv = httpEquiv;
+                meta.Content = content;
+                page.Header.Controls.Add(meta);
+            }
+        }
+
+
+        /// <summary>
+        /// არეგისტრირებს Meta ტეგს.
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="name">ტეგის დასახელება.</param>
+        /// <param name="content">კონტენტი.</param>
+        public static void RegisterMeta(this Page page, string name, string content)
+        {
+            var meta = new HtmlMeta { Name = name, Content = content };
+
+            page.Header.Controls.Add(meta);
+        }
+
+
+        /// <summary>
+        /// არეგისტრირებს CSS-ს ფაილს გვერდზე.
+        /// </summary>
+        /// <param name="page">კონტროლი ხდება დარეგისტრირება.</param>
+        /// <param name="url">CSS ფაილის ლინკი.</param>
+        public static void RegisterCssLink(this Page page, string url)
+        {
+            if (page.Header == null)
+            {
+                page.ClientScript.RegisterClientScriptBlock(page.GetType(), url, $"<link type=\"text/css\" rel=\"stylesheet\" href=\"{HttpUtility.HtmlEncode(url)}\"></link>", false);
+            }
+            else
+            {
+                var link = new HtmlLink { Href = url };
+                link.Attributes.Add("type", "text/css");
+                link.Attributes.Add("rel", "stylesheet");
+                try
+                {
+                    page.Header.Controls.Add(link);
+                }
+                catch (HttpException ex)
+                {
+                    throw new HttpException("Please, see whether wrapping the code block, generating the exception, within CodeBlock resolves the error.", ex);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// არეგისტრირებს script-ს გვერდის ჩატვირთვისას.
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="key">სკრიპტის დასახელება.</param>
+        /// <param name="url">მისამართი სკრიპტის ფაილის.</param>
+        public static void RegisterScript(this Page page, string key, string url)
+        {
+            page.ClientScript.RegisterClientScriptInclude(page.GetType(), key, page.ResolveUrl(url));
+        }
+        /// <summary>
+        /// არეგისტრირებს script-ს გვერდის ჩატვირთვისას.
+        /// </summary>
+        /// <param name="page">გვერდი სადაც ვარეგისტრირებთ.</param>
+        /// <param name="key">სკრიპტის დასახელება.</param>
+        /// <param name="script">კოდი.</param>
+        /// <param name="addScriptTags">ჭირდება თუ არა ტაგის გახსნა.</param>
+        public static void RegisterScript(this Page page, string key, string script, bool addScriptTags)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), key, script, addScriptTags);
+        }
+
+
+        /// <summary>
+        /// აბრუნებს ლოკალური თემების სახელების მასივს.
+        /// </summary>
+        public static string[] GetThemes()
+        {
+            if (HttpContext.Current.Cache["SiteThemes"] != null)
+            {
+                return (string[])HttpContext.Current.Cache["SiteThemes"];
+            }
+            
+            var themesDirPath = HttpContext.Current.Server.MapPath("~/App_Themes");
+            // get the array of themes folders under /app_themes
+            var themes = Directory.GetDirectories(themesDirPath);
+            for (var i = 0; i <= themes.Length - 1; i++)
+                themes[i] = Path.GetFileName(themes[i]);
+            // cache the array with a dependency to the folder
+            var dep = new CacheDependency(themesDirPath);
+            HttpContext.Current.Cache.Insert("SiteThemes", themes, dep);
+            return themes;
+        }
+        /// <summary>
+        /// იღებს თემის ლინკს.
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns>აბრუნებს თემის ლინკს.</returns>
+        public static string GetThemeUrl(this Page page)
+        {
+            return page.ResolveClientUrl("~/" + HttpHelper.GetThemePath(page.Theme));
+        }
+    }
+}

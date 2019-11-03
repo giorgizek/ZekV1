@@ -1,0 +1,193 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Caching;
+using System.Threading;
+
+namespace Zek.Utils
+{
+    public static class Cache
+    {
+        static Cache()
+        {
+            CacheExpiration = 1440;
+            Data = new Dictionary<string, KeyValuePair<DateTime, object>>();
+
+            //_tsPerBucket = new TimeSpan(0, 0, 20);
+            var utcNow = DateTime.UtcNow;
+            var span = TsPerBucket - new TimeSpan(utcNow.Ticks % TsPerBucket.Ticks);
+            _timer = new Timer(TimerCallback, null, span.Ticks / 10000L, TsPerBucket.Ticks / 10000L);
+        }
+
+        private static void TimerCallback(object state)
+        {
+            //FlushExpiredItems(false, false);
+            var keys = Data.Where(d => d.Value.Key < DateTime.Now).Select(d => d.Key).ToArray();
+            foreach (var key in keys)
+            {
+                Data.Remove(key);
+            }
+
+        }
+        private static Timer _timer;
+        internal static readonly TimeSpan TsPerBucket = new TimeSpan(0, 0, 20);
+ 
+
+ 
+
+
+        public static int CacheExpiration { get; set; }
+
+        private static readonly Dictionary<string, KeyValuePair<DateTime, object>> Data;
+
+        private static void Insert(string key, object value, DateTime absoluteExpiration)
+        {
+            Data[key] = new KeyValuePair<DateTime, object>(absoluteExpiration, value);
+        }
+
+        public static void Add(string key, object value)
+        {
+            Add(key, value, CacheExpiration > 0 ? CacheExpiration : 1440);
+        }
+        public static void Add(string key, object value, int cacheExpirationMinutes)
+        {
+            if (string.IsNullOrEmpty(key) || value == null) return;
+            Insert(key, value, DateTime.Now.AddMinutes(cacheExpirationMinutes));
+        }
+
+        /// <summary>
+        /// Insert value into the cache using
+        /// appropriate name/value pairs
+        /// </summary>
+        /// <typeparam name="T">Type of cached item</typeparam>
+        /// <param name="value">Item to be cached</param>
+        /// <param name="key">Name of item</param>
+        public static void Add<T>(string key, T value)
+        {
+            Add(key, value, CacheExpiration > 0 ? CacheExpiration : 1440);
+        }
+        /// <summary>
+        /// Insert value into the cache using
+        /// appropriate name/value pairs
+        /// </summary>
+        /// <typeparam name="T">Type of cached item</typeparam>
+        /// <param name="value">Item to be cached</param>
+        /// <param name="key">Name of item</param>
+        /// <param name="cacheExpirationMinutes"></param>
+        public static void Add<T>(string key, T value, int cacheExpirationMinutes)
+        {
+            if (string.IsNullOrEmpty(key) || value == null) return;
+            
+            Insert(key, value,  DateTime.Now.AddMinutes(cacheExpirationMinutes));
+        }
+        /// <summary>
+        /// Insert value into the cache using
+        /// appropriate name/value pairs
+        /// </summary>
+        /// <typeparam name="T">Type of cached item</typeparam>
+        /// <param name="value">Item to be cached</param>
+        /// <param name="key">Name of item</param>
+        /// <param name="absoluteExpiration"></param>
+        public static void Add<T>(string key, T value, DateTime absoluteExpiration)
+        {
+            if (string.IsNullOrEmpty(key) || value == null) return;
+            Insert(key, value, absoluteExpiration);
+        }
+
+        /// <summary>
+        /// Remove item from cache
+        /// </summary>
+        /// <param name="key">Name of cached item</param>
+        public static void Remove(string key)
+        {
+            Data.Remove(key);
+            //GC.Collect();
+
+
+        }
+
+        
+
+
+        /// <summary>
+        /// ასუფთავებს მთლიან ქეშს.
+        /// </summary>
+        public static void Clear()
+        {
+            Data.Clear();
+        }
+
+
+        /// <summary>
+        /// Check for item in cache
+        /// </summary>
+        /// <param name="key">Name of cached item</param>
+        /// <returns></returns>
+        public static bool Exists(string key)
+        {
+            return Data.ContainsKey(key);
+        }
+
+        private static object InternalGet(string key)
+        {
+            KeyValuePair<DateTime, object> pair;
+            if (!Data.TryGetValue(key, out pair))
+                return null;
+
+            if (pair.Key < DateTime.Now)
+            {
+                Remove(key);
+                return null;
+            }
+
+            return pair.Value;
+        }
+        /// <summary>
+        /// Retrieve cached item
+        /// </summary>
+        /// <typeparam name="T">Type of cached item</typeparam>
+        /// <param name="key">Name of cached item</param>
+        /// <returns>Cached item as type</returns>
+        public static T Get<T>(string key) where T : class
+        {
+            try
+            {
+                return (T)InternalGet(key);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Retrieve cached item
+        /// </summary>
+        /// <typeparam name="T">Type of cached item</typeparam>
+        /// <param name="key">Name of cached item</param>
+        /// <param name="value">Cached value. Default(T) if
+        /// item doesn't exist.</param>
+        /// <returns>Cached item as type</returns>
+        public static bool Get<T>(string key, out T value)
+        {
+            try
+            {
+                if (!Exists(key))
+                {
+                    value = default(T);
+                    return false;
+                }
+
+                value = (T)InternalGet(key);
+            }
+            catch
+            {
+                value = default(T);
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+
+}

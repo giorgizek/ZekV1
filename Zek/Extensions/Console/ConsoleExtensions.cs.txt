@@ -1,0 +1,56 @@
+﻿using System;
+using System.Runtime.InteropServices;
+
+namespace Zek.Extensions.Console
+{
+    public static class ConsoleExtensions
+    {
+        [DllImport("user32.dll")]
+        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        [DllImport("kernel32")]
+        public static extern IntPtr GetConsoleWindow();
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool AllocConsole();
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool FreeConsole();
+
+        [DllImport("kernel32", SetLastError = true)]
+        public static extern bool AttachConsole(int dwProcessId);
+
+        //[DllImport("user32.dll", SetLastError = true)]
+        //static extern uint GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
+
+        /// <summary>
+        /// Checks if is console app or not.
+        /// </summary>
+        /// <returns>Returns true if it's console app.</returns>
+        public static bool IsConsole()
+        {
+            var hConsole = GetConsoleWindow();
+            return IntPtr.Zero != hConsole;
+        }
+
+        public static void SetConsoleWindowVisibility(bool visible)
+        {
+            // below is Brandon's code
+            //Sometimes System.Windows.Forms.Application.ExecutablePath works for the caption depending on the system you are running under.
+            var hWnd = FindWindow(null, System.Console.Title);
+
+            if (hWnd != IntPtr.Zero)
+            {
+                ShowWindow(hWnd, visible ? 1 : 0);
+            }
+            //SetConsoleWindowVisibility(visible, System.Console.Title);
+        }
+        //private static void SetConsoleWindowVisibility(bool visible, string title)
+        //{
+            
+        //}
+    }
+}

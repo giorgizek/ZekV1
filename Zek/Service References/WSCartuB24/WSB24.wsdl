@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.cartubank.ge" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.cartubank.ge" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.cartubank.ge">
+      <s:element name="ValidateKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidateKeyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Terminal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetComplResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetComplResult" type="tns:BR" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BR">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMsg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RespCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TranAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Card" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Exp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cvc2" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetReversal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Terminal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReversalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReversalResult" type="tns:BR" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViewTransactionResult" type="tns:BR" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewTransactionAmt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewTransactionAmtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViewTransactionAmtResult" type="tns:BR" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewRefund">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewRefundResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViewRefundResult" type="tns:BR" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetailerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PurchDescID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SPID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Uri" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendPaymentResult" type="tns:info" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="info">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRefund">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Terminal" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRefundResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRefundResult" type="tns:BR" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRepl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Terminal" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReplResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReplResult" type="tns:BR" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="BR" nillable="true" type="tns:BR" />
+      <s:element name="info" nillable="true" type="tns:info" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ValidateKeySoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateKey" />
+  </wsdl:message>
+  <wsdl:message name="ValidateKeySoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetComplSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompl" />
+  </wsdl:message>
+  <wsdl:message name="GetComplSoapOut">
+    <wsdl:part name="parameters" element="tns:GetComplResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReversalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReversal" />
+  </wsdl:message>
+  <wsdl:message name="GetReversalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReversalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:ViewTransaction" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:ViewTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionAmtSoapIn">
+    <wsdl:part name="parameters" element="tns:ViewTransactionAmt" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionAmtSoapOut">
+    <wsdl:part name="parameters" element="tns:ViewTransactionAmtResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViewRefundSoapIn">
+    <wsdl:part name="parameters" element="tns:ViewRefund" />
+  </wsdl:message>
+  <wsdl:message name="ViewRefundSoapOut">
+    <wsdl:part name="parameters" element="tns:ViewRefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:SendPayment" />
+  </wsdl:message>
+  <wsdl:message name="SendPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:SendPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRefundSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRefund" />
+  </wsdl:message>
+  <wsdl:message name="GetRefundSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReplSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRepl" />
+  </wsdl:message>
+  <wsdl:message name="GetReplSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReplResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateKeyHttpGetIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateKeyHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetComplHttpGetIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="Terminal" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetComplHttpGetOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="GetReversalHttpGetIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="Terminal" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReversalHttpGetOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionHttpGetIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionHttpGetOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionAmtHttpGetIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionAmtHttpGetOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="ViewRefundHttpGetIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewRefundHttpGetOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="SendPaymentHttpGetIn">
+    <wsdl:part name="RetailerID" type="s:string" />
+    <wsdl:part name="PurchDescID" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="TransDate" type="s:string" />
+    <wsdl:part name="SPID" type="s:string" />
+    <wsdl:part name="CardType" type="s:string" />
+    <wsdl:part name="Uri" type="s:string" />
+    <wsdl:part name="Status" type="s:string" />
+    <wsdl:part name="Reason" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendPaymentHttpGetOut">
+    <wsdl:part name="Body" element="tns:info" />
+  </wsdl:message>
+  <wsdl:message name="GetRefundHttpGetIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="Terminal" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRefundHttpGetOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="GetReplHttpGetIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="Terminal" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReplHttpGetOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="ValidateKeyHttpPostIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateKeyHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetComplHttpPostIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="Terminal" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetComplHttpPostOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="GetReversalHttpPostIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="Terminal" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReversalHttpPostOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionHttpPostIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionHttpPostOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionAmtHttpPostIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewTransactionAmtHttpPostOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="ViewRefundHttpPostIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewRefundHttpPostOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="SendPaymentHttpPostIn">
+    <wsdl:part name="RetailerID" type="s:string" />
+    <wsdl:part name="PurchDescID" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="TransDate" type="s:string" />
+    <wsdl:part name="SPID" type="s:string" />
+    <wsdl:part name="CardType" type="s:string" />
+    <wsdl:part name="Uri" type="s:string" />
+    <wsdl:part name="Status" type="s:string" />
+    <wsdl:part name="Reason" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendPaymentHttpPostOut">
+    <wsdl:part name="Body" element="tns:info" />
+  </wsdl:message>
+  <wsdl:message name="GetRefundHttpPostIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="Terminal" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRefundHttpPostOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:message name="GetReplHttpPostIn">
+    <wsdl:part name="ClientKey" type="s:string" />
+    <wsdl:part name="Terminal" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+    <wsdl:part name="UniqueID" type="s:string" />
+    <wsdl:part name="CheckDG" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReplHttpPostOut">
+    <wsdl:part name="Body" element="tns:BR" />
+  </wsdl:message>
+  <wsdl:portType name="WSB24Soap">
+    <wsdl:operation name="ValidateKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Transaction Unique ID Validation</wsdl:documentation>
+      <wsdl:input message="tns:ValidateKeySoapIn" />
+      <wsdl:output message="tns:ValidateKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Completion</wsdl:documentation>
+      <wsdl:input message="tns:GetComplSoapIn" />
+      <wsdl:output message="tns:GetComplSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReversal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Reversal</wsdl:documentation>
+      <wsdl:input message="tns:GetReversalSoapIn" />
+      <wsdl:output message="tns:GetReversalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransaction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Transaction</wsdl:documentation>
+      <wsdl:input message="tns:ViewTransactionSoapIn" />
+      <wsdl:output message="tns:ViewTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransactionAmt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Transaction Amount</wsdl:documentation>
+      <wsdl:input message="tns:ViewTransactionAmtSoapIn" />
+      <wsdl:output message="tns:ViewTransactionAmtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewRefund">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Refund</wsdl:documentation>
+      <wsdl:input message="tns:ViewRefundSoapIn" />
+      <wsdl:output message="tns:ViewRefundSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPayment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Payment</wsdl:documentation>
+      <wsdl:input message="tns:SendPaymentSoapIn" />
+      <wsdl:output message="tns:SendPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRefund">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Refund</wsdl:documentation>
+      <wsdl:input message="tns:GetRefundSoapIn" />
+      <wsdl:output message="tns:GetRefundSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Replenishment</wsdl:documentation>
+      <wsdl:input message="tns:GetReplSoapIn" />
+      <wsdl:output message="tns:GetReplSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSB24HttpGet">
+    <wsdl:operation name="ValidateKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Transaction Unique ID Validation</wsdl:documentation>
+      <wsdl:input message="tns:ValidateKeyHttpGetIn" />
+      <wsdl:output message="tns:ValidateKeyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Completion</wsdl:documentation>
+      <wsdl:input message="tns:GetComplHttpGetIn" />
+      <wsdl:output message="tns:GetComplHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReversal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Reversal</wsdl:documentation>
+      <wsdl:input message="tns:GetReversalHttpGetIn" />
+      <wsdl:output message="tns:GetReversalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransaction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Transaction</wsdl:documentation>
+      <wsdl:input message="tns:ViewTransactionHttpGetIn" />
+      <wsdl:output message="tns:ViewTransactionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransactionAmt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Transaction Amount</wsdl:documentation>
+      <wsdl:input message="tns:ViewTransactionAmtHttpGetIn" />
+      <wsdl:output message="tns:ViewTransactionAmtHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewRefund">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Refund</wsdl:documentation>
+      <wsdl:input message="tns:ViewRefundHttpGetIn" />
+      <wsdl:output message="tns:ViewRefundHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPayment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Payment</wsdl:documentation>
+      <wsdl:input message="tns:SendPaymentHttpGetIn" />
+      <wsdl:output message="tns:SendPaymentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRefund">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Refund</wsdl:documentation>
+      <wsdl:input message="tns:GetRefundHttpGetIn" />
+      <wsdl:output message="tns:GetRefundHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Replenishment</wsdl:documentation>
+      <wsdl:input message="tns:GetReplHttpGetIn" />
+      <wsdl:output message="tns:GetReplHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSB24HttpPost">
+    <wsdl:operation name="ValidateKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Transaction Unique ID Validation</wsdl:documentation>
+      <wsdl:input message="tns:ValidateKeyHttpPostIn" />
+      <wsdl:output message="tns:ValidateKeyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Completion</wsdl:documentation>
+      <wsdl:input message="tns:GetComplHttpPostIn" />
+      <wsdl:output message="tns:GetComplHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReversal">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Reversal</wsdl:documentation>
+      <wsdl:input message="tns:GetReversalHttpPostIn" />
+      <wsdl:output message="tns:GetReversalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransaction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Transaction</wsdl:documentation>
+      <wsdl:input message="tns:ViewTransactionHttpPostIn" />
+      <wsdl:output message="tns:ViewTransactionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransactionAmt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Transaction Amount</wsdl:documentation>
+      <wsdl:input message="tns:ViewTransactionAmtHttpPostIn" />
+      <wsdl:output message="tns:ViewTransactionAmtHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewRefund">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">View Refund</wsdl:documentation>
+      <wsdl:input message="tns:ViewRefundHttpPostIn" />
+      <wsdl:output message="tns:ViewRefundHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPayment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send Payment</wsdl:documentation>
+      <wsdl:input message="tns:SendPaymentHttpPostIn" />
+      <wsdl:output message="tns:SendPaymentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRefund">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Refund</wsdl:documentation>
+      <wsdl:input message="tns:GetRefundHttpPostIn" />
+      <wsdl:output message="tns:GetRefundHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRepl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Online Replenishment</wsdl:documentation>
+      <wsdl:input message="tns:GetReplHttpPostIn" />
+      <wsdl:output message="tns:GetReplHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSB24Soap" type="tns:WSB24Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateKey">
+      <soap:operation soapAction="http://www.cartubank.ge/ValidateKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompl">
+      <soap:operation soapAction="http://www.cartubank.ge/GetCompl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReversal">
+      <soap:operation soapAction="http://www.cartubank.ge/GetReversal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransaction">
+      <soap:operation soapAction="http://www.cartubank.ge/ViewTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransactionAmt">
+      <soap:operation soapAction="http://www.cartubank.ge/ViewTransactionAmt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewRefund">
+      <soap:operation soapAction="http://www.cartubank.ge/ViewRefund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPayment">
+      <soap:operation soapAction="http://www.cartubank.ge/SendPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRefund">
+      <soap:operation soapAction="http://www.cartubank.ge/GetRefund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepl">
+      <soap:operation soapAction="http://www.cartubank.ge/GetRepl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSB24Soap12" type="tns:WSB24Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateKey">
+      <soap12:operation soapAction="http://www.cartubank.ge/ValidateKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompl">
+      <soap12:operation soapAction="http://www.cartubank.ge/GetCompl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReversal">
+      <soap12:operation soapAction="http://www.cartubank.ge/GetReversal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransaction">
+      <soap12:operation soapAction="http://www.cartubank.ge/ViewTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransactionAmt">
+      <soap12:operation soapAction="http://www.cartubank.ge/ViewTransactionAmt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewRefund">
+      <soap12:operation soapAction="http://www.cartubank.ge/ViewRefund" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPayment">
+      <soap12:operation soapAction="http://www.cartubank.ge/SendPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRefund">
+      <soap12:operation soapAction="http://www.cartubank.ge/GetRefund" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepl">
+      <soap12:operation soapAction="http://www.cartubank.ge/GetRepl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSB24HttpGet" type="tns:WSB24HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ValidateKey">
+      <http:operation location="/ValidateKey" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompl">
+      <http:operation location="/GetCompl" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReversal">
+      <http:operation location="/GetReversal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransaction">
+      <http:operation location="/ViewTransaction" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransactionAmt">
+      <http:operation location="/ViewTransactionAmt" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewRefund">
+      <http:operation location="/ViewRefund" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPayment">
+      <http:operation location="/SendPayment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRefund">
+      <http:operation location="/GetRefund" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepl">
+      <http:operation location="/GetRepl" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSB24HttpPost" type="tns:WSB24HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ValidateKey">
+      <http:operation location="/ValidateKey" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompl">
+      <http:operation location="/GetCompl" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReversal">
+      <http:operation location="/GetReversal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransaction">
+      <http:operation location="/ViewTransaction" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewTransactionAmt">
+      <http:operation location="/ViewTransactionAmt" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewRefund">
+      <http:operation location="/ViewRefund" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPayment">
+      <http:operation location="/SendPayment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRefund">
+      <http:operation location="/GetRefund" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRepl">
+      <http:operation location="/GetRepl" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSB24">
+    <wsdl:port name="WSB24Soap" binding="tns:WSB24Soap">
+      <soap:address location="http://92.241.79.149:4255/ecom_get/WSB24.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSB24Soap12" binding="tns:WSB24Soap12">
+      <soap12:address location="http://92.241.79.149:4255/ecom_get/WSB24.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSB24HttpGet" binding="tns:WSB24HttpGet">
+      <http:address location="http://92.241.79.149:4255/ecom_get/WSB24.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSB24HttpPost" binding="tns:WSB24HttpPost">
+      <http:address location="http://92.241.79.149:4255/ecom_get/WSB24.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

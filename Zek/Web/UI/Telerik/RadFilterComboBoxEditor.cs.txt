@@ -1,0 +1,117 @@
+﻿using System.Collections;
+using System.Web.UI;
+using Telerik.Web.UI;
+using Zek.Extensions.Collections;
+
+namespace Zek.Web.UI
+{
+    public class RadFilterRadComboBoxEditor : RadFilterDataFieldEditor
+    {
+        private RadComboBox _combo;
+
+        public override ArrayList ExtractValues()
+        {
+            var list = new ArrayList { _combo.SelectedValue };
+            return list;
+        }
+
+        public override void InitializeEditor(Control container)
+        {
+            _combo = new RadComboBox
+            {
+                ID = "RadFilterComboBox",
+                DataSourceID = DataSourceID,
+                DataTextField = DataTextField,
+                DataValueField = DataValueField,
+                DataSource = DataSource
+            };
+            if (DataSourceID.IsNullOrEmpty() && DataSource != null)
+                _combo.DataBind();
+            container.Controls.Add(_combo);
+        }
+
+        public override void SetEditorValues(ArrayList values)
+        {
+            if (values != null && values.Count > 0)
+            {
+                if (values[0] == null)
+                    return;
+                var item = _combo.FindItemByValue(values[0].ToString());
+                if (item != null)
+                    item.Selected = true;
+                //foreach (var item in values)
+                //{
+                //    if (item == null) return;
+                //    var comboItem = _combo.FindItemByValue(item.ToString());
+                //    if (comboItem != null) comboItem.Checked = true;
+                //}
+            }
+        }
+
+        protected override void CopySettings(RadFilterDataFieldEditor baseEditor)
+        {
+            base.CopySettings(baseEditor);
+            var editor = baseEditor as RadFilterRadComboBoxEditor;
+            if (editor != null)
+            {
+                DataSource = editor.DataSource;
+                DataSourceID = editor.DataSourceID;
+                DataTextField = editor.DataTextField;
+                DataValueField = editor.DataValueField;
+            }
+        }
+
+
+
+
+
+
+
+        public string DataSourceID
+        {
+            get
+            {
+                return (string)ViewState["DataSourceID"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DataSourceID"] = value;
+            }
+        }
+        public string DataTextField
+        {
+            get
+            {
+                return (string)ViewState["DataTextField"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DataTextField"] = value;
+            }
+        }
+        public string DataValueField
+        {
+            get
+            {
+                return (string)ViewState["DataValueField"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DataValueField"] = value;
+            }
+        }
+        public object DataSource
+        {
+            get
+            {
+                return ViewState["DataSource"];
+            }
+            set
+            {
+                ViewState["DataSource"] = value;
+            }
+        }
+
+
+    }
+}

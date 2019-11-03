@@ -1,0 +1,194 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Net;
+using System.IO;
+using System.Web;
+using System.Text.RegularExpressions;
+using System.Runtime.Remoting.Messaging;
+
+/*
+For Synchronous call to web service :
+
+List<WebServiceClient.Parameter> lstParameters = new List<WebServiceClient.Parameter>();
+lstParameters.Add(new WebServiceClient.Parameter { Name = "CustomerId", Value = "ABC123" });
+WebServiceClient client = new WebServiceClient
+{
+    WebMethod = "GetCustomer",
+    Url = "http://x.x.x.x:8080/CustomerService.svc",
+    WSServiceType = WebServiceClient.ServiceType.WCF,
+    WCFContractName = "ICustomerAgentWS",
+    Parameters = lstParameters
+};
+string returnFromService = client.InvokeService();
+
+For Asynchronous call to web service :
+
+static WebServiceClient client = null;
+ 
+static void Main(string[] args)
+{
+     List<WebServiceClient.Parameter> lstParameters = new List<WebServiceClient.Parameter>();
+     lstParameters.Add(new WebServiceClient.Parameter { Name = "CustomerId", Value = "ABC123" });
+ 
+     client = new WebServiceClient
+     {
+          WebMethod = "GetCustomer",
+          Url = "http://x.x.x.x:8080/CustomerService.svc",
+          WSServiceType = WebServiceClient.ServiceType.WCF,
+          WCFContractName = "ICustomerAgentWS",
+          Parameters = lstParameters
+     };
+ 
+     client.BeginInvokeService(InvokeCompleted);
+ 
+     Console.ReadLine();
+}
+ 
+public static void InvokeCompleted(IAsyncResult result)
+{
+     string returnFromService = client.EndInvokeService(result);
+}
+*/
+
+namespace Zek.Net
+{
+    public class WebServiceClient
+    {
+        #region Delegates
+        public delegate string DelegateInvokeService();
+        #endregion
+
+        #region Enumerators
+        public enum ServiceType
+        {
+            Traditional = 0,
+            WCF = 1
+        }
+        #endregion
+
+        #region Classes
+        public class Parameter
+        {
+            public Parameter()
+            {
+            }
+            public Parameter(string name, string value)
+            {
+                Name = name;
+                Value = value;
+            }
+
+            public string Name { get; set; }
+            public string Value { get; set; }
+        }
+        #endregion
+
+        #region Member Variables
+        const string SoapEnvelope = @"<soap:Envelope
+                    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+                    xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+                    xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+                <soap:Body></soap:Body></soap:Envelope>";
+
+        #endregion
+
+        #region Properties
+        public string Url { get; set; }
+
+        public string WebMethod { get; set; }
+
+        public List<Parameter> Parameters { get; set; }
+
+        public ServiceType WSServiceType { get; set; }
+
+        public string WCFContractName { get; set; }
+        #endregion
+
+        #region Private Methods
+        private string CreateSoapEnvelope()
+        {
+            var methodCall = $@"<{WebMethod} xmlns=""http://tempuri.org/"">";
+            var parameters = string.Empty;
+
+            foreach (var param in Parameters)
+            {
+                parameters = String.Format("{0}<{1}>{2}</{1}>", parameters, param.Name, param.Value);
+            }
+
+            methodCall = $"{methodCall}{parameters}</{WebMethod}>";
+
+            var sb = new StringBuilder(SoapEnvelope);
+            sb.Insert(sb.ToString().IndexOf("</soap:Body>", StringComparison.Ordinal), methodCall);
+
+            return sb.ToString();
+        }
+
+        private HttpWebRequest CreateWebRequest()
+        {
+            var webRequest = (HttpWebRequest)WebRequest.Create(Url);
+            webRequest.Headers.Add("SOAPAction",
+                WSServiceType == ServiceType.WCF
+                    ? $"\"http://tempuri.org/{WCFContractName}/{WebMethod}\""
+                    : $"\"http://tempuri.org/{WebMethod}\"");
+
+            webRequest.Headers.Add("To", Url);
+
+            webRequest.ContentType = "text/xml;charset=\"utf-8\"";
+            webRequest.Accept = "text/xml";
+            webRequest.Method = "POST";
+            return webRequest;
+        }
+
+        private string StripResponse(string soapResponse)
+        {
+            var regexExtract = String.Format(@"<{0}Result>(?<Result>.*?)</{0}Result>", WebMethod);
+
+            return Regex.Match(soapResponse, regexExtract).Groups["Result"].Captures[0].Value;
+        }
+        #endregion
+
+        #region Public Methods
+        public void BeginInvokeService(AsyncCallback invokeCompleted)
+        {
+            var invoke = new DelegateInvokeService(InvokeService);
+
+            invoke.BeginInvoke(invokeCompleted, null);
+        }
+
+        public string EndInvokeService(IAsyncResult result)
+        {
+            var asyncResult = (AsyncResult)result;
+            var msg = (ReturnMessage)asyncResult.GetReplyMessage();
+
+            return msg.ReturnValue.ToString();
+        }
+
+        public string InvokeService()
+        {
+            //Create the request
+            var req = CreateWebRequest();
+
+            //write the soap envelope to request stream
+            using (var stm = req.GetRequestStream())
+            {
+                using (var stmw = new StreamWriter(stm))
+                {
+                    stmw.Write(CreateSoapEnvelope());
+                }
+            }
+
+            //get the response from the web service
+            var response = req.GetResponse();
+
+            var str = response.GetResponseStream();
+
+            var sr = new StreamReader(str);
+
+            var strResponse = sr.ReadToEnd();
+
+            return StripResponse(HttpUtility.HtmlDecode(strResponse));
+        }
+        #endregion
+    }
+}

@@ -1,0 +1,732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7E0CF688-540D-48B4-892F-82BF3E1B23AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zek</RootNamespace>
+    <AssemblyName>Zek</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\Zek.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v17.1" />
+    <Reference Include="DevExpress.Data.v17.1" />
+    <Reference Include="DevExpress.PivotGrid.v17.1.Core" />
+    <Reference Include="DevExpress.Pdf.v17.1.Core" />
+    <Reference Include="DevExpress.Printing.v17.1.Core" />
+    <Reference Include="DevExpress.Utils.v17.1" />
+    <Reference Include="DevExpress.Xpo.v17.1" />
+    <Reference Include="DevExpress.XtraBars.v17.1" />
+    <Reference Include="DevExpress.XtraEditors.v17.1" />
+    <Reference Include="DevExpress.XtraGrid.v17.1" />
+    <Reference Include="DevExpress.XtraLayout.v17.1" />
+    <Reference Include="DevExpress.XtraPivotGrid.v17.1" />
+    <Reference Include="DevExpress.XtraPrinting.v17.1" />
+    <Reference Include="DevExpress.XtraTreeList.v17.1" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicNP.CryptoLicensing, Version=12.0.0.0, Culture=neutral, PublicKeyToken=4a3c0a4c668b48b4">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LogicNP.CryptoLicensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Base, Version=2019.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
+    <Reference Include="Stimulsoft.Report, Version=2019.1.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\AppConfigHelper.cs" />
+    <Compile Include="Configuration\BaseAppConfig.cs" />
+    <Compile Include="Configuration\BaseOfflineAppConfig.cs" />
+    <Compile Include="Configuration\BaseWebConfig.cs" />
+    <Compile Include="Configuration\XmlConfigHelper.cs" />
+    <Compile Include="Core\AboutTools.cs" />
+    <Compile Include="Core\ArrayHelper.cs" />
+    <Compile Include="Core\CancelEventArgs.cs" />
+    <Compile Include="Core\DateTime.cs" />
+    <Compile Include="Core\AssemblyHelper.cs" />
+    <Compile Include="Core\BaseGlobalVariable.cs" />
+    <Compile Include="Core\BaseStaticOverride.cs" />
+    <Compile Include="Core\BitwiseHelper.cs" />
+    <Compile Include="DataAnnotations\YearRangeAttribute.cs" />
+    <Compile Include="Extensions\Collections\Recursive\RecursiveJoinExtensions.cs" />
+    <Compile Include="Utils\KeyPair.cs" />
+    <Compile Include="Utils\ListHelper.cs" />
+    <Compile Include="Utils\MultiKey.cs" />
+    <Compile Include="Utils\Pair.cs" />
+    <Compile Include="Utils\RecursiveHelper.cs" />
+    <Compile Include="Windows\NativeMethods.cs" />
+    <Compile Include="Core\ObjectHelper.cs" />
+    <Compile Include="Core\StringHelper.cs" />
+    <Compile Include="DataAnnotations\PhoneEx.cs" />
+    <Compile Include="DataAnnotations\UrlEx.cs" />
+    <Compile Include="Data\Repository\IDbContext.cs" />
+    <Compile Include="Data\Repository\IUnitOfWork.cs" />
+    <Compile Include="Data\Repository\RepositoryQuery.cs" />
+    <Compile Include="Data\Repository\UnitOfWork.cs" />
+    <Compile Include="Extensions\StructExtensions.cs" />
+    <Compile Include="Extensions\Web\HttpContextBaseExtensions.cs" />
+    <Compile Include="Extensions\Web\ExpressionExtensions.cs" />
+    <Compile Include="Extensions\Web\HtmlHelperExtensions.cs" />
+    <None Include="Extensions\Web\ViewContext.cs.txt" />
+    <Compile Include="Extensions\Web\HtmlTextWriterExtensions.cs" />
+    <Compile Include="Extensions\Web\HttpRequestBaseExtensions.cs" />
+    <Compile Include="Properties\DataAnnotationsResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAnnotationsResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DataAnnotations\DateDisplayFormatAttribute.cs" />
+    <Compile Include="DataAnnotations\DateTimeDisplayFormatAttribute.cs" />
+    <Compile Include="DataAnnotations\EmailAddressExAttribute.cs" />
+    <Compile Include="DataAnnotations\RangeExAttribute.cs" />
+    <Compile Include="DataAnnotations\RequiredAttribute.cs" />
+    <Compile Include="DataAnnotations\Schema\DateTimeColumnAttribute.cs" />
+    <Compile Include="DataAnnotations\StringLengthExAttribute.cs" />
+    <Compile Include="DataModel\DXDataErrorInfo.cs" />
+    <Compile Include="Data\Repository\Repository.cs" />
+    <Compile Include="Data\Repository\IRepository.cs" />
+    <Compile Include="Data\Type\WS\BaseRequest.cs" />
+    <Compile Include="Data\Type\WS\WSRequest.cs" />
+    <Compile Include="Data\Type\WS\WSResponse.cs" />
+    <Compile Include="Data\Type\WS\BaseResponse.cs" />
+    <Compile Include="DataModel\PaymentInfo.cs" />
+    <Compile Include="Data\CountryHelper.cs" />
+    <Compile Include="Data\DbHelper.cs" />
+    <Compile Include="Data\Filtering\GroupOperator.cs" />
+    <Compile Include="Data\OleDbParameterCache.cs" />
+    <Compile Include="Data\Sql\SqlParameterCache.cs" />
+    <Compile Include="Extensions\Collections\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\Collections\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\Data\ObjectContextExtension.cs" />
+    <Compile Include="Extensions\DBExtentions.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
+    <Compile Include="Extensions\DevEx\CheckedListBoxExtentions.cs" />
+    <Compile Include="Extensions\DevEx\XtraGridExtentions.cs" />
+    <Compile Include="Extensions\DevEx\XtraTreeListExtentions.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\LongExtensions.cs" />
+    <Compile Include="Extensions\ShortExtensions.cs" />
+    <Compile Include="Extensions\StopwatchExtensions.cs" />
+    <Compile Include="Extensions\Web\ModelStateExtensions.cs" />
+    <Compile Include="Extensions\Web\HttpRequestExtensions.cs" />
+    <Compile Include="IO\MimeTypeMapping.cs" />
+    <Compile Include="Properties\DataAnnotationsResources.ka-GE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAnnotationsResources.ka-GE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduler\BaseScheduler.cs" />
+    <Compile Include="Scheduler\SchedulerConsole.cs" />
+    <Compile Include="Security\PasswordGenerator.cs" />
+    <Compile Include="Service References\WSPayge\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Bank\Currency.cs" />
+    <Compile Include="Service\Bank\PaygeHelper.cs" />
+    <Compile Include="Threading\MutexHelper.cs" />
+    <Compile Include="Data\BindingDataEventArgs.cs" />
+    <Compile Include="Data\ExcelHelper.cs" />
+    <Compile Include="Properties\Resources.ka-GE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ka-GE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\CryptoRandom.cs" />
+    <None Include="packages.config" />
+    <None Include="Service References\WSPayge\PaygeService.disco" />
+    <None Include="Service References\WSPayge\configuration91.svcinfo" />
+    <None Include="Service References\WSPayge\configuration.svcinfo" />
+    <None Include="Service References\WSPayge\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Utils\Cache.cs.txt">
+      <SubType>Code</SubType>
+    </None>
+    <Compile Include="Utils\BaseCacheHelper.cs" />
+    <Compile Include="Utils\ConsoleHelper.cs" />
+    <Compile Include="Utils\HashCodeHelper.cs" />
+    <Compile Include="Security\RandomHelper.cs" />
+    <Compile Include="Web\BaseWebService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <None Include="Web\EnforceHttpsHandler.cs.txt" />
+    <Content Include="Web\HttpRequest.cs.txt" />
+    <Compile Include="Web\Mvc\JsonModel.cs" />
+    <Compile Include="Web\Mvc\BaseController.cs" />
+    <Compile Include="Web\Mvc\RequireHttpsNotLocalAttribute.cs" />
+    <None Include="Web\QueryStringHelper.cs.txt" />
+    <Compile Include="Windows\Forms\DevEx\Controls\CardReaderTextEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\Controls\RadioListBox.cs" />
+    <Compile Include="Windows\Forms\Options\CardReaderOptions.cs" />
+    <Compile Include="Windows\Forms\SingletonFormProvider.cs" />
+    <None Include="Service References\WSCartuAuthCard\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WSCartuAuthCard\configuration.svcinfo" />
+    <None Include="Service References\WSCartuAuthCard\configuration91.svcinfo" />
+    <None Include="Service References\WSCartuAuthCard\AuthCards.disco" />
+    <None Include="Data\ExcelImport.cs.bak" />
+    <Compile Include="CryptoLicensing\CryptoLicenseEx.cs" />
+    <Compile Include="Data\ActionRecordEventArgs.cs" />
+    <Compile Include="Data\DatabaseAction.cs" />
+    <Compile Include="Data\DatabaseStatus.cs" />
+    <Compile Include="Data\Excel\EPPlusHelper.cs" />
+    <Compile Include="Data\Financial\PaymentHelper.cs" />
+    <Compile Include="Data\PropertyComparer.cs" />
+    <Compile Include="Data\Sql\SqlWhereStatement.cs" />
+    <Compile Include="Data\Xpo\XpoHelper.cs" />
+    <None Include="Extensions\Console\ConsoleExtensions.cs.txt" />
+    <Compile Include="Management\HardwareInfo.cs" />
+    <Compile Include="Properties\Icons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Icons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Exceptions.ka-GE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exceptions.ka-GE.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Localization.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.resx</DependentUpon>
+    </Compile>
+    <None Include="Net\WebServiceClient.cs.txt" />
+    <Compile Include="Properties\Enumerable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Enumerable.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Collections\CollectionExtentions.cs" />
+    <Compile Include="Extensions\Drawing\ColorExtensions.cs" />
+    <Compile Include="Utils\ConvertHelper.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\Collections\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\BooleanExtensions.cs" />
+    <Compile Include="Extensions\ByteExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Content Include="Extensions\Collections\ListExtensions.cs.txt" />
+    <Compile Include="Core\MathHelper.cs" />
+    <Compile Include="Core\NumToStrHelper.cs" />
+    <Compile Include="Extensions\NaturalTimeExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="Extensions\RandomExtensions.cs.txt" />
+    <Compile Include="Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Extensions\IntExtensions.cs" />
+    <Compile Include="Extensions\Linq\LinqExtensions.cs" />
+    <Compile Include="Extensions\Linq\ParalellExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\EventHandlerExtensions.cs" />
+    <Compile Include="Extensions\Linq\ExpressionCombiner.cs" />
+    <Compile Include="Extensions\IO\FileExtensions.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Extensions\TimeSpanExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="DataModel\DD_Dictionary.cs" />
+    <Compile Include="DataModel\DD_Hierarchy.cs" />
+    <Compile Include="Data\CsvHelper.cs" />
+    <Compile Include="Data\DatabaseHelper.cs" />
+    <Compile Include="Extensions\Data\DataReaderExtensions.cs" />
+    <Compile Include="Data\DataSet.cs" />
+    <Compile Include="Data\DbCommandHelper.cs" />
+    <Compile Include="Data\DbfHelper.cs" />
+    <Compile Include="Core\ChangingEventArgs.cs" />
+    <Compile Include="Core\ChangingEventHandler.cs" />
+    <Compile Include="Data\Financial\PaymentSchemaType.cs" />
+    <Compile Include="Data\OleDbHelper.cs" />
+    <Compile Include="Data\Serialization\SerializationHelper.cs" />
+    <Compile Include="Data\Serialization\SqlCommandMessage.cs" />
+    <Compile Include="Data\Serialization\SqlParameterMessage.cs" />
+    <Compile Include="Data\Sql\SqlConnectionStringHelper.cs" />
+    <Compile Include="Data\Sql\SqlFilterHelper.cs" />
+    <Compile Include="Data\Sql\SqlHelper.cs" />
+    <Compile Include="Data\TableAdapterHelper.cs" />
+    <Compile Include="Data\XmlHelper.cs" />
+    <Compile Include="Extensions\Drawing\ImageExtensions.cs" />
+    <Compile Include="Properties\Exceptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exceptions.resx</DependentUpon>
+    </Compile>
+    <Compile Include="IO\GZipHelper.cs" />
+    <None Include="IO\IniFileHelper.cs.txt" />
+    <Compile Include="IO\IOHelper.cs" />
+    <Compile Include="Management\CpuInfo.cs" />
+    <Compile Include="Net\IPAddressHelper.cs" />
+    <Compile Include="Net\MACAddress.cs" />
+    <Compile Include="Net\MailHelper.cs" />
+    <Compile Include="Net\SocketHelper.cs" />
+    <Compile Include="Net\WebRequestHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Report\StiReportExtensions.cs" />
+    <None Include="Report\ReportHelper.cs.txt" />
+    <None Include="Report\ReportName.cs.txt" />
+    <None Include="Scheduler\BaseScheduler.cs.txt" />
+    <Compile Include="Scheduler\BaseSchedulerService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Security\AlgorithmTypes.cs" />
+    <Compile Include="Security\BitwisePermissionHelper.cs" />
+    <Compile Include="Security\CryptoHelper.cs" />
+    <Compile Include="Security\PasswordHelper.cs" />
+    <Compile Include="Security\PasswordStatus.cs" />
+    <Compile Include="Security\SymCryptoHelper.cs" />
+    <Compile Include="Security\SymmetricAlgorithmTypes.cs" />
+    <Compile Include="Service References\WSCartuAuthCard\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WSCartuB24\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WSCartuVerifyCards\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <None Include="Service\Bank\BaseCartuCallBack.cs.txt" />
+    <None Include="Service\Bank\CartuHelper.cs.txt" />
+    <Compile Include="Service\SMS\HttpToSMSBase.cs" />
+    <Compile Include="Service\SMS\GeocellHttpToSMSHelper.cs" />
+    <Compile Include="Service\SMS\MagtiHttpToSMS.cs" />
+    <Compile Include="Validation\ValidationHelper.cs" />
+    <Compile Include="Web\Helpers\BinaryImageHelper.cs" />
+    <Compile Include="Web\Helpers\BaseCacheHelper.cs" />
+    <None Include="Web\Helpers\CodeFormatter.cs.txt" />
+    <None Include="Web\Helpers\ControlHelper.cs.txt" />
+    <Compile Include="Web\Helpers\CookieHelper.cs" />
+    <Compile Include="Web\Helpers\FormHelper.cs" />
+    <None Include="Web\Helpers\HtmlHelper.cs.txt" />
+    <Compile Include="Web\Helpers\HttpHelper.cs" />
+    <Compile Include="Utils\ExceptionLogHelper.cs" />
+    <None Include="Web\PageExtensions.cs.txt" />
+    <Compile Include="Web\Helpers\QueryString.cs" />
+    <Compile Include="Web\Helpers\TagBuilder.cs" />
+    <Compile Include="Web\Helpers\WebHelper.cs" />
+    <None Include="Web\MimeTypes.cs.txt" />
+    <Compile Include="Web\UI\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <None Include="Web\UI\Telerik\RadFilterComboBoxEditor.cs.txt" />
+    <None Include="Web\UI\Telerik\RadFilterCustomMonthYearPickerEditor.cs.txt" />
+    <None Include="Web\UI\Telerik\RadFilterDropDownEditor.cs.txt" />
+    <None Include="Web\UI\Telerik\RadFilterEx.cs.txt" />
+    <None Include="Web\UI\Telerik\RadFilterMaskedTextBoxEditor.cs.txt" />
+    <None Include="Web\WebServiceInvoker.cs.txt" />
+    <None Include="Win32\DragHelper.cs.txt" />
+    <Compile Include="Win32\RegistryHelper.cs" />
+    <None Include="Win32\Win32Native.cs.txt" />
+    <Compile Include="Utils\EventLogHelper.cs" />
+    <Compile Include="Windows\Forms\ConstructorHelper.cs" />
+    <Compile Include="Windows\Forms\ControlHelper.cs" />
+    <Compile Include="Windows\Forms\Controls\DataGrid\CustomColumnStyles.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\Controls\DataGrid\DataGridExtention.cs" />
+    <Compile Include="Windows\Forms\Controls\NumericUpDownEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\Controls\TextBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\Controls\ButtonBrowse.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\EditForm.designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\EditDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\EditDialogForm.designer.cs">
+      <DependentUpon>EditDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\BaseEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\BaseEditForm.Designer.cs">
+      <DependentUpon>BaseEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\Helpers\CheckedComboBoxExtentions.cs" />
+    <Compile Include="Windows\Forms\DevEx\Helpers\FilterHelper.cs" />
+    <Compile Include="Windows\Forms\DevEx\Helpers\PivotGrid.cs" />
+    <Compile Include="Extensions\DevEx\XtraBarExtentions.cs" />
+    <Compile Include="Windows\Forms\DevEx\Helpers\XtraControlHelper.cs" />
+    <Compile Include="Windows\Forms\DevEx\Helpers\XtraGridHelper.cs" />
+    <Compile Include="Windows\Forms\DevEx\ListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\DevEx\ListForm.designer.cs">
+      <DependentUpon>ListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\Enums.cs" />
+    <Compile Include="Windows\Forms\Exception.cs" />
+    <Compile Include="Windows\Forms\ExceptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Forms\ExceptionForm.designer.cs">
+      <DependentUpon>ExceptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Forms\FilterHelper.cs" />
+    <Compile Include="Windows\Forms\Options\BaseFormOptions.cs" />
+    <Compile Include="Windows\Forms\Options\ButtonBrowseOptions.cs" />
+    <Compile Include="Windows\Forms\Options\GridOptions.cs" />
+    <Compile Include="Windows\Forms\Options\ListFormOptions.cs" />
+    <Compile Include="Windows\Forms\Options\EditFormOptions.cs" />
+    <Compile Include="Windows\Forms\Options\Options.cs" />
+    <None Include="app.config" />
+    <None Include="IO\WinRar.bat" />
+    <None Include="Report\MRT\RptActOfReceipt.mrt" />
+    <None Include="Report\MRT\RptActOfReceiptThermal.mrt" />
+    <None Include="Report\MRT\RptCardPointTransfer.mrt" />
+    <None Include="Report\MRT\RptCashboxOrder.mrt" />
+    <None Include="Report\MRT\RptEnclosure4.mrt" />
+    <None Include="Report\MRT\RptEnclosure7.mrt" />
+    <None Include="Report\MRT\RptEnclosureInCountry.mrt" />
+    <None Include="Report\MRT\RptReceipt.mrt" />
+    <None Include="Report\MRT\RptVATOrder20101231.mrt" />
+    <None Include="Report\MRT\RptVATOrder20110101.mrt" />
+    <None Include="Report\MRT\RptVATOrder20110401.mrt" />
+    <None Include="Scheduler\uninstall.bat" />
+    <None Include="Scheduler\install.bat" />
+    <None Include="Service References\WSCartuAuthCard\AuthCards.wsdl" />
+    <None Include="Service References\WSCartuAuthCard\Zek.WSCartuAuthCard.AuthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCartuB24\WSB24.wsdl" />
+    <None Include="Service References\WSCartuB24\Zek.WSCartuB24.BR.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCartuB24\Zek.WSCartuB24.info.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCartuVerifyCards\VerifyCards.wsdl" />
+    <None Include="Service References\WSCartuVerifyCards\Zek.WSCartuVerifyCards.HttpStatusCode.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSCartuVerifyCards\Zek.WSCartuVerifyCards.VerifyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\PaygeService.wsdl" />
+    <None Include="Service References\WSPayge\PaygeService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSPayge\PaygeService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSPayge\PaygeService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.CheckClient.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.CheckRecurringPaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.CompletionInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.CompletionStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.CreditInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.OrderDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.OrderInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.RecurringPaymentInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.RecurringPaymentStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.RecurringPosPaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.RefundInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WSPayge\Zek.WSPayge.RefundStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service\Bank\keys.bat" />
+    <Compile Include="Windows\Forms\Helpers\DataGridViewExtention.cs" />
+    <Compile Include="Windows\Forms\Helpers\FormHelper.cs" />
+    <Compile Include="Windows\Forms\Helpers\InputLanguageHelper.cs" />
+    <Compile Include="Windows\Forms\Helpers\ListViewExcentions.cs" />
+    <Compile Include="Windows\Forms\Helpers\MenuHelper.cs" />
+    <None Include="Zek.saproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\DataAnnotationsResources.ka-GE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataAnnotationsResources.ka-GE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\DataAnnotationsResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataAnnotationsResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Icons.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Localization.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Exceptions.ka-GE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Exceptions.ka-GE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Enumerable.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Enumerable.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Images.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <None Include="..\Zek.Key\StrongKey.snk">
+      <Link>StrongKey.snk</Link>
+    </None>
+    <EmbeddedResource Include="Properties\Resources.ka-GE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ka-GE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Web\JS\ValidatorOverride.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Exceptions.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Exceptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\Web\Mvc\" />
+    <Folder Include="Windows\Forms\DevEx\Old\" />
+    <Folder Include="Windows\Forms\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSCartuB24\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WSCartuB24\configuration.svcinfo" />
+    <None Include="Service References\WSCartuB24\configuration91.svcinfo" />
+    <None Include="Service References\WSCartuB24\WSB24.disco" />
+    <None Include="Service References\WSCartuVerifyCards\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WSCartuVerifyCards\configuration.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WSCartuVerifyCards\configuration91.svcinfo" />
+    <None Include="Service References\WSCartuVerifyCards\VerifyCards.disco" />
+    <None Include="Resources\action_play_16x16.png" />
+    <None Include="CryptoLicensing\LicenseServiceEx.txt" />
+    <Content Include="Resources\add_16x16.png" />
+    <Content Include="Resources\add_24x24.png" />
+    <None Include="Resources\printer3_24x24.png" />
+    <None Include="Resources\printer3_16x16.png" />
+    <None Include="Resources\printer2_24x24.png" />
+    <None Include="Resources\printer2_16x16.png" />
+    <None Include="Resources\contract_ok_24x24.png" />
+    <None Include="Resources\contract_ok_16x16.png" />
+    <None Include="Resources\table_16x16.png" />
+    <None Include="Resources\contract_delete_16x16.png" />
+    <None Include="Resources\contract_delete_24x24.png" />
+    <None Include="Resources\contract_24x24.png" />
+    <None Include="Resources\contract_16x16.png" />
+    <None Include="Resources\select_24x24.png" />
+    <None Include="Resources\select_16x16.png" />
+    <None Include="Resources\table_field_ok_16x16.png" />
+    <None Include="Resources\table_export_16x16.png" />
+    <None Include="Resources\full_screen_24x24.png" />
+    <None Include="Resources\full_screen_16x16.png" />
+    <None Include="Resources\filter_ok_24x24.png" />
+    <None Include="Resources\filter_24x24.png" />
+    <None Include="Resources\filter_ok_16x16.png" />
+    <None Include="Resources\filter_16x16.png" />
+    <None Include="Resources\reload_rotate_24x24.png" />
+    <None Include="Resources\reload_rotate_16x16.png" />
+    <None Include="Resources\save_import_16x16.png" />
+    <None Include="Resources\save_import_24x24.png" />
+    <None Include="Resources\print_24x24.png" />
+    <None Include="Resources\print_16x16.png" />
+    <None Include="Resources\cancel_16x16.png" />
+    <None Include="Resources\cancel_24x24.png" />
+    <None Include="Resources\arrow_down_16x16.png" />
+    <None Include="Resources\arrow_up_16x16.png" />
+    <None Include="Resources\application.ico" />
+    <Content Include="Resources\clipboard_copy_16x16.png" />
+    <None Include="Resources\database_find_16x16.png" />
+    <None Include="Resources\database_find_24x24.png" />
+    <Content Include="Resources\delete_16x16.png" />
+    <Content Include="Resources\delete_24x24.png" />
+    <None Include="Resources\ok_24x24.png" />
+    <None Include="Resources\ok_16x16.png" />
+    <None Include="Resources\filter_new_24x24.png" />
+    <None Include="Resources\filter_new_16x16.png" />
+    <None Include="Resources\folder_open_16x16.png" />
+    <None Include="Resources\folder_open_24x24.png" />
+    <None Include="Resources\import_spreadsheet_16x16.png" />
+    <None Include="Resources\import_spreadsheet_24x24.png" />
+    <Content Include="Resources\refresh_update_16x16.png" />
+    <Content Include="Resources\refresh_update_24x24.png" />
+    <Content Include="Resources\save_16x16.png" />
+    <Content Include="Resources\save_24x24.png" />
+    <None Include="Resources\sort_az_16x16.png" />
+    <None Include="Resources\sum_16x16.png" />
+    <None Include="Resources\sum_24x24.png" />
+    <None Include="Resources\table_export_24x24.png" />
+    <None Include="Resources\table_field_ok_24x24.png" />
+    <None Include="Resources\sort_az_24x24.png" />
+    <None Include="Resources\table_24x24.png" />
+    <Content Include="Resources\tool_pencil_16x16.png" />
+    <Content Include="Resources\tool_pencil_24x24.png" />
+    <Content Include="Resources\warning.ico" />
+    <None Include="Resources\warning_64x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WSCartuAuthCard\" />
+    <WCFMetadataStorage Include="Service References\WSCartuB24\" />
+    <WCFMetadataStorage Include="Service References\WSCartuVerifyCards\" />
+    <WCFMetadataStorage Include="Service References\WSPayge\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

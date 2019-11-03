@@ -1,0 +1,545 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="3">
+      <T_Header Ref="2" type="DataTableSource" isKey="true">
+        <Alias>T_Header</Alias>
+        <Columns isList="true" count="37">
+          <value>HeaderID,System.Int32</value>
+          <value>OrderNumber,System.String</value>
+          <value>OrderDate,System.DateTime</value>
+          <value>SubTotal,System.Decimal</value>
+          <value>VATAmt,System.Decimal</value>
+          <value>Freight,System.Decimal</value>
+          <value>TotalDue,System.Decimal</value>
+          <value>CurrencyCode,System.String</value>
+          <value>CurrencyName,System.String</value>
+          <value>CurrencyCoin,System.String</value>
+          <value>CurrencyRate,System.Decimal</value>
+          <value>ProductCurrencyRate,System.Decimal</value>
+          <value>VendorName,System.String</value>
+          <value>VendorTaxCode,System.String</value>
+          <value>VendorAddress,System.String</value>
+          <value>VendorPhone,System.String</value>
+          <value>VenderBankInfo,System.String</value>
+          <value>VendorBranchName,System.String</value>
+          <value>VendorBranchNumber,System.String</value>
+          <value>SellerName,System.String</value>
+          <value>SellerJobTitle,System.String</value>
+          <value>CustomerName,System.String</value>
+          <value>CustomerTaxCode,System.String</value>
+          <value>CustomerAddress,System.String</value>
+          <value>CustomerPhone,System.String</value>
+          <value>CustomerBankInfo,System.String</value>
+          <value>BuyerName,System.String</value>
+          <value>ShipperName,System.String</value>
+          <value>ShipperTaxCode,System.String</value>
+          <value>ShipperAddress,System.String</value>
+          <value>ShipperPhone,System.String</value>
+          <value>ShipToName,System.String</value>
+          <value>ShipToTaxCode,System.String</value>
+          <value>ShipToAddress,System.String</value>
+          <value>ShipToPhone,System.String</value>
+          <value>CarrierName,System.String</value>
+          <value>CarrierTaxCode,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_Header</Name>
+        <NameInSource>DS_TradeOrder.T_Header</NameInSource>
+      </T_Header>
+      <T_Detail Ref="3" type="DataTableSource" isKey="true">
+        <Alias>T_Detail</Alias>
+        <Columns isList="true" count="18">
+          <value>HeaderID,System.Int32</value>
+          <value>DetailID,System.Int32</value>
+          <value>Line,System.Int32</value>
+          <value>ProductNumber,System.String</value>
+          <value>ProductName,System.String</value>
+          <value>Serie,System.String</value>
+          <value>Quantity,System.Decimal</value>
+          <value>UnitMeasure,System.String</value>
+          <value>Coefficient,System.Decimal</value>
+          <value>UnitPrice,System.Decimal</value>
+          <value>Discount,System.Decimal</value>
+          <value>VATRate,System.Decimal</value>
+          <value>StockedQty,System.Decimal</value>
+          <value>PackQty,System.Decimal</value>
+          <value>ValidDate,System.DateTime</value>
+          <value>Manufacturer,System.String</value>
+          <value>ManufactureCountry,System.String</value>
+          <value>Comment,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_Detail</Name>
+        <NameInSource>DS_TradeOrder.T_Detail</NameInSource>
+      </T_Detail>
+      <T_BonusAccumulation Ref="4" type="DataTableSource" isKey="true">
+        <Alias>T_BonusAccumulation</Alias>
+        <Columns isList="true" count="5">
+          <value>CardNumber,System.String</value>
+          <value>Date,System.DateTime</value>
+          <value>TotalUnit,System.Decimal</value>
+          <value>TotalAmount,System.Decimal</value>
+          <value>IsException,System.Boolean</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_BonusAccumulation</Name>
+        <NameInSource>DS_TradeOrder.T_BonusAccumulation</NameInSource>
+      </T_BonusAccumulation>
+    </DataSources>
+    <Relations isList="true" count="1">
+      <T_Header Ref="5" type="DataRelation" isKey="true">
+        <Alias>T_Header</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>HeaderID</value>
+        </ChildColumns>
+        <ChildSource isRef="3" />
+        <Dictionary isRef="1" />
+        <Name>T_Header</Name>
+        <NameInSource>T_Header_T_Detail_HeaderID</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>HeaderID</value>
+        </ParentColumns>
+        <ParentSource isRef="2" />
+      </T_Header>
+    </Relations>
+    <Report isRef="0" />
+    <Variables isList="true" count="1">
+      <value>,EnableStockedQty,EnableStockedQty,ვაჩვენო_x002F_დავმალო_x0020_ნაშთი,System.Boolean,false,False,False,False</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="6" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="4">
+        <DataT_Header Ref="7" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,4,74.5,25</ClientRectangle>
+          <Components isList="true" count="3">
+            <txtOrderNumber Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,10,74,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8,Bold</Font>
+              <Guid>733e773fb10c4eeebc329b36be124895</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtOrderNumber</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>{T_Header.OrderNumber}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </txtOrderNumber>
+            <txtOrderDate Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,16,74,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8,Bold</Font>
+              <Guid>ae5deae806ec4c25bd665b8f85910ceb</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtOrderDate</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>{T_Header.OrderDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="10" type="DateFormat" isKey="true" />
+              <VertAlignment>Center</VertAlignment>
+            </txtOrderDate>
+            <txtVendorName Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,74,10</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8,Bold</Font>
+              <Guid>ce383dab46a2401db84ddfe3b7760cdd</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtVendorName</Name>
+              <Page isRef="6" />
+              <Parent isRef="7" />
+              <Text>{T_Header.VendorName}{IIF(Length(T_Header.VendorBranchNumber) &gt; 0, " - " + T_Header.VendorBranchNumber, "")}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </txtVendorName>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>T_Header</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Guid>b1c033477f144ff9b3094b8e17e2e058</Guid>
+          <Name>DataT_Header</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="0" />
+        </DataT_Header>
+        <HeaderT_Detail Ref="12" type="HeaderBand" isKey="true">
+          <Border>Top, Bottom;Black;1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,37,74.5,5</ClientRectangle>
+          <Components isList="true" count="4">
+            <lblProductName Ref="13" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,26,5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>5041090f7af040b1bbc7c1fec0026472</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>lblProductName</Name>
+              <Page isRef="6" />
+              <Parent isRef="12" />
+              <Text>დასახელება/მწარმოებელი</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </lblProductName>
+            <lblQuantity Ref="14" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26,0,16,5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>b3163533d3194b3f8dba3801b68099e1</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>lblQuantity</Name>
+              <Page isRef="6" />
+              <Parent isRef="12" />
+              <Text>რაოდენობა</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </lblQuantity>
+            <lblPrice Ref="15" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>42,0,12,5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>ce5a213e3ba64ca68c2d6fa7b893b7e1</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>lblPrice</Name>
+              <Page isRef="6" />
+              <Parent isRef="12" />
+              <Text>ფასი</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </lblPrice>
+            <lblLineTotal Ref="16" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>54,0,14,5</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>2c28a181b5d3450cb82aa8aa8d6f25ad</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>lblLineTotal</Name>
+              <Page isRef="6" />
+              <Parent isRef="12" />
+              <Text>თანხა</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </lblLineTotal>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>ea3aeb533651480eab83b1c1be8c2787</Guid>
+          <Name>HeaderT_Detail</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </HeaderT_Detail>
+        <DataT_Detail Ref="17" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,50,74.5,12</ClientRectangle>
+          <Components isList="true" count="5">
+            <txtProduct Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,72,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>203b042123f74056b0467d5435a540a7</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtProduct</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{Line}. {T_Detail.ProductName} / {T_Detail.ManufactureCountry} {T_Detail.Manufacturer}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </txtProduct>
+            <txtQuantity Ref="19" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>26,8,16,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>288483eb0eb0405389cae01293f41ce7</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtQuantity</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{Format("{0:N00}", (int)T_Detail.Quantity)}/{Format("{0:N00}", Zek.Core.MathHelper.RoundUnit(T_Detail.Quantity, (int)T_Detail.PackQty, 4) - ((int)T_Detail.Quantity * T_Detail.PackQty))}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </txtQuantity>
+            <txtUnitPrice Ref="20" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>42,8,12,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>c7da219d4fee483e80ab112ff207ce2f</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtUnitPrice</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{T_Detail.UnitPrice}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="21" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+            </txtUnitPrice>
+            <txtLineTotal Ref="22" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>54,8,14,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>37889f62f1284a51b21bd23c5c8c2098</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtLineTotal</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{T_Detail.Quantity * T_Detail.UnitPrice}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="23" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+            </txtLineTotal>
+            <txtStockedQty Ref="24" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>68,8,16,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <Guid>eec503411c2e4b2189e896d860ef5d6a</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>txtStockedQty</Name>
+              <Page isRef="6" />
+              <Parent isRef="17" />
+              <Text>{Format("{0:N00}", (int)T_Detail.StockedQty)}/{Format("{0:N00}", Zek.Core.MathHelper.RoundUnit(T_Detail.StockedQty, (int)T_Detail.PackQty, 4) - ((int)T_Detail.StockedQty * T_Detail.PackQty))}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="25" type="NumberFormat" isKey="true">
+                <DecimalDigits>4</DecimalDigits>
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <Type>Expression</Type>
+            </txtStockedQty>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName>T_Header_T_Detail_HeaderID</DataRelationName>
+          <DataSourceName>T_Detail</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Guid>f0960c63c01545518dc2940976f85d68</Guid>
+          <MasterComponent isRef="7" />
+          <Name>DataT_Detail</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+          <Sort isList="true" count="0" />
+        </DataT_Detail>
+        <FooterT_Detail Ref="26" type="FooterBand" isKey="true">
+          <Border>Top;Black;1;Solid;False;4;Black</Border>
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,70,74.5,26</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text12 Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,40,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>b688eda568fb46d2aa9dda1037ac1d0b</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="6" />
+              <Parent isRef="26" />
+              <Text>სულ {Count()} პრეპარატი</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text14 Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>40,0,30,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>09558a46d09a4eabb78ad962ff997f60</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="6" />
+              <Parent isRef="26" />
+              <Text>ჯამი: {Format("{0:N2}", Sum(T_Detail.Quantity * T_Detail.UnitPrice))} {T_Detail.T_Header.CurrencyCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text16 Ref="29" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,4,42,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>4b4c3934064f40a58a6ffe2b7c08d5ea</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="6" />
+              <Parent isRef="26" />
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="30" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>40,4,30,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>754d4703d003417f8c9b00c542bfc5e8</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="6" />
+              <Parent isRef="26" />
+              <Text>ფასდაკლება: {Format("{0:N2}", Sum(DataT_Detail, T_Detail.UnitPrice * (T_Detail.Discount / 100m) * T_Detail.Quantity))} {T_Detail.T_Header.CurrencyCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 Ref="31" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,8,70,4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8,Bold</Font>
+              <Guid>1c7992f8c24d4cd183ae220e2116ecc7</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="6" />
+              <Parent isRef="26" />
+              <Text>სულ გადასახდელია:      {Format("{0:N2}", T_Detail.T_Header.TotalDue)} {T_Detail.T_Header.CurrencyCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text19 Ref="32" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,18,70,8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>07e3a4aff182415c9b27d2f6396131e0</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="6" />
+              <Parent isRef="26" />
+              <Text>გაყიდული მედიკამენტები უკან არ მიიღება
+გმადლობთ, რომ ენდობით {
+IIF(T_Detail.T_Header.VendorName.EndsWith("ი"),
+	T_Detail.T_Header.VendorName.Substring(0, T_Detail.T_Header.VendorName.Length - 1),
+	IIF(T_Detail.T_Header.VendorName.EndsWith("ი\""), T_Detail.T_Header.VendorName.Substring(0, T_Detail.T_Header.VendorName.Length - 2) + "ს\"", T_Detail.T_Header.VendorName + "ს"))}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text19>
+            <Text1 Ref="33" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,12,70,6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,7</Font>
+              <Guid>96851aeade344c70abb18a15d63d23f3</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="6" />
+              <Parent isRef="26" />
+              <Text>{IIF(!T_BonusAccumulation.IsException, "თქვენს ანგარიშზეა " + Format("{0:N1}", T_BonusAccumulation.TotalUnit)+ " ქულა\n" + Format("{0:d}", T_BonusAccumulation.Date) + "-ის მდგომარეობით", "")}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+            </Text1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Guid>ceb41b6b122041cc90df8721328b24bd</Guid>
+          <Name>FooterT_Detail</Name>
+          <Page isRef="6" />
+          <Parent isRef="6" />
+        </FooterT_Detail>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>da69d43d785e4ef8af8227c5bd6632f4</Guid>
+      <Margins>3,2,0,0</Margins>
+      <Name>Page1</Name>
+      <PageHeight>900</PageHeight>
+      <PageWidth>79.5</PageWidth>
+      <RenderingEvent>txtStockedQty.Enabled = EnableStockedQty;</RenderingEvent>
+      <Report isRef="0" />
+      <Watermark Ref="34" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="35" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Rpt Receipt</ReportAlias>
+  <ReportAuthor>Programmer.GE</ReportAuthor>
+  <ReportChanged>1/18/2012 11:49:33 PM</ReportChanged>
+  <ReportCreated>5/27/2010 11:06:16 PM</ReportCreated>
+  <ReportDescription>გაყისვის რეპორტი თერმულ პრინტერზე</ReportDescription>
+  <ReportFile>D:\User\Documents\Projects\Zek\Source\Class Library\Zek\Report\Reports\RptReceipt.mrt</ReportFile>
+  <ReportGuid>9d53ae241190407f8b27a9dc118b1da5</ReportGuid>
+  <ReportName>RptReceipt</ReportName>
+  <ReportUnit>Millimeters</ReportUnit>
+  <ReportVersion>2011.2.1028</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    
+    public class RptReceipt : Stimulsoft.Report.StiReport
+    {
+        
+        public RptReceipt()
+        {
+            this.InitializeComponent();
+        }
+        #region StiReport Designer generated code - do not modify#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

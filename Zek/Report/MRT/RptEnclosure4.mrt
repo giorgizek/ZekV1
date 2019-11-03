@@ -1,0 +1,855 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.0" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="2">
+      <T_Header Ref="2" type="DataTableSource" isKey="true">
+        <Alias>T_Header</Alias>
+        <Columns isList="true" count="31">
+          <value>HeaderID,System.Int32</value>
+          <value>OrderNumber,System.String</value>
+          <value>OrderDate,System.DateTime</value>
+          <value>SubTotal,System.Decimal</value>
+          <value>Freight,System.Decimal</value>
+          <value>TotalDue,System.Decimal</value>
+          <value>CurrencyCode,System.String</value>
+          <value>CurrencyName,System.String</value>
+          <value>CurrencyCoin,System.String</value>
+          <value>CurrencyRate,System.Decimal</value>
+          <value>ProductCurrencyRate,System.Decimal</value>
+          <value>VendorName,System.String</value>
+          <value>VendorTaxCode,System.String</value>
+          <value>VendorAddress,System.String</value>
+          <value>VendorPhone,System.String</value>
+          <value>VenderBankInfo,System.String</value>
+          <value>CustomerName,System.String</value>
+          <value>CustomerTaxCode,System.String</value>
+          <value>CustomerAddress,System.String</value>
+          <value>CustomerPhone,System.String</value>
+          <value>CustomerBankInfo,System.String</value>
+          <value>ShipperName,System.String</value>
+          <value>ShipperTaxCode,System.String</value>
+          <value>ShipperAddress,System.String</value>
+          <value>ShipperPhone,System.String</value>
+          <value>ShipToName,System.String</value>
+          <value>ShipToTaxCode,System.String</value>
+          <value>ShipToAddress,System.String</value>
+          <value>ShipToPhone,System.String</value>
+          <value>CarrierName,System.String</value>
+          <value>CarrierTaxCode,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_Header</Name>
+        <NameInSource>DS_TradeOrder.T_Header</NameInSource>
+      </T_Header>
+      <T_Detail Ref="3" type="DataTableSource" isKey="true">
+        <Alias>T_Detail</Alias>
+        <Columns isList="true" count="16">
+          <value>HeaderID,System.Int32</value>
+          <value>DetailID,System.Int32</value>
+          <value>Line,System.Int32</value>
+          <value>ProductNumber,System.String</value>
+          <value>ProductName,System.String</value>
+          <value>Serie,System.String</value>
+          <value>Quantity,System.Decimal</value>
+          <value>UnitMeasure,System.String</value>
+          <value>Coefficient,System.Decimal</value>
+          <value>UnitPrice,System.Decimal</value>
+          <value>Discount,System.Decimal</value>
+          <value>TaxRate,System.Decimal</value>
+          <value>ValidDate,System.Nullable`1[System.DateTime]</value>
+          <value>Manufacturer,System.String</value>
+          <value>ManufactureCountry,System.String</value>
+          <value>Comment,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_Detail</Name>
+        <NameInSource>DS_TradeOrder.T_Detail</NameInSource>
+      </T_Detail>
+    </DataSources>
+    <Relations isList="true" count="1">
+      <T_Header Ref="4" type="DataRelation" isKey="true">
+        <Alias>T_Header</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>HeaderID</value>
+        </ChildColumns>
+        <ChildSource isRef="3" />
+        <Dictionary isRef="1" />
+        <Name>T_Header</Name>
+        <NameInSource>T_Header_T_Detail_HeaderID</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>HeaderID</value>
+        </ParentColumns>
+        <ParentSource isRef="2" />
+      </T_Header>
+    </Relations>
+    <Report isRef="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="5" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="3">
+        <DataT_Header Ref="6" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,0.4,20,6</ClientRectangle>
+          <Components isList="true" count="20">
+            <Text1 Ref="7" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,20,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>დამტკიცებულია საქართველოს მთავრობის
+2009 წლის 22 ოქტომბრის
+№189 ბრძანებულებით</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text2 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12,1.4,8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>დანართი №4</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text3 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,2.2,20,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>{T_Header.OrderDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="10" type="DateFormat" isKey="true" />
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,3,19.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>ფარმაცევტული პროდუქტის სერიის აღრიცხვის სპეციალური ფორმა</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text22 Ref="12" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,4,0.8,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>a97545fde6ed4d03ab821bb48036faf8</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>№</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text22>
+            <Text5 Ref="13" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,4,5.6,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>c001bee655aa44e8bf92583fa653fcfa</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>ფარმაცევტული პროდუქტის დასახელება, ფორმა, დოზა, შეფუთვაში რაოდენობა</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 Ref="14" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.4,4,1.4,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>314d71c081534d26bcc350d2c738c136</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>ზომის ერთეული</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text7 Ref="15" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.8,4,1.6,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>723abb37bdfc42cba09238db0d35d0cd</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>შეფუთვის რაოდენობა
+</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="16" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.4,4,1.6,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>f67d8e705626442d80d889faa55ab7f6</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>სერია</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 Ref="17" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11,4,1.2,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>0a88727900ce40509ada61a59f97bcbb</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>ვარგისობის ვადა
+</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text10 Ref="18" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.2,4,5.8,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>d480f16ca2ec4602bdf5aeb273c390ff</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>მწარმოებელი კომპანია, ქვეყანა
+</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text11 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,4,2,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>cf51a34e56844d7085e0cbbfd504b943</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>შენიშვნა
+</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="20" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,5.4,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>b589402b305d4ae2890abf7d09b0f808</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>1</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="21" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,5.4,5.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>fe20eae1447a4c6182932f871d4974ba</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>2</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text14 Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.4,5.4,1.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>2795ec55efa6466c816b9ffe9c506e4c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>3</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text15 Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.8,5.4,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>f3c89367d2144db7a45f70569b4d70b4</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>4</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text16 Ref="24" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.4,5.4,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>1ad4d6ea43dc49ddaf9b655cb231aa7d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>5</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="25" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>11,5.4,1.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>c5d261727c42443691997afac7de5378</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>6</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.2,5.4,5.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>8159f1bd5c324e0189603376e7f60943</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>7</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text19 Ref="27" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,5.4,2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>3714ba63d500431ca9b34267da5c29e0</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>8</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>T_Header</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Name>DataT_Header</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="4">
+            <value>ASC</value>
+            <value>OrderDate</value>
+            <value>ASC</value>
+            <value>OrderNumber</value>
+          </Sort>
+        </DataT_Header>
+        <DataT_Detail Ref="28" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,7.2,20,0.8</ClientRectangle>
+          <Components isList="true" count="9">
+            <DataT_Detail_Line Ref="29" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,0.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataT_Detail_Line</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.Line}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataT_Detail_Line>
+            <DataT_Detail_ProductName Ref="30" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.8,0,5.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataT_Detail_ProductName</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.ProductName}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataT_Detail_ProductName>
+            <DataT_Detail_UnitMeasure Ref="31" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.4,0,1.4,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataT_Detail_UnitMeasure</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.UnitMeasure}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataT_Detail_UnitMeasure>
+            <DataT_Detail_PackQuantity Ref="32" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.8,0,1.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataT_Detail_PackQuantity</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.Quantity}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="33" type="NumberFormat" isKey="true">
+                <DecimalSeparator>,</DecimalSeparator>
+                <GroupSeparator> </GroupSeparator>
+                <NegativePattern>1</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
+              </TextFormat>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataT_Detail_PackQuantity>
+            <DataT_Detail_Serie Ref="34" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>9.4,0,1.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataT_Detail_Serie</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.Serie}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataT_Detail_Serie>
+            <DataT_Detail_ValidDate Ref="35" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>11,0,1.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataT_Detail_ValidDate</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.ValidDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="36" type="CustomFormat" isKey="true">
+                <StringFormat>MM\/yy</StringFormat>
+              </TextFormat>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataT_Detail_ValidDate>
+            <DataT_Detail_Manufacturer Ref="37" type="Text" isKey="true">
+              <Border>Top, Left, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>12.2,0,3.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataT_Detail_Manufacturer</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.Manufacturer}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataT_Detail_Manufacturer>
+            <DataT_Detail_Comment Ref="38" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>18,0,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataT_Detail_Comment</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.Comment}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataT_Detail_Comment>
+            <Text31 Ref="39" type="Text" isKey="true">
+              <Border>Top, Right, Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>16,0,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>d19c2a1a0c784c6896f93531ad5ce831</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text31</Name>
+              <Page isRef="5" />
+              <Parent isRef="28" />
+              <Text>{T_Detail.ManufactureCountry}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </Text31>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName>T_Header_T_Detail_HeaderID</DataRelationName>
+          <DataSourceName>T_Detail</DataSourceName>
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="6" />
+          <Name>DataT_Detail</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="2">
+            <value>ASC</value>
+            <value>Line</value>
+          </Sort>
+        </DataT_Detail>
+        <FooterT_Detail Ref="40" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,8.8,20,5.2</ClientRectangle>
+          <Components isList="true" count="10">
+            <Text20 Ref="41" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.4,0.4,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>გასცა: {T_Header.VendorName}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
+            <Text21 Ref="42" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.4,1,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text21</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>{T_Header.VendorAddress}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text21>
+            <Text23 Ref="43" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.4,1.6,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>793e8e4bef174a91a01ed7c4620bea4c</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>ს/კ: {T_Header.VendorTaxCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text23>
+            <Text24 Ref="44" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.4,2.6,9.8,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>პასუხისმგებელი პირის
+ხელმოწერა</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text24>
+            <Text25 Ref="45" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.4,4.6,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>802338aadb78425c99818fe51e948705</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text25</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>ბ.ა. (ასეთის არსებობისას)</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text25>
+            <Text26 Ref="46" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.2,0.4,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>58213b9c9e1d4270a4c6145e7f61c7f0</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text26</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>მიიღო: {T_Header.CustomerName}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text26>
+            <Text27 Ref="47" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.2,1,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>1baf47ab4118476792941e5acef19320</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text27</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>{T_Header.CustomerAddress}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text27>
+            <Text28 Ref="48" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.2,1.6,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>1be14ddf3db74934bf827fb95f74b9f9</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text28</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>ს/კ: {T_Header.CustomerTaxCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text28>
+            <Text29 Ref="49" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.2,2.6,9.8,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>c8014dfc4de44ad8a3f9093af0132d47</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text29</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>პასუხისმგებელი პირის
+ხელმოწერა</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text29>
+            <Text30 Ref="50" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>10.2,4.6,9.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>BPG Glaho Arial,9</Font>
+              <Guid>84ba4d5c05d54080a339fccfb258e997</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text30</Name>
+              <Page isRef="5" />
+              <Parent isRef="40" />
+              <Text>ბ.ა. (ასეთის არსებობისას)</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text30>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>FooterT_Detail</Name>
+          <NewPageAfter>True</NewPageAfter>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </FooterT_Detail>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>c80897a66db146f58b638a3511d0c0d4</Guid>
+      <Margins>0.5,0.5,0.5,0.5</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="51" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="52" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>RptEnclosure4</ReportAlias>
+  <ReportAuthor>Programmer.GE</ReportAuthor>
+  <ReportChanged>11/29/2010 9:12:18 PM</ReportChanged>
+  <ReportCreated>5/28/2010 3:17:49 PM</ReportCreated>
+  <ReportDescription>დანართი №4</ReportDescription>
+  <ReportFile>D:\User\Documents\Projects\Zek\Source\Class Library\Zek.Report\Reports\RptEnclosure4.mrt</ReportFile>
+  <ReportGuid>7d679d2568b64d8582e2941ea0660cbe</ReportGuid>
+  <ReportName>RptEnclosure4</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2010.1.700</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    
+    public class RptEnclosure4 : Stimulsoft.Report.StiReport
+    {
+        
+        public RptEnclosure4()
+        {
+            this.InitializeComponent();
+        }
+        #region StiReport Designer generated code - do not modify#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

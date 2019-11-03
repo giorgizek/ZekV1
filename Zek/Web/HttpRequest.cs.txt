@@ -1,0 +1,29 @@
+﻿using System.Net;
+using System.Web;
+using Zek.Extensions;
+
+namespace Zek.Web
+{
+    public class HttpRequestHelper
+    {
+        public static string GetUserHostAddresses()
+        {
+            var userHostAddress = HttpContext.Current.Request.UserHostAddress;
+            // Attempt to parse.  If it fails, we catch below and return "0.0.0.0"
+            // Could use TryParse instead, but I wanted to catch all exceptions
+            IPAddress.Parse(userHostAddress);
+            return userHostAddress.Add(",", HttpContext.Current.Request.ServerVariables["X_FORWARDED_FOR"]);
+        }
+        public static string TryGetUserHostAddresses()
+        {
+            try
+            {
+                return GetUserHostAddresses();
+            }
+            catch
+            {
+                return "0.0.0.0";
+            }
+        }
+    }
+}

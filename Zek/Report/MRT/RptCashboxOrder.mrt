@@ -1,0 +1,1516 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="1">
+      <T_Cashbox Ref="2" type="DataTableSource" isKey="true">
+        <Alias>T_Cashbox</Alias>
+        <Columns isList="true" count="17">
+          <value>ID,System.Int32</value>
+          <value>Company,System.String</value>
+          <value>Branch,System.String</value>
+          <value>ActNumber,System.String</value>
+          <value>OrderDate,System.DateTime</value>
+          <value>SubAccount,System.String</value>
+          <value>AnalyticalAccountingCode,System.String</value>
+          <value>Amount,System.Decimal</value>
+          <value>AmountToStr,System.String</value>
+          <value>CurrencySymbol,System.String</value>
+          <value>SpecialPurposeCode,System.String</value>
+          <value>IssuedPerson,System.String</value>
+          <value>IssuedPersonPersonalNumber,System.String</value>
+          <value>WarrantNumber,System.String</value>
+          <value>Basis,System.String</value>
+          <value>Enclosure,System.String</value>
+          <value>Creator,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Name>T_Cashbox</Name>
+        <NameInSource>DS_CashboxOrder.T_Cashbox</NameInSource>
+      </T_Cashbox>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="3" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="1">
+        <DataT_Cashbox Ref="4" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,0.4,19,28.25</ClientRectangle>
+          <Components isList="true" count="3">
+            <pnlTop Ref="5" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,19,13.8</ClientRectangle>
+              <Components isList="true" count="26">
+                <Text1 Ref="6" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,14,1.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9,Bold</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text1</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{T_Cashbox.Company}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <VertAlignment>Center</VertAlignment>
+                </Text1>
+                <Text3 Ref="7" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,1.6,19,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>690e624c4f324c62b0f659b2bbd0bf20</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text3</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>სალაროს გასავლის ორდერი #{T_Cashbox.ActNumber}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text3>
+                <Text2 Ref="8" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>14,0,5,1.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <HorAlignment>Right</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text2</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>ფორმა #სო-2
+დამტკიცებულია, სსრკ გამსახკომის
+1989 28.12-#241 დადგენილებით
+მდსსკ-ს კოდის მიხედვით 0308002</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Text2>
+                <Panel1 Ref="9" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>6.9,2.2,5.2,1.6</ClientRectangle>
+                  <Components isList="true" count="6">
+                    <Text4 Ref="10" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0.2,0.2,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text4</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="9" />
+                      <Text>რიცხვი</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text4>
+                    <Text5 Ref="11" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>1.8,0.2,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text5</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="9" />
+                      <Text>თვე</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text5>
+                    <Text6 Ref="12" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>3.4,0.2,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text6</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="9" />
+                      <Text>წელი</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text6>
+                    <Text7 Ref="13" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0.2,0.8,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>c3a9e71baef6422a8a513ecb86950e09</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text7</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="9" />
+                      <Text>{Day(T_Cashbox.OrderDate)}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text7>
+                    <Text8 Ref="14" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>1.8,0.8,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>79e3a394fe2f4fb19c12cb07efc96736</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text8</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="9" />
+                      <Text>{Month(T_Cashbox.OrderDate)}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text8>
+                    <Text9 Ref="15" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>3.4,0.8,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>6bbfab158caf4a928ca4665f5b3e9a49</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text9</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="9" />
+                      <Text>{Year(T_Cashbox.OrderDate)} წ.</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text9>
+                  </Components>
+                  <Conditions isList="true" count="0" />
+                  <Name>Panel1</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                </Panel1>
+                <Panel2 Ref="16" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>3.6,3.8,11.8,2.2</ClientRectangle>
+                  <Components isList="true" count="10">
+                    <Text10 Ref="17" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0.2,0.2,1,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,9</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text10</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text10>
+                    <Text11 Ref="18" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>1.2,0.2,2.6,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text11</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <Text>მაკორესპ. ანგ.
+სუბანგარიში</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text11>
+                    <Text12 Ref="19" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>3.8,0.2,2.6,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>de609c2e047742c991aa720c4878bc34</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text12</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <Text>ანალიზური აღ-
+რიცხვის კოდი
+</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text12>
+                    <Text13 Ref="20" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>6.4,0.2,2.6,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>46588ad279384c56a756247aa254c219</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text13</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <Text>თანხა</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text13>
+                    <Text14 Ref="21" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>9,0.2,2.6,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>276a41a3a17a4b19a4161b10ea2a6251</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text14</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <Text>მიზნობრივი  და-
+ნიშნულების კოდი
+</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text14>
+                    <Text15 Ref="22" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0.2,1.2,1,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,9</Font>
+                      <Guid>67b62a5f21a64db3800576398f04319b</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text15</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text15>
+                    <Text16 Ref="23" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>1.2,1.2,2.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>3c2c24ea7d7840cc994c70857d583f86</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text16</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <Text>{T_Cashbox.SubAccount}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text16>
+                    <Text17 Ref="24" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>3.8,1.2,2.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>a7574cf93e0248eb8c0ccc44b061b0ed</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text17</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <Text>{T_Cashbox.AnalyticalAccountingCode}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text17>
+                    <Text18 Ref="25" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>6.4,1.2,2.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>21287630ea054fbd8c1886c6513d452d</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text18</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <Text>{Format("{0:N2}", T_Cashbox.Amount)}{T_Cashbox.CurrencySymbol}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text18>
+                    <Text19 Ref="26" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>9,1.2,2.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>48163d6450cc4423bb19006ee1b84fa4</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text19</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="16" />
+                      <Text>{T_Cashbox.SpecialPurposeCode}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text19>
+                  </Components>
+                  <Conditions isList="true" count="0" />
+                  <Name>Panel2</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                </Panel2>
+                <Text20 Ref="27" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,6,2.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text20</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>გაიცეს:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text20>
+                <Text21 Ref="28" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,6,16.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>59214e145cdc4da688e24caf1facca16</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text21</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{T_Cashbox.IssuedPerson}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text21>
+                <Text22 Ref="29" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,6.6,16.8,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>afb1f49b76084705b0a352fd9f28b456</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text22</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>გვარი, სახელი</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text22>
+                <Text23 Ref="30" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,7.2,2.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>3e1421924c8a4508949f0f5433d6d29e</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text23</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>საფუძველი:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text23>
+                <Text24 Ref="31" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,7.2,16.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>4f421cb8072f4b3cacd884c2ff4f15be</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text24</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{T_Cashbox.Basis}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text24>
+                <Text26 Ref="32" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,8,11.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>1e3619ca14fc43b19112bfd48241305f</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text26</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{T_Cashbox.Enclosure}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>DataColumn</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text26>
+                <Text25 Ref="33" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,8,2.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>5e59ea5faf534d9ca6f4250930a88c7f</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text25</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>დანართი:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text25>
+                <Text27 Ref="34" type="Text" isKey="true">
+                  <Border>Top;Black;1;Dash;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>14,8.4,5,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>4a9d32e818be4ebc8be07e2d7ebb9052</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text27</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>მთავარი ბუღალტერი</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Bottom</VertAlignment>
+                </Text27>
+                <Text28 Ref="35" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,9.2,2.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>1c91946e3fa5470285b7b1fe0abef54f</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text28</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>მიიღო თანხა:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text28>
+                <Text29 Ref="36" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,9.2,16.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>8f3e01eb0c254ebdbf3933bacfccb602</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text29</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{T_Cashbox.AmountToStr}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text29>
+                <Text30 Ref="37" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,9.8,16.8,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>e468430554064f71b70c5a552f8d5a33</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text30</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>თანხა სიტყვიერად</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text30>
+                <Text31 Ref="38" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,10.6,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>fcc589f361814c1289917f3e90f7a8fe</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text31</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>დირექტორის ხელმოწერა:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Text31>
+                <Text32 Ref="39" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>10,10.6,4,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>cfc6d0568f714b26bd97cdc77bd8fffe</Guid>
+                  <HorAlignment>Right</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text32</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>თანხის მიმღების ხელმოწერა:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Text32>
+                <Text33 Ref="40" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,11.8,3.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>b59cf9f84f6e4a5092de28cbe51ff55c</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text33</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>თანხის  მიმღების  პირადი #</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text33>
+                <Text34 Ref="41" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>3.8,11.8,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text34</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{T_Cashbox.IssuedPersonPersonalNumber}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>DataColumn</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text34>
+                <Text35 Ref="42" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>9.2,11.8,6.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>70a0c04c17394df18e5e6545a4af1e98</Guid>
+                  <HorAlignment>Right</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text35</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>მინდობილობის არსებობის შემთხვევაში, მისი #</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text35>
+                <Text36 Ref="43" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>15.4,11.8,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>dd3c098ed6d94e75b8f63e7af94243f7</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text36</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>{T_Cashbox.WarrantNumber}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>DataColumn</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text36>
+                <Text37 Ref="44" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,13,6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>9660aafa8bb14df4a8039d8cc145ff06</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text37</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <Text>თანხის გამცემი მოლარის ხელმოწერა:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text37>
+                <HorizontalLinePrimitive1 Ref="45" type="HorizontalLinePrimitive" isKey="true">
+                  <ClientRectangle>3.6,10.8,5,0.0254</ClientRectangle>
+                  <Color>Black</Color>
+                  <EndCap Ref="46" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </EndCap>
+                  <Name>HorizontalLinePrimitive1</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <StartCap Ref="47" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </StartCap>
+                  <Style>Dash</Style>
+                </HorizontalLinePrimitive1>
+                <HorizontalLinePrimitive2 Ref="48" type="HorizontalLinePrimitive" isKey="true">
+                  <ClientRectangle>14,10.8,5,0.0254</ClientRectangle>
+                  <Color>Black</Color>
+                  <EndCap Ref="49" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </EndCap>
+                  <Guid>c0e7a275a60c434ab1d23698d86c538c</Guid>
+                  <Name>HorizontalLinePrimitive2</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <StartCap Ref="50" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </StartCap>
+                  <Style>Dash</Style>
+                </HorizontalLinePrimitive2>
+                <HorizontalLinePrimitive3 Ref="51" type="HorizontalLinePrimitive" isKey="true">
+                  <ClientRectangle>6.5,13.4,6,0.0254</ClientRectangle>
+                  <Color>Black</Color>
+                  <EndCap Ref="52" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </EndCap>
+                  <Guid>520a250ce50947688241bda9295780a4</Guid>
+                  <Name>HorizontalLinePrimitive3</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="5" />
+                  <StartCap Ref="53" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </StartCap>
+                  <Style>Dash</Style>
+                </HorizontalLinePrimitive3>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <Name>pnlTop</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+            </pnlTop>
+            <Panel3 Ref="54" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,14.4,19,13.8</ClientRectangle>
+              <Components isList="true" count="26">
+                <Text38 Ref="55" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,0,14,1.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9,Bold</Font>
+                  <Guid>d0857f17776b49e5a42dbf0335002942</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text38</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>{T_Cashbox.Company}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+                  <VertAlignment>Center</VertAlignment>
+                </Text38>
+                <Text39 Ref="56" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,1.6,19,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>62d485a635c34560a541093a07cf4a3d</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text39</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>სალაროს გასავლის ორდერი #{T_Cashbox.ActNumber}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text39>
+                <Text40 Ref="57" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>14,0,5,1.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>cdbd5870eb5b48d1913e223a74014864</Guid>
+                  <HorAlignment>Right</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text40</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>ფორმა #სო-2
+დამტკიცებულია, სსრკ გამსახკომის
+1989 28.12-#241 დადგენილებით
+მდსსკ-ს კოდის მიხედვით 0308002</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Text40>
+                <Panel4 Ref="58" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>6.9,2.2,5.2,1.6</ClientRectangle>
+                  <Components isList="true" count="6">
+                    <Text41 Ref="59" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0.2,0.2,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>1c668a89a62345928579fd453b329604</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text41</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="58" />
+                      <Text>რიცხვი</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text41>
+                    <Text42 Ref="60" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>1.8,0.2,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>5d7366d2baf94dcc8335ca368bc63b8a</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text42</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="58" />
+                      <Text>თვე</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text42>
+                    <Text43 Ref="61" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>3.4,0.2,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>fe24d9cea03e4314b64ac9a579315821</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text43</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="58" />
+                      <Text>წელი</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text43>
+                    <Text44 Ref="62" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0.2,0.8,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>ce3d9c69d85d4358a88eee1a2f92f02e</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text44</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="58" />
+                      <Text>{Day(T_Cashbox.OrderDate)}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text44>
+                    <Text45 Ref="63" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>1.8,0.8,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>859537c12fd14d909936484a94709434</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text45</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="58" />
+                      <Text>{Month(T_Cashbox.OrderDate)}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text45>
+                    <Text46 Ref="64" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>3.4,0.8,1.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>65482021f6f944eabf5d566c72f48de4</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text46</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="58" />
+                      <Text>{Year(T_Cashbox.OrderDate)} წ.</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text46>
+                  </Components>
+                  <Conditions isList="true" count="0" />
+                  <Guid>cc99d27327684c158c1e2d2b730ac175</Guid>
+                  <Name>Panel4</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                </Panel4>
+                <Panel5 Ref="65" type="Stimulsoft.Report.Components.StiPanel" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>3.6,3.8,11.8,2.2</ClientRectangle>
+                  <Components isList="true" count="10">
+                    <Text47 Ref="66" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0.2,0.2,1,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,9</Font>
+                      <Guid>171536ab37d54d36a0e23da24d52828b</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text47</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text47>
+                    <Text48 Ref="67" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>1.2,0.2,2.6,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>a23e7658d3fd46ba9de56b8ec7e0f140</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text48</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <Text>მაკორესპ. ანგ.
+სუბანგარიში</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text48>
+                    <Text49 Ref="68" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>3.8,0.2,2.6,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>3703718f059740a592fe0acf8118df05</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text49</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <Text>ანალიზური აღ-
+რიცხვის კოდი
+</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text49>
+                    <Text50 Ref="69" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>6.4,0.2,2.6,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>7b6b15f336094296b0ddd0892ebccaf0</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text50</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <Text>თანხა</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text50>
+                    <Text51 Ref="70" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>9,0.2,2.6,1</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>5bc3ea1eb7204fa6ac498eca8441c565</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text51</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <Text>მიზნობრივი  და-
+ნიშნულების კოდი
+</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text51>
+                    <Text52 Ref="71" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>0.2,1.2,1,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,9</Font>
+                      <Guid>5a4c9a061544459f81159f7fe72b09a1</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text52</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text52>
+                    <Text53 Ref="72" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>1.2,1.2,2.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>dee80c734022480386e5c77cd583dce1</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text53</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <Text>{T_Cashbox.SubAccount}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text53>
+                    <Text54 Ref="73" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>3.8,1.2,2.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>f9c667ebe78a4546a3f872e4929bebad</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text54</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <Text>{T_Cashbox.AnalyticalAccountingCode}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text54>
+                    <Text55 Ref="74" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>6.4,1.2,2.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>c8637129b9ce40268f20a1b7c47b0795</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text55</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <Text>{Format("{0:N2}", T_Cashbox.Amount)}{T_Cashbox.CurrencySymbol}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text55>
+                    <Text56 Ref="75" type="Text" isKey="true">
+                      <Border>All;Black;1;Solid;False;4;Black</Border>
+                      <Brush>Transparent</Brush>
+                      <ClientRectangle>9,1.2,2.6,0.6</ClientRectangle>
+                      <Conditions isList="true" count="0" />
+                      <Editable>True</Editable>
+                      <Font>BPG Glaho Arial,8</Font>
+                      <Guid>fadd1cc301ed4c419c79cb70b1cafa15</Guid>
+                      <HorAlignment>Center</HorAlignment>
+                      <Margins>0,0,0,0</Margins>
+                      <Name>Text56</Name>
+                      <Page isRef="3" />
+                      <Parent isRef="65" />
+                      <Text>{T_Cashbox.SpecialPurposeCode}</Text>
+                      <TextBrush>Black</TextBrush>
+                      <Type>Expression</Type>
+                      <VertAlignment>Center</VertAlignment>
+                    </Text56>
+                  </Components>
+                  <Conditions isList="true" count="0" />
+                  <Guid>6bdae51bf24b484196db6bcceee83fb1</Guid>
+                  <Name>Panel5</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                </Panel5>
+                <Text57 Ref="76" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,6,2.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>ea8a3346937f44a196d1a7a3ce8c44e5</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text57</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>გაიცეს:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text57>
+                <Text58 Ref="77" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,6,16.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>4eab6f254f7f4c80abdb212e6140a771</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text58</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>{T_Cashbox.IssuedPerson}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text58>
+                <Text59 Ref="78" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,6.6,16.8,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>f6cb755e7fec49ea937c7fae772aba8f</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text59</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>გვარი, სახელი</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text59>
+                <Text60 Ref="79" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,7.2,2.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>ece9502072084fa3b8b001b90371a9c9</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text60</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>საფუძველი:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text60>
+                <Text61 Ref="80" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,7.2,16.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>49666804faf049498441986180101e53</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text61</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>{T_Cashbox.Basis}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text61>
+                <Text62 Ref="81" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,8,11.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>a4d05be4d6c04a30b9327af2b453433d</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text62</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>{T_Cashbox.Enclosure}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>DataColumn</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text62>
+                <Text63 Ref="82" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,8,2.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>853ad151ddd14ff4bb75b350171cce7e</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text63</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>დანართი:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text63>
+                <Text64 Ref="83" type="Text" isKey="true">
+                  <Border>Top;Black;1;Dash;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>14,8.4,5,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>dc8ee74f934549bcb9520c32228bbb6b</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text64</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>მთავარი ბუღალტერი</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Bottom</VertAlignment>
+                </Text64>
+                <Text65 Ref="84" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,9.2,2.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>1d056beb0500472aa1ab12e7787aa686</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text65</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>მიიღო თანხა:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text65>
+                <Text66 Ref="85" type="Text" isKey="true">
+                  <Border>Bottom;Black;1;Dash;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,9.2,16.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>20ef7487f7ca4a70b82d93e12fbb4c74</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text66</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>{T_Cashbox.AmountToStr}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text66>
+                <Text67 Ref="86" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>2.2,9.8,16.8,0.4</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>1ae1846a89a646918f0a30196d5ae7fa</Guid>
+                  <HorAlignment>Center</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text67</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>თანხა სიტყვიერად</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text67>
+                <Text68 Ref="87" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,10.6,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>bde6814833684274aeabe3e35c805e03</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text68</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>დირექტორის ხელმოწერა:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Text68>
+                <Text69 Ref="88" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>10,10.6,4,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>c02a9aeebc0b490da8254c361eb0af77</Guid>
+                  <HorAlignment>Right</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text69</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>თანხის მიმღების ხელმოწერა:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                </Text69>
+                <Text70 Ref="89" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,11.8,3.8,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>78b1c9aeef5440aabef30c2f83252ca6</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text70</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>თანხის  მიმღების  პირადი #</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text70>
+                <Text71 Ref="90" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>3.8,11.8,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>2274e4e2d52c4a879938849010237e4b</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text71</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>{T_Cashbox.IssuedPersonPersonalNumber}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>DataColumn</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text71>
+                <Text72 Ref="91" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>9.2,11.8,6.2,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,8</Font>
+                  <Guid>6e4fad0c995048f0987330de953e6d4b</Guid>
+                  <HorAlignment>Right</HorAlignment>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text72</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>მინდობილობის არსებობის შემთხვევაში, მისი #</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text72>
+                <Text73 Ref="92" type="Text" isKey="true">
+                  <Border>All;Black;1;Solid;False;4;Black</Border>
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>15.4,11.8,3.6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Editable>True</Editable>
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>c39cc81ab19d4cc5a69962b9e6a44d2c</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text73</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>{T_Cashbox.WarrantNumber}</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>DataColumn</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text73>
+                <Text74 Ref="93" type="Text" isKey="true">
+                  <Brush>Transparent</Brush>
+                  <ClientRectangle>0,13,6,0.6</ClientRectangle>
+                  <Conditions isList="true" count="0" />
+                  <Font>BPG Glaho Arial,9</Font>
+                  <Guid>e7cc986fe6b842e08ae011cfd54fa4d9</Guid>
+                  <Margins>0,0,0,0</Margins>
+                  <Name>Text74</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <Text>თანხის გამცემი მოლარის ხელმოწერა:</Text>
+                  <TextBrush>Black</TextBrush>
+                  <Type>Expression</Type>
+                  <VertAlignment>Center</VertAlignment>
+                </Text74>
+                <HorizontalLinePrimitive4 Ref="94" type="HorizontalLinePrimitive" isKey="true">
+                  <ClientRectangle>3.6,10.8,5,0.0254</ClientRectangle>
+                  <Color>Black</Color>
+                  <EndCap Ref="95" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </EndCap>
+                  <Guid>122316df54104346b60c406c0a4e5ce6</Guid>
+                  <Name>HorizontalLinePrimitive4</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <StartCap Ref="96" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </StartCap>
+                  <Style>Dash</Style>
+                </HorizontalLinePrimitive4>
+                <HorizontalLinePrimitive5 Ref="97" type="HorizontalLinePrimitive" isKey="true">
+                  <ClientRectangle>14,10.8,5,0.0254</ClientRectangle>
+                  <Color>Black</Color>
+                  <EndCap Ref="98" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </EndCap>
+                  <Guid>e0b6d1f1a73c4f35a4bdf13adcedb7e5</Guid>
+                  <Name>HorizontalLinePrimitive5</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <StartCap Ref="99" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </StartCap>
+                  <Style>Dash</Style>
+                </HorizontalLinePrimitive5>
+                <HorizontalLinePrimitive6 Ref="100" type="HorizontalLinePrimitive" isKey="true">
+                  <ClientRectangle>6.5,13.4,6,0.0254</ClientRectangle>
+                  <Color>Black</Color>
+                  <EndCap Ref="101" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </EndCap>
+                  <Guid>c282bc10996642438f7275d85b4138c1</Guid>
+                  <Name>HorizontalLinePrimitive6</Name>
+                  <Page isRef="3" />
+                  <Parent isRef="54" />
+                  <StartCap Ref="102" type="Cap" isKey="true">
+                    <Color>Black</Color>
+                  </StartCap>
+                  <Style>Dash</Style>
+                </HorizontalLinePrimitive6>
+              </Components>
+              <Conditions isList="true" count="0" />
+              <Guid>045baee3d54e403fa51a6010b6baefb2</Guid>
+              <Name>Panel3</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+            </Panel3>
+            <HorizontalLinePrimitive7 Ref="103" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,14,19,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="104" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive7</Name>
+              <Page isRef="3" />
+              <Parent isRef="4" />
+              <StartCap Ref="105" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+              <Style>Dot</Style>
+            </HorizontalLinePrimitive7>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>T_Cashbox</DataSourceName>
+          <Filters isList="true" count="0" />
+          <Locked>True</Locked>
+          <Name>DataT_Cashbox</Name>
+          <NewPageAfter>True</NewPageAfter>
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <Sort isList="true" count="0" />
+        </DataT_Cashbox>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>da69d43d785e4ef8af8227c5bd6632f4</Guid>
+      <Margins>1,1,0.5,0.5</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+      <Watermark Ref="106" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="107" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Rpt Cashbox Order</ReportAlias>
+  <ReportAuthor>Zek</ReportAuthor>
+  <ReportChanged>11/1/2011 9:52:18 PM</ReportChanged>
+  <ReportCreated>5/27/2010 11:06:16 PM</ReportCreated>
+  <ReportDescription>სალაროს გასავლის ორდერი</ReportDescription>
+  <ReportFile>D:\User\Documents\Projects\Zek\Source\Class Library\Zek\Report\Reports\RptCashboxOrder.mrt</ReportFile>
+  <ReportGuid>04566049c382484e982a06cd03ab2d7a</ReportGuid>
+  <ReportName>RptCashboxOrder</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2011.2.1028</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    
+    public class RptCashboxOrder : Stimulsoft.Report.StiReport
+    {
+        
+        public RptCashboxOrder()
+        {
+            this.InitializeComponent();
+        }
+        #region StiReport Designer generated code - do not modify#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

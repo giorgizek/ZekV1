@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{01F27654-BBEA-4B84-8FB6-33997DCEE282}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zek.Updater.Client</RootNamespace>
+    <AssemblyName>Zek.Updater.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>internet_update.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\Zek.Key\StrongKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Zek.Updater.Server\7zip\Common\CommandLineParser.cs">
+      <Link>7zip\Common\CommandLineParser.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Common\CRC.cs">
+      <Link>7zip\Common\CRC.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Common\InBuffer.cs">
+      <Link>7zip\Common\InBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Common\OutBuffer.cs">
+      <Link>7zip\Common\OutBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LzmaAlone\LzmaAlone.cs">
+      <Link>7zip\Compress\LzmaAlone\LzmaAlone.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LzmaAlone\LzmaBench.cs">
+      <Link>7zip\Compress\LzmaAlone\LzmaBench.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LZMA\LzmaBase.cs">
+      <Link>7zip\Compress\LZMA\LzmaBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LZMA\LzmaDecoder.cs">
+      <Link>7zip\Compress\LZMA\LzmaDecoder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LZMA\LzmaEncoder.cs">
+      <Link>7zip\Compress\LZMA\LzmaEncoder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LZ\IMatchFinder.cs">
+      <Link>7zip\Compress\LZ\IMatchFinder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LZ\LzBinTree.cs">
+      <Link>7zip\Compress\LZ\LzBinTree.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LZ\LzInWindow.cs">
+      <Link>7zip\Compress\LZ\LzInWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\LZ\LzOutWindow.cs">
+      <Link>7zip\Compress\LZ\LzOutWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\RangeCoder\RangeCoder.cs">
+      <Link>7zip\Compress\RangeCoder\RangeCoder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\RangeCoder\RangeCoderBit.cs">
+      <Link>7zip\Compress\RangeCoder\RangeCoderBit.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\Compress\RangeCoder\RangeCoderBitTree.cs">
+      <Link>7zip\Compress\RangeCoder\RangeCoderBitTree.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\7zip\ICoder.cs">
+      <Link>7zip\ICoder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\Core\Extensions.cs">
+      <Link>Core\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\Core\GZipHelper.cs">
+      <Link>Core\GZipHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\Core\PropertyComparer.cs">
+      <Link>Core\PropertyComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\Core\SevenZipHelper.cs">
+      <Link>Core\SevenZipHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Zek.Updater.Server\Core\XmlUpdate.cs">
+      <Link>Core\XmlUpdate.cs</Link>
+    </Compile>
+    <Compile Include="AppConfig.cs" />
+    <Compile Include="Core\_Ext.cs" />
+    <Compile Include="DebugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebugForm.Designer.cs">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileDownload.cs" />
+    <Compile Include="UpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateForm.Designer.cs">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UpdateForm.resx">
+      <DependentUpon>UpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="..\Zek.Key\StrongKey.snk">
+      <Link>StrongKey.snk</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="internet_update.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

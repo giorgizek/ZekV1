@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.cartubank.ge/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.cartubank.ge/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.cartubank.ge/">
+      <s:element name="SendRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="Uri" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendRequestResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="HttpStatus" type="tns:HttpStatusCode" />
+            <s:element minOccurs="0" maxOccurs="1" name="sMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="HttpStatusCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Continue" />
+          <s:enumeration value="SwitchingProtocols" />
+          <s:enumeration value="OK" />
+          <s:enumeration value="Created" />
+          <s:enumeration value="Accepted" />
+          <s:enumeration value="NonAuthoritativeInformation" />
+          <s:enumeration value="NoContent" />
+          <s:enumeration value="ResetContent" />
+          <s:enumeration value="PartialContent" />
+          <s:enumeration value="MultipleChoices" />
+          <s:enumeration value="Ambiguous" />
+          <s:enumeration value="MovedPermanently" />
+          <s:enumeration value="Moved" />
+          <s:enumeration value="Found" />
+          <s:enumeration value="Redirect" />
+          <s:enumeration value="SeeOther" />
+          <s:enumeration value="RedirectMethod" />
+          <s:enumeration value="NotModified" />
+          <s:enumeration value="UseProxy" />
+          <s:enumeration value="Unused" />
+          <s:enumeration value="TemporaryRedirect" />
+          <s:enumeration value="RedirectKeepVerb" />
+          <s:enumeration value="BadRequest" />
+          <s:enumeration value="Unauthorized" />
+          <s:enumeration value="PaymentRequired" />
+          <s:enumeration value="Forbidden" />
+          <s:enumeration value="NotFound" />
+          <s:enumeration value="MethodNotAllowed" />
+          <s:enumeration value="NotAcceptable" />
+          <s:enumeration value="ProxyAuthenticationRequired" />
+          <s:enumeration value="RequestTimeout" />
+          <s:enumeration value="Conflict" />
+          <s:enumeration value="Gone" />
+          <s:enumeration value="LengthRequired" />
+          <s:enumeration value="PreconditionFailed" />
+          <s:enumeration value="RequestEntityTooLarge" />
+          <s:enumeration value="RequestUriTooLong" />
+          <s:enumeration value="UnsupportedMediaType" />
+          <s:enumeration value="RequestedRangeNotSatisfiable" />
+          <s:enumeration value="ExpectationFailed" />
+          <s:enumeration value="InternalServerError" />
+          <s:enumeration value="NotImplemented" />
+          <s:enumeration value="BadGateway" />
+          <s:enumeration value="ServiceUnavailable" />
+          <s:enumeration value="GatewayTimeout" />
+          <s:enumeration value="HttpVersionNotSupported" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="VerifyCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyRequest" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Signature" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyCardResult" type="tns:VerifyResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VerifyResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TryCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="VerifyResponse" nillable="true" type="tns:VerifyResponse" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SendRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:SendRequest" />
+  </wsdl:message>
+  <wsdl:message name="SendRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:SendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCardSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyCard" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCardSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCardHttpPostIn">
+    <wsdl:part name="VerifyRequest" type="s:string" />
+    <wsdl:part name="Signature" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerifyCardHttpPostOut">
+    <wsdl:part name="Body" element="tns:VerifyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="VerifyCardsProxySoap">
+    <wsdl:operation name="SendRequest">
+      <wsdl:input message="tns:SendRequestSoapIn" />
+      <wsdl:output message="tns:SendRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCard">
+      <wsdl:input message="tns:VerifyCardSoapIn" />
+      <wsdl:output message="tns:VerifyCardSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VerifyCardsProxyHttpPost">
+    <wsdl:operation name="VerifyCard">
+      <wsdl:input message="tns:VerifyCardHttpPostIn" />
+      <wsdl:output message="tns:VerifyCardHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VerifyCardsProxySoap" type="tns:VerifyCardsProxySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendRequest">
+      <soap:operation soapAction="http://www.cartubank.ge/SendRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCard">
+      <soap:operation soapAction="http://www.cartubank.ge/VerifyCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerifyCardsProxySoap12" type="tns:VerifyCardsProxySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendRequest">
+      <soap12:operation soapAction="http://www.cartubank.ge/SendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyCard">
+      <soap12:operation soapAction="http://www.cartubank.ge/VerifyCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerifyCardsProxyHttpPost" type="tns:VerifyCardsProxyHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="VerifyCard">
+      <http:operation location="/VerifyCard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VerifyCardsProxy">
+    <wsdl:port name="VerifyCardsProxySoap" binding="tns:VerifyCardsProxySoap">
+      <soap:address location="http://92.241.79.149:4255/VerifyCards/VerifyCards.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerifyCardsProxySoap12" binding="tns:VerifyCardsProxySoap12">
+      <soap12:address location="http://92.241.79.149:4255/VerifyCards/VerifyCards.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerifyCardsProxyHttpPost" binding="tns:VerifyCardsProxyHttpPost">
+      <http:address location="http://92.241.79.149:4255/VerifyCards/VerifyCards.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

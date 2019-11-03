@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections;
+using System.Web.UI;
+using Telerik.Web.UI;
+
+namespace Zek.Web.UI
+{
+    public class RadFilterCustomMonthYearPickerEditor : RadFilterDataFieldEditor
+    {
+        protected override void CopySettings(RadFilterDataFieldEditor baseEditor)
+        {
+            base.CopySettings(baseEditor);
+            var editor = baseEditor as RadFilterCustomMonthYearPickerEditor;
+            if (editor != null)
+            {
+                MinDate = editor.MinDate;
+                MaxDate = editor.MaxDate;
+                DisplayDateFormat = editor.DisplayDateFormat;
+            }
+        }
+
+        public override ArrayList ExtractValues()
+        {
+            var list = new ArrayList();
+
+            var value0 = _monthYearPicker.SelectedDate;
+            if (value0 != null)
+            {
+                value0 = value0.Value.AddDays(1 - value0.Value.Day);
+            }
+            list.Add(value0);
+
+            if (!IsSingleValue)
+            {
+                var value1 = _secondMonthYearPicker.SelectedDate;
+                if (value1 != null)
+                {
+                    value1 = value1.Value.AddDays(1 - value1.Value.Day);
+                }
+                list.Add(value1);
+            }
+
+            return list;
+        }
+
+        public override void InitializeEditor(Control container)
+        {
+            _monthYearPicker = new RadMonthYearPicker
+            {
+                ID = "RadFilterMonthYearPicker",
+                MinDate = MinDate,
+                MaxDate = MaxDate
+            };
+            _monthYearPicker.DateInput.DisplayDateFormat = DisplayDateFormat;
+            container.Controls.Add(_monthYearPicker);
+
+            if (!IsSingleValue)
+            {
+                AddBetweenDelimeterControl(container);
+                _secondMonthYearPicker = new RadMonthYearPicker();
+                container.Controls.Add(_secondMonthYearPicker);
+            }
+        }
+
+        public override void SetEditorValues(ArrayList values)
+        {
+            if (values != null && values.Count > 0)
+            {
+                if (values[0] == null)
+                    return;
+                _monthYearPicker.SelectedDate = DateTime.Parse(values[0].ToString());
+            }
+
+            if (!IsSingleValue && values[1] != null)
+            {
+                _secondMonthYearPicker.SelectedDate = DateTime.Parse(values[1].ToString());
+            }
+        }
+
+
+        public DateTime MinDate
+        {
+            get
+            {
+                return (DateTime?)ViewState["MinDate"] ?? DateTime.MinValue;
+            }
+            set
+            {
+                ViewState["MinDate"] = value;
+            }
+        }
+
+        public DateTime MaxDate
+        {
+            get
+            {
+                return (DateTime?)ViewState["MaxDate"] ?? DateTime.MaxValue;
+            }
+            set
+            {
+                ViewState["MaxDate"] = value;
+            }
+        }
+
+        public string DisplayDateFormat
+        {
+            get
+            {
+                return (string)ViewState["DisplayDateFormat"] ?? string.Empty;
+            }
+            set
+            {
+                ViewState["DisplayDateFormat"] = value;
+            }
+        }
+
+        private RadMonthYearPicker _monthYearPicker;
+        private RadMonthYearPicker _secondMonthYearPicker;
+    }
+}

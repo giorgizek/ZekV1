@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.cartubank.ge/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.cartubank.ge/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.cartubank.ge/">
+      <s:element name="AuthCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthRequest" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Signature" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthCardResult" type="tns:AuthResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthPaymentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthResponse" nillable="true" type="tns:AuthResponse" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AuthCardSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthCard" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardHttpPostIn">
+    <wsdl:part name="AuthRequest" type="s:string" />
+    <wsdl:part name="Signature" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthCardHttpPostOut">
+    <wsdl:part name="Body" element="tns:AuthResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebAuthAutoSoap">
+    <wsdl:operation name="AuthCard">
+      <wsdl:input message="tns:AuthCardSoapIn" />
+      <wsdl:output message="tns:AuthCardSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebAuthAutoHttpPost">
+    <wsdl:operation name="AuthCard">
+      <wsdl:input message="tns:AuthCardHttpPostIn" />
+      <wsdl:output message="tns:AuthCardHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebAuthAutoSoap" type="tns:WebAuthAutoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthCard">
+      <soap:operation soapAction="http://www.cartubank.ge/AuthCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebAuthAutoSoap12" type="tns:WebAuthAutoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthCard">
+      <soap12:operation soapAction="http://www.cartubank.ge/AuthCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebAuthAutoHttpPost" type="tns:WebAuthAutoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AuthCard">
+      <http:operation location="/AuthCard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebAuthAuto">
+    <wsdl:port name="WebAuthAutoSoap" binding="tns:WebAuthAutoSoap">
+      <soap:address location="http://92.241.79.149:4255/AutoAuth/AuthCards.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebAuthAutoSoap12" binding="tns:WebAuthAutoSoap12">
+      <soap12:address location="http://92.241.79.149:4255/AutoAuth/AuthCards.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebAuthAutoHttpPost" binding="tns:WebAuthAutoHttpPost">
+      <http:address location="http://92.241.79.149:4255/AutoAuth/AuthCards.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InsuranceDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_PolicyVersion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PolicyID" Type="int" Nullable="false" />
+          <Property Name="VersionTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="PolicyHolderID" Type="int" Nullable="false" />
+          <Property Name="BeneficiaryID" Type="int" />
+          <Property Name="EntryDate" Type="date" Nullable="false" />
+          <Property Name="ExpiryDate" Type="date" Nullable="false" />
+          <Property Name="FromDate" Type="date" Nullable="false" />
+          <Property Name="ToDate" Type="date" Nullable="false" />
+          <Property Name="IssueDate" Type="date" Nullable="false" />
+          <Property Name="Premium" Type="money" Nullable="false" />
+          <Property Name="PremiumStandard" Type="money" />
+          <Property Name="Discount" Type="smallmoney" />
+          <Property Name="Risk" Type="money" Nullable="false" />
+          <Property Name="PossibleMaximumLoss" Type="money" Nullable="false" />
+          <Property Name="PaymentStandardID" Type="int" />
+          <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="CreatorID" Type="int" Nullable="false" />
+          <Property Name="LastModifierID" Type="int" />
+          <Property Name="LastModifiedDate" Type="datetime2" Precision="0" />
+          <Property Name="ApproverID" Type="int" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="ApprovedDate" Type="datetime2" Precision="0" />
+          <Property Name="RowGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LoginLogId" Type="int" />
+          <Property Name="PartNum_IsApproved_FromDate" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Function Name="SP_Policy_FinInfo_GetByXml" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Policy">
+          <Parameter Name="xml" Type="xml" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="InsuranceDBModelStoreContainer">
+          <EntitySet Name="T_PolicyVersion" EntityType="Self.T_PolicyVersion" Schema="Policy" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InsuranceDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="InsuranceDBEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="SP_Policy_FinInfo_GetByXml" ReturnType="Collection(InsuranceDBModel.SP_Policy_FinInfo_GetByXml_Result)">
+            <Parameter Name="xml" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="T_PolicyVersion" EntityType="InsuranceDBModel.T_PolicyVersion" />
+        </EntityContainer>
+        <ComplexType Name="SP_Policy_FinInfo_GetByXml_Result">
+          <Property Type="Decimal" Name="CurrentDebt" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="TotalDebt" Nullable="true" Precision="19" />
+          <Property Type="String" Name="CurrencyCode" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="CurrencyName" Nullable="false" MaxLength="4" />
+        </ComplexType>
+        <EntityType Name="T_PolicyVersion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PolicyID" Type="Int32" Nullable="false" />
+          <Property Name="VersionTypeID" Type="Byte" Nullable="false" />
+          <Property Name="PolicyHolderID" Type="Int32" Nullable="false" />
+          <Property Name="BeneficiaryID" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Premium" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PremiumStandard" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Discount" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="Risk" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PossibleMaximumLoss" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PaymentStandardID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatorID" Type="Int32" Nullable="false" />
+          <Property Name="LastModifierID" Type="Int32" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="ApproverID" Type="Int32" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="0" />
+          <Property Name="RowGuid" Type="Guid" Nullable="false" />
+          <Property Name="LoginLogId" Type="Int32" />
+          <Property Name="PartNum_IsApproved_FromDate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InsuranceDBModelStoreContainer" CdmEntityContainer="InsuranceDBEntities" >
+          <FunctionImportMapping FunctionImportName="SP_Policy_FinInfo_GetByXml" FunctionName="InsuranceDBModel.Store.SP_Policy_FinInfo_GetByXml">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InsuranceDBModel.SP_Policy_FinInfo_GetByXml_Result">
+                <ScalarProperty Name="CurrentDebt" ColumnName="CurrentDebt" />
+                <ScalarProperty Name="TotalDebt" ColumnName="TotalDebt" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="T_PolicyVersion">
+            <EntityTypeMapping TypeName="InsuranceDBModel.T_PolicyVersion">
+              <MappingFragment StoreEntitySet="T_PolicyVersion">
+                <ScalarProperty Name="PartNum_IsApproved_FromDate" ColumnName="PartNum_IsApproved_FromDate" />
+                <ScalarProperty Name="LoginLogId" ColumnName="LoginLogId" />
+                <ScalarProperty Name="RowGuid" ColumnName="RowGuid" />
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="ApproverID" ColumnName="ApproverID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifierID" ColumnName="LastModifierID" />
+                <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="PaymentStandardID" ColumnName="PaymentStandardID" />
+                <ScalarProperty Name="PossibleMaximumLoss" ColumnName="PossibleMaximumLoss" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="PremiumStandard" ColumnName="PremiumStandard" />
+                <ScalarProperty Name="Premium" ColumnName="Premium" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
+                <ScalarProperty Name="PolicyHolderID" ColumnName="PolicyHolderID" />
+                <ScalarProperty Name="VersionTypeID" ColumnName="VersionTypeID" />
+                <ScalarProperty Name="PolicyID" ColumnName="PolicyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

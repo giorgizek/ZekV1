@@ -1,0 +1,920 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.UI.HtmlControls;
+
+namespace Zek.Web
+{
+    public class HtmlHelper
+    {
+
+        //public static string MatchReplace(this string content, string pattern, string match)
+        //{
+        //    return MatchReplace(content, pattern, match, false, false, false);
+        //}
+        //public static string MatchReplace(this string content, string pattern, string match, bool multi)
+        //{
+        //    return MatchReplace(content, pattern, match, multi, false, false);
+        //}
+        //public static string MatchReplace(this string content, string pattern, string match, bool multi, bool white)
+        //{
+        //    return MatchReplace(content, pattern, match, multi, white);
+        //}
+        ///// <summary>
+        ///// Match and replace a specific pattern with formatted text
+        ///// </summary>
+        ///// <param name="pattern">Regular expression pattern</param>
+        ///// <param name="match">Match replacement</param>
+        ///// <param name="content">Text to format</param>
+        ///// <param name="multi">Multiline text (optional)</param>
+        ///// <param name="white">Ignore white space (optional)</param>
+        ///// <returns>HTML Formatted from the original BBCode</returns>
+        //public static string MatchReplace(this string content, string pattern, string match, bool multi, bool white, bool cult)
+        //{
+        //    if (multi && white && cult)
+        //        return Regex.Replace(content, pattern, match, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        //    else if (multi && white)
+        //        return Regex.Replace(content, pattern, match, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.IgnoreCase);
+        //    else if (multi && cult)
+        //        return Regex.Replace(content, pattern, match, RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.CultureInvariant);
+        //    else if (white && cult)
+        //        return Regex.Replace(content, pattern, match, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.CultureInvariant);
+        //    else if (multi)
+        //        return Regex.Replace(content, pattern, match, RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        //    else if (white)
+        //        return Regex.Replace(content, pattern, match, RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace);
+        //    else if (cult)
+        //        return Regex.Replace(content, pattern, match, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
+        //    // Default
+        //    return Regex.Replace(content, pattern, match, RegexOptions.IgnoreCase);
+        //}
+
+
+
+        #region Fields
+        private static readonly string[][] HtmlNamedEntities =
+        { 
+            new[] { "&quot;", "\"" },
+            new[] { "&lt;", "<" },
+            new[] { "&gt;", ">" },
+            new[] { "&nbsp;", " " },
+            new[] { "&iexcl;", "¡" },
+            new[] { "&cent;", "¢" },
+            new[] { "&pound;", "£" },
+            new[] { "&curren;", "¤" },
+            new[] { "&yen;", "¥" },
+            new[] { "&brvbar;", "¦" },
+            new[] { "&sect;", "§" },
+            new[] { "&uml;", "¨" },
+            new[] { "&copy;", "©" },
+            new[] { "&ordf;", "ª" },
+            new[] { "&laquo;", "«" },
+            new[] { "&not;", "¬" },
+            new[] { "&shy;", "­" },
+            new[] { "&reg;", "®" },
+            new[] { "&macr;", "¯" },
+            new[] { "&deg;", "°" },
+            new[] { "&plusmn;", "±" },
+            new[] { "&sup2;", "²" },
+            new[] { "&sup3;", "³" },
+            new[] { "&acute;", "´" },
+            new[] { "&micro;", "µ" },
+            new[] { "&para;", "¶" },
+            new[] { "&middot;", "·" },
+            new[] { "&cedil;", "¸" },
+            new[] { "&sup1;", "¹" },
+            new[] { "&ordm;", "º" },
+            new[] { "&raquo;", " »" },
+            new[] { "&frac14;", "¼" },
+            new[] { "&frac12;", "½" },
+            new[] { "&frac34;", "¾" },
+            new[] { "&iquest;", "¿" },
+            new[] { "&Agrave;", "À" },
+            new[] { "&Aacute;", "Á" },
+            new[] { "&Acirc;", "Â" },
+            new[] { "&Atilde;", "Ã" },
+            new[] { "&Auml;", "Ä" },
+            new[] { "&Aring;", "Å" },
+            new[] { "&AElig;", "Æ" },
+            new[] { "&Ccedil;", "Ç" },
+            new[] { "&Egrave;", "È" },
+            new[] { "&Eacute;", "É" },
+            new[] { "&Ecirc;", "Ê" },
+            new[] { "&Euml;", "Ë" },
+            new[] { "&Igrave;", "Ì" },
+            new[] { "&Iacute;", "Í" },
+            new[] { "&Icirc;", "Î" },
+            new[] { "&Iuml;", "Ï" },
+            new[] { "&ETH;", "Ð" },
+            new[] { "&Ntilde;", "Ñ" },
+            new[] { "&Ograve;", "Ò" },
+            new[] { "&Oacute;", "Ó" },
+            new[] { "&Ocirc;", "Ô" },
+            new[] { "&Otilde;", "Õ" },
+            new[] { "&Ouml;", "Ö" },
+            new[] { "&times;", "×" },
+            new[] { "&Oslash;", "Ø" },
+            new[] { "&Ugrave;", "Ù" },
+            new[] { "&Uacute;", "Ú" },
+            new[] { "&Ucirc;", "Û" },
+            new[] { "&Uuml;", "Ü" },
+            new[] { "&Yacute;", "Ý" },
+            new[] { "&THORN;", "Þ" },
+            new[] { "&szlig;", "ß" },
+            new[] { "&agrave;", "à" },
+            new[] { "&aacute;", "á" },
+            new[] { "&acirc;", "â" },
+            new[] { "&atilde;", "ã" },
+            new[] { "&auml;", "ä" },
+            new[] { "&aring;", "å" },
+            new[] { "&aelig;", "æ" },
+            new[] { "&ccedil;", "ç" },
+            new[] { "&egrave;", "è" },
+            new[] { "&eacute;", "é" },
+            new[] { "&ecirc;", "ê" },
+            new[] { "&euml;", "ë" },
+            new[] { "&igrave;", "ì" },
+            new[] { "&iacute;", "í" },
+            new[] { "&icirc;", "î" },
+            new[] { "&iuml;", "ï" },
+            new[] { "&eth;", "ð" },
+            new[] { "&ntilde;", "ñ" },
+            new[] { "&ograve;", "ò" },
+            new[] { "&oacute;", "ó" },
+            new[] { "&ocirc;", "ô" },
+            new[] { "&otilde;", "õ" },
+            new[] { "&ouml;", "ö" },
+            new[] { "&divide;", "÷" },
+            new[] { "&oslash;", "ø" },
+            new[] { "&ugrave;", "ù" },
+            new[] { "&uacute;", "ú" },
+            new[] { "&ucirc;", "û" },
+            new[] { "&uuml;", "ü" },
+            new[] { "&yacute;", "ý" },
+            new[] { "&thorn;", "þ" },
+            new[] { "&yuml;", "ÿ" },
+            new[] { "&OElig;", "Œ" },
+            new[] { "&oelig;", "œ" },
+            new[] { "&Scaron;", "Š" },
+            new[] { "&scaron;", "š" },
+            new[] { "&Yuml;", "Ÿ" },
+            new[] { "&fnof;", "ƒ" },
+            new[] { "&circ;", "ˆ" },
+            new[] { "&tilde;", "˜" },
+            new[] { "&Alpha;", "Α" },
+            new[] { "&Beta;", "Β" },
+            new[] { "&Gamma;", "Γ" },
+            new[] { "&Delta;", "Δ" },
+            new[] { "&Epsilon;", "Ε" },
+            new[] { "&Zeta;", "Ζ" },
+            new[] { "&Eta;", "Η" },
+            new[] { "&Theta;", "Θ" },
+            new[] { "&Iota;", "Ι" },
+            new[] { "&Kappa;", "Κ" },
+            new[] { "&Lambda;", "Λ" },
+            new[] { "&Mu;", "Μ" },
+            new[] { "&Nu;", "Ν" },
+            new[] { "&Xi;", "Ξ" },
+            new[] { "&Omicron;", "Ο" },
+            new[] { "&Pi;", "Π" },
+            new[] { "&Rho;", "Ρ" },
+            new[] { "&Sigma;", "Σ" },
+            new[] { "&Tau;", "Τ" },
+            new[] { "&Upsilon;", "Υ" },
+            new[] { "&Phi;", "Φ" },
+            new[] { "&Chi;", "Χ" },
+            new[] { "&Psi;", "Ψ" },
+            new[] { "&Omega;", "Ω" },
+            new[] { "&alpha;", "α" },
+            new[] { "&beta;", "β" },
+            new[] { "&gamma;", "γ" },
+            new[] { "&delta;", "δ" },
+            new[] { "&epsilon;", "ε" },
+            new[] { "&zeta;", "ζ" },
+            new[] { "&eta;", "η" },
+            new[] { "&theta;", "θ" },
+            new[] { "&iota;", "ι" },
+            new[] { "&kappa;", "κ" },
+            new[] { "&lambda;", "λ" },
+            new[] { "&mu;", "μ" },
+            new[] { "&nu;", "ν" },
+            new[] { "&xi;", "ξ" },
+            new[] { "&omicron;", "ο" },
+            new[] { "&pi;", "π" },
+            new[] { "&rho;", "ρ" },
+            new[] { "&sigmaf;", "ς" },
+            new[] { "&sigma;", "σ" },
+            new[] { "&tau;", "τ" },
+            new[] { "&upsilon;", "υ" },
+            new[] { "&phi;", "φ" },
+            new[] { "&chi;", "χ" },
+            new[] { "&psi;", "ψ" },
+            new[] { "&omega;", "ω" },
+            new[] { "&thetasym;", "ϑ" },
+            new[] { "&upsih;", "ϒ" },
+            new[] { "&piv;", "ϖ" },
+            new[] { "&ensp;", " " },
+            new[] { "&emsp;", " " },
+            new[] { "&thinsp;", " " },
+            new[] { "&zwnj;", "‌" },
+            new[] { "&zwj;", "‍" },
+            new[] { "&lrm;", "‎" },
+            new[] { "&rlm;", "‏" },
+            new[] { "&ndash;", "–" },
+            new[] { "&mdash;", "—" },
+            new[] { "&lsquo;", "‘" },
+            new[] { "&rsquo;", "’" },
+            new[] { "&sbquo;", "‚" },
+            new[] { "&ldquo;", "“" },
+            new[] { "&rdquo;", "”" },
+            new[] { "&bdquo;", "„" },
+            new[] { "&dagger;", "†" },
+            new[] { "&Dagger;", "‡" },
+            new[] { "&bull;", "•" },
+            new[] { "&hellip;", "…" },
+            new[] { "&permil;", "‰" },
+            new[] { "&prime;", "′" },
+            new[] { "&Prime;", "″" },
+            new[] { "&lsaquo;", "‹" },
+            new[] { "&rsaquo;", "›" },
+            new[] { "&oline;", "‾" },
+            new[] { "&frasl;", "⁄" },
+            new[] { "&euro;", "€" },
+            new[] { "&image;", "ℑ" },
+            new[] { "&weierp;", "℘" },
+            new[] { "&real;", "ℜ" },
+            new[] { "&trade;", "™" },
+            new[] { "&alefsym;", "ℵ" },
+            new[] { "&larr;", "←" },
+            new[] { "&uarr;", "↑" },
+            new[] { "&rarr;", "→" },
+            new[] { "&darr;", "↓" },
+            new[] { "&harr;", "↔" },
+            new[] { "&crarr;", "↵" },
+            new[] { "&lArr;", "⇐" },
+            new[] { "&uArr;", "⇑" },
+            new[] { "&rArr;", "⇒" },
+            new[] { "&dArr;", "⇓" },
+            new[] { "&hArr;", "⇔" },
+            new[] { "&forall;", "∀" },
+            new[] { "&part;", "∂" },
+            new[] { "&exist;", "∃" },
+            new[] { "&empty;", "∅" },
+            new[] { "&nabla;", "∇" },
+            new[] { "&isin;", "∈" },
+            new[] { "&notin;", "∉" },
+            new[] { "&ni;", "∋" },
+            new[] { "&prod;", "∏" },
+            new[] { "&sum;", "∑" },
+            new[] { "&minus;", "−" },
+            new[] { "&lowast;", "∗" },
+            new[] { "&radic;", "√" },
+            new[] { "&prop;", "∝" },
+            new[] { "&infin;", "∞" },
+            new[] { "&ang;", "∠" },
+            new[] { "&and;", "∧" },
+            new[] { "&or;", "∨" },
+            new[] { "&cap;", "∩" },
+            new[] { "&cup;", "∪" },
+            new[] { "&int;", "∫" },
+            new[] { "&there4;", "∴" },
+            new[] { "&sim;", "∼" },
+            new[] { "&cong;", "≅" },
+            new[] { "&asymp;", "≈" },
+            new[] { "&ne;", "≠" },
+            new[] { "&equiv;", "≡" },
+            new[] { "&le;", "≤" },
+            new[] { "&ge;", "≥" },
+            new[] { "&sub;", "⊂" },
+            new[] { "&sup;", "⊃" },
+            new[] { "&nsub;", "⊄" },
+            new[] { "&sube;", "⊆" },
+            new[] { "&supe;", "⊇" },
+            new[] { "&oplus;", "⊕" },
+            new[] { "&otimes;", "⊗" },
+            new[] { "&perp;", "⊥" },
+            new[] { "&sdot;", "⋅" },
+            new[] { "&lceil;", "⌈" },
+            new[] { "&rceil;", "⌉" },
+            new[] { "&lfloor;", "⌊" },
+            new[] { "&rfloor;", "⌋" },
+            new[] { "&lang;", "〈" },
+            new[] { "&rang;", "〉" },
+            new[] { "&loz;", "◊" },
+            new[] { "&spades;", "♠" },
+            new[] { "&clubs;", "♣" },
+            new[] { "&hearts;", "♥" },
+            new[] { "&diams;", "♦" },
+            new[] { "&amp;", "&" }
+        };
+
+        #endregion
+
+        public static string Image(string id, string imageUrl, string alternateText)
+        {
+            return Image(id, imageUrl, alternateText, null);
+        }
+        public static string Image(string id, string imageUrl, string alternateText, object htmlAttributes)
+        {
+            var builder = new TagBuilder("img");
+            builder.GenerateId(id);
+            
+            builder.MergeAttribute("src", imageUrl);
+            builder.MergeAttribute("alt", alternateText);
+            builder.MergeAttributes(new RouteValueDictionary(htmlAttributes)); 
+
+            return builder.ToString(TagRenderMode.SelfClosing);
+        }
+
+
+        /// <summary>
+        /// ქმნის html <a href="{navigateUrl}">{innerHtml}</a>-ს
+        /// </summary>
+        /// <param name="id">id პარამეტრი.</param>
+        /// <param name="navigateUrl">რომლის ლინკის გაკეთებაც გვინდა.</param>
+        /// <param name="innerHtml">ტექსტი რისი ლინკიც უნდა შეიქმნას.</param>
+        /// <returns>აბრუნებს ლინკს <a href="{navigateUrl}">{text}</a></returns>
+        public static string Link(string id, string navigateUrl, string innerHtml)
+        {
+            return Link(id, navigateUrl, innerHtml, null);
+        }
+
+        /// <summary>
+        /// ქმნის html <a href="{navigateUrl}">{innerHtml}</a>-ს
+        /// </summary>
+        /// <param name="id">id პარამეტრი.</param>
+        /// <param name="navigateUrl">რომლის ლინკის გაკეთებაც გვინდა.</param>
+        /// <param name="innerHtml">ტექსტი რისი ლინკიც უნდა შეიქმნას.</param>
+        /// <param name="htmlAttributes">ატრიბუტები (new { id = "myImage", border = "0" }).</param>
+        /// <returns>აბრუნებს ლინკს <a href="{navigateUrl}">{text}</a></returns>
+        public static string Link(string id, string navigateUrl, string innerHtml, object htmlAttributes)
+        {
+            var builder = new TagBuilder("a")
+            {
+                InnerHtml = innerHtml
+            };
+            builder.GenerateId(id);
+            builder.MergeAttribute("href", navigateUrl);
+            builder.MergeAttributes(new RouteValueDictionary(htmlAttributes)); 
+
+            return builder.ToString(TagRenderMode.Normal);
+        }
+
+        public static string ImageLink(string linkID, string navigateUrl, string imageID, string imageUrl, string alternateText)
+        {
+            return ImageLink(linkID, navigateUrl, imageID, imageUrl, alternateText, null);
+        }
+        public static string ImageLink(string linkID, string navigateUrl, string imageID, string imageUrl, string alternateText, object linkAttributes)
+        {
+            return ImageLink(linkID, navigateUrl, imageID, imageUrl, alternateText, linkAttributes, null);
+        }
+        public static string ImageLink(string linkID, string navigateUrl, string imageID, string imageUrl, string alternateText, object linkAttributes, object imageHtmlAttributes)
+        {
+
+            return ImageTextLink(linkID, navigateUrl, imageID, imageUrl, alternateText, null, linkAttributes, imageHtmlAttributes);
+        }
+
+        public static string ImageTextLink(string linkID, string navigateUrl, string imageID, string imageUrl, string alternateText, string innerHtml)
+        {
+            return ImageTextLink(linkID, navigateUrl, imageID, imageUrl, alternateText, innerHtml, null);
+        }
+        public static string ImageTextLink(string linkID, string navigateUrl, string imageID, string imageUrl, string alternateText, string innerHtml, object linkAttributes)
+        {
+            return ImageTextLink(linkID, navigateUrl, imageID, imageUrl, alternateText, innerHtml, linkAttributes, null);
+        }
+        public static string ImageTextLink(string linkID, string navigateUrl, string imageID, string imageUrl, string alternateText, string innerHtml, object linkAttributes, object imageHtmlAttributes)
+        {
+            var imageTag = Image(imageID, imageUrl, alternateText, imageHtmlAttributes);
+            return Link(linkID, navigateUrl, imageTag + (innerHtml ?? string.Empty), linkAttributes);
+        }
+
+
+        public static string Label(string @for, string text)
+        {
+            return $"<label for=\"{@for}\">{text}</label>";
+        }
+        //public static string Label(string @for, string text)
+        //{
+        //    TagBuilder builder = new TagBuilder("label");
+        //    builder.Attributes.Add("for", @for);
+        //    builder.SetInnerText(text);
+        //    return builder.ToString(TagRenderMode.Normal);
+        //}
+        public static string LabelFor(string target, string text)
+        {
+            return $"<label for=\"{target}\">{text}</label>";
+        }
+
+
+        public static string Table(string name, IList items, IDictionary<string, object> attributes)
+        {
+
+            if (items == null || items.Count == 0 || string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            }
+
+            return TagBuilder.BuildTable(name, items, attributes);
+        }
+
+
+        public static string ResolveUrl(string url)
+        {
+            if (url.StartsWith("~/"))
+            {
+                var siteRoot = HttpContext.Current.Request.ApplicationPath;
+
+                if (siteRoot == string.Empty)
+                    siteRoot = "/";
+
+                return url.Replace("~/", siteRoot);
+            }
+            return url;
+        }
+
+        /*
+        /// <summary>
+        /// Converts the input plain-text to HTML version, replacing carriage returns
+        /// and spaces with <br /> and &nbsp;
+        /// </summary>
+        public static string ConvertToHtml1(string content)
+        {
+            content = HttpUtility.HtmlEncode(content);
+            content = content.Replace("  ", "&nbsp;&nbsp;").Replace("\t", "&nbsp;&nbsp;&nbsp;").Replace("\n", "<br />");
+            return content;
+        }
+        /// <summary>
+        /// Converts the input plain-text BBCode to HTML output and replacing carriage returns
+        /// and spaces with <br /> and   etc...
+        /// Recommended: Use this function only during storage and updates.
+        /// Keep a seperate field in your database for HTML formatted content and raw text.
+        /// An optional third, plain text field, with no formatting info will make full text searching
+        /// more accurate.
+        /// E.G. BodyText(with BBCode for textarea/WYSIWYG), BodyPlain(plain text for searching),
+        /// BodyHtml(formatted HTML for output pages)
+        /// </summary>
+        public static string ConvertToHtml(string content)
+        {
+            // Clean your content here... E.G.:
+            // content = CleanText(content);
+
+            // Basic tag stripping for this example (PLEASE EXTEND THIS!)
+            content = StripTags(content);
+
+            content = content.MatchReplace(@"\[b\]([^\]]+)\[\/b\]", "<strong>$1</strong>");
+            content = content.MatchReplace(@"\[i\]([^\]]+)\[\/i\]", "<em>$1</em>");
+            content = content.MatchReplace(@"\[u\]([^\]]+)\[\/u\]", "<span style=\"text-decoration:underline\">$1</span>");
+            content = content.MatchReplace(@"\[del\]([^\]]+)\[\/del\]", "<span style=\"text-decoration:line-through\">$1</span>");
+
+            // Colors and sizes
+            content = content.MatchReplace(@"\[color=(#[0-9a-fA-F]{6}|[a-z-]+)]([^\]]+)\[\/color\]", "<span style=\"color:$1;\">$2</span>");
+            content = content.MatchReplace(@"\[size=([2-5])]([^\]]+)\[\/size\]", "<span style=\"font-size:$1em; font-weight:normal;\">$2</span>");
+
+            // Text alignment
+            content = content.MatchReplace(@"\[left\]([^\]]+)\[\/left\]", "<span style=\"text-align:left\">$1</span>");
+            content = content.MatchReplace(@"\[right\]([^\]]+)\[\/right\]", "<span style=\"text-align:right\">$1</span>");
+            content = content.MatchReplace(@"\[center\]([^\]]+)\[\/center\]", "<span style=\"text-align:center\">$1</span>");
+            content = content.MatchReplace(@"\[justify\]([^\]]+)\[\/justify\]", "<span style=\"text-align:justify\">$1</span>");
+
+            // HTML Links
+            content = content.MatchReplace(@"\[url\]([^\]]+)\[\/url\]", "<a href=\"$1\">$1</a>");
+            content = content.MatchReplace(@"\[url=([^\]]+)]([^\]]+)\[\/ur\l]", "<a href=\"$1\">$2</a>");
+
+            // Images
+            content = content.MatchReplace(@"\[img\]([^\]]+)\[\/img\]", "<img src=\"$1\" alt=\"\" />");
+            content = content.MatchReplace(@"\[img=([^\]]+)]([^\]]+)\[\/img\]", "<img src=\"$2\" alt=\"$1\" />");
+
+            // Lists
+            content = content.MatchReplace(@"\[*\]([^\[]+)", "<li>$1</li>");
+            content = content.MatchReplace(@"\[list\]([^\]]+)\[\/list\]", "</p><ul>$1</ul><p>");
+            content = content.MatchReplace(@"\[list=1\]([^\]]+)\[\/list\]", "</p><ol>$1</ol><p>");
+
+            // Headers
+            content = content.MatchReplace(@"\[h1\]([^\]]+)\[\/h1\]", "<h1>$1</h1>");
+            content = content.MatchReplace(@"\[h2\]([^\]]+)\[\/h2\]", "<h2>$1</h2>");
+            content = content.MatchReplace(@"\[h3\]([^\]]+)\[\/h3\]", "<h3>$1</h3>");
+            content = content.MatchReplace(@"\[h4\]([^\]]+)\[\/h4\]", "<h4>$1</h4>");
+            content = content.MatchReplace(@"\[h5\]([^\]]+)\[\/h5\]", "<h5>$1</h5>");
+            content = content.MatchReplace(@"\[h6\]([^\]]+)\[\/h6\]", "<h6>$1</h6>");
+
+            // Horizontal rule
+            content = content.MatchReplace(@"\[hr\]", "<hr />");
+
+            // Set a maximum quote depth (In this case, hard coded to 3)
+            for (int i = 1; i < 3; i++)
+            {
+                // Quotes
+                content = content.MatchReplace(@"\[quote=([^\]]+)@([^\]]+)|([^\]]+)]([^\]]+)\[\/quote\]", "</p><div class=\"block\"><blockquote><cite>$1 <a href=\"$3\">wrote</a> on $2</cite><hr /><p>$4</p></blockquote></div><p>" );
+                content = content.MatchReplace(@"\[quote=([^\]]+)@([^\]]+)]([^\]]+)\[\/quote\]", "</p><div class=\"block\"><blockquote><cite>$1 wrote on $2</cite><hr /><p>$3</p></blockquote></div><p>");
+                content = content.MatchReplace(@"\[quote=([^\]]+)]([^\]]+)\[\/quote\]", "</p><div class=\"block\"><blockquote><cite>$1 wrote</cite><hr /><p>$2</p></blockquote></div><p>");
+                content = content.MatchReplace(@"\[quote\]([^\]]+)\[\/quote\]", "</p><div class=\"block\"><blockquote><p>$1</p></blockquote></div><p>");
+            }
+
+            // The following markup is for embedded video -->
+
+            // YouTube
+            content = content.MatchReplace(@"\[youtube\]http:\/\/([a-zA-Z]+.)youtube.com\/watch\?v=([a-zA-Z0-9_\-]+)\[\/youtube\]",
+                "<object width=\"425\" height=\"344\"><param name=\"movie\" value=\"http://www.youtube.com/v/$2\"></param><param name=\"allowFullScreen\" value=\"true\"></param><embed src=\"http://www.youtube.com/v/$2\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" width=\"425\" height=\"344\"></embed></object>");
+
+            // LiveVideo
+            content = content.MatchReplace(@"\[livevideo\]http:\/\/([a-zA-Z]+.)livevideo.com\/video\/([a-zA-Z0-9_\-]+)\/([a-zA-Z0-9]+)\/([a-zA-Z0-9_\-]+).aspx\[\/livevideo\]",
+                "<object width=\"445\" height=\"369\"><embed src=\"http://www.livevideo.com/flvplayer/embed/$3\" type=\"application/x-shockwave-flash\" quality=\"high\" width=\"445\" height=\"369\" wmode=\"transparent\"></embed></object>");
+
+            // LiveVideo (There are two types of links for LV)
+            content = content.MatchReplace(@"\[livevideo\]http:\/\/([a-zA-Z]+.)livevideo.com\/video\/([a-zA-Z0-9]+)\/([a-zA-Z0-9_\-]+).aspx\[\/livevideo\]",
+                "<object width=\"445\" height=\"369\"><embed src=\"http://www.livevideo.com/flvplayer/embed/$2\" type=\"application/x-shockwave-flash\" quality=\"high\" width=\"445\" height=\"369\" wmode=\"transparent\"></embed></object>");
+
+            // Metacafe
+            content = content.MatchReplace(@"\[metacafe\]http\:\/\/([a-zA-Z]+.)metacafe.com\/watch\/([0-9]+)\/([a-zA-Z0-9_]+)/\[\/metacafe\]",
+                "<object width=\"400\" height=\"345\"><embed src=\"http://www.metacafe.com/fplayer/$2/$3.swf\" width=\"400\" height=\"345\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\"></embed></object>");
+
+            // LiveLeak
+            content = content.MatchReplace(@"\[liveleak\]http:\/\/([a-zA-Z]+.)liveleak.com\/view\?i=([a-zA-Z0-9_]+)\[\/liveleak\]",
+                "<object width=\"450\" height=\"370\"><param name=\"movie\" value=\"http://www.liveleak.com/e/$2\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.liveleak.com/e/59a_1231807882\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"450\" height=\"370\"></embed></object>");
+
+            // <-- End video markup
+
+            // Google and Wikipedia page links
+            content = content.MatchReplace(@"\[google\]([^\]]+)\[\/google\]", "<a href=\"http://www.google.com/search?q=$1\">$1</a>");
+            content = content.MatchReplace(@"\[wikipedia\]([^\]]+)\[\/wikipedia\]", "<a href=\"http://www.wikipedia.org/wiki/$1\">$1</a>");
+
+            // Put the content in a paragraph
+            content = "<p>" + content + "</p>";
+
+            // Clean up a few potential markup problems
+            content = content.Replace("t", "    ")
+                .Replace("  ", "  ")
+                .Replace("<br /></p>", "</p>")
+                .Replace("<p><br />", "<p>")
+                .Replace("<p><blockquote>", "<blockquote>")
+                .Replace("</blockquote></p>", "</blockquote>")
+                .Replace("<p></p>", "")
+                .Replace("<p><ul></p>", "<ul>")
+                .Replace("<p></ul></p>", "</ul>")
+                .Replace("<p><ol></p>", "<ol>")
+                .Replace("<p></ol></p>", "</ol>")
+                .Replace("<p><li>", "<li><p>")
+                .Replace("</li></p>", "</p></li>");
+
+            return content;
+        }
+        /// <summary>
+        /// Strip any existing HTML tags
+        /// </summary>
+        /// <param name="content">Raw input from user</param>
+        /// <returns>Tag stripped storage safe text</returns>
+        public static string StripTags(string content)
+        {
+            return content.MatchReplace(@"<[^>]+>", "", true, true, true);
+        }*/
+        public static string HtmlStripTags(string htmlContent, bool replaceNamedEntities, bool replaceNumberedEntities)
+        {
+            if (htmlContent == null)
+                return null;
+            htmlContent = htmlContent.Trim();
+            if (htmlContent == string.Empty)
+                return string.Empty;
+
+            var bodyStartTagIdx = htmlContent.IndexOf("<body", StringComparison.CurrentCultureIgnoreCase);
+            var bodyEndTagIdx = htmlContent.IndexOf("</body>", StringComparison.CurrentCultureIgnoreCase);
+
+            int startIdx = 0, endIdx = htmlContent.Length - 1;
+            if (bodyStartTagIdx >= 0)
+                startIdx = bodyStartTagIdx;
+            if (bodyEndTagIdx >= 0)
+                endIdx = bodyEndTagIdx;
+
+            bool insideTag = false,
+                    insideAttributeValue = false,
+                    insideHtmlComment = false,
+                    insideScriptBlock = false,
+                    insideNoScriptBlock = false,
+                    insideStyleBlock = false;
+            var attributeValueDelimiter = '"';
+
+            var sb = new StringBuilder(htmlContent.Length);
+            for (var i = startIdx; i <= endIdx; i++)
+            {
+
+                // html comment block
+                if (!insideHtmlComment)
+                {
+                    if (i + 3 < htmlContent.Length &&
+                        htmlContent[i] == '<' &&
+                        htmlContent[i + 1] == '!' &&
+                        htmlContent[i + 2] == '-' &&
+                        htmlContent[i + 3] == '-')
+                    {
+                        i += 3;
+                        insideHtmlComment = true;
+                        continue;
+                    }
+                }
+                else // inside html comment
+                {
+                    if (i + 2 < htmlContent.Length &&
+                        htmlContent[i] == '-' &&
+                        htmlContent[i + 1] == '-' &&
+                        htmlContent[i + 2] == '>')
+                    {
+                        i += 2;
+                        insideHtmlComment = false;
+                    }
+                    continue;
+                }
+
+                // noscript block
+                if (!insideNoScriptBlock)
+                {
+                    if (i + 9 < htmlContent.Length &&
+                        htmlContent[i] == '<' &&
+                        (htmlContent[i + 1] == 'n' || htmlContent[i + 1] == 'N') &&
+                        (htmlContent[i + 2] == 'o' || htmlContent[i + 2] == 'O') &&
+                        (htmlContent[i + 3] == 's' || htmlContent[i + 3] == 'S') &&
+                        (htmlContent[i + 4] == 'c' || htmlContent[i + 4] == 'C') &&
+                        (htmlContent[i + 5] == 'r' || htmlContent[i + 5] == 'R') &&
+                        (htmlContent[i + 6] == 'i' || htmlContent[i + 6] == 'I') &&
+                        (htmlContent[i + 7] == 'p' || htmlContent[i + 7] == 'P') &&
+                        (htmlContent[i + 8] == 't' || htmlContent[i + 8] == 'T') &&
+                        (char.IsWhiteSpace(htmlContent[i + 9]) || htmlContent[i + 9] == '>'))
+                    {
+                        i += 9;
+                        insideNoScriptBlock = true;
+                        continue;
+                    }
+                }
+                else // inside noscript block
+                {
+                    if (i + 10 < htmlContent.Length &&
+                        htmlContent[i] == '<' &&
+                        htmlContent[i + 1] == '/' &&
+                        (htmlContent[i + 2] == 'n' || htmlContent[i + 2] == 'N') &&
+                        (htmlContent[i + 3] == 'o' || htmlContent[i + 3] == 'O') &&
+                        (htmlContent[i + 4] == 's' || htmlContent[i + 4] == 'S') &&
+                        (htmlContent[i + 5] == 'c' || htmlContent[i + 5] == 'C') &&
+                        (htmlContent[i + 6] == 'r' || htmlContent[i + 6] == 'R') &&
+                        (htmlContent[i + 7] == 'i' || htmlContent[i + 7] == 'I') &&
+                        (htmlContent[i + 8] == 'p' || htmlContent[i + 8] == 'P') &&
+                        (htmlContent[i + 9] == 't' || htmlContent[i + 9] == 'T') &&
+                        (char.IsWhiteSpace(htmlContent[i + 10]) || htmlContent[i + 10] == '>'))
+                    {
+                        if (htmlContent[i + 10] != '>')
+                        {
+                            i += 9;
+                            while (i < htmlContent.Length && htmlContent[i] != '>')
+                                i++;
+                        }
+                        else
+                            i += 10;
+                        insideNoScriptBlock = false;
+                    }
+                    continue;
+                }
+
+                // script block
+                if (!insideScriptBlock)
+                {
+                    if (i + 7 < htmlContent.Length &&
+                        htmlContent[i] == '<' &&
+                        (htmlContent[i + 1] == 's' || htmlContent[i + 1] == 'S') &&
+                        (htmlContent[i + 2] == 'c' || htmlContent[i + 2] == 'C') &&
+                        (htmlContent[i + 3] == 'r' || htmlContent[i + 3] == 'R') &&
+                        (htmlContent[i + 4] == 'i' || htmlContent[i + 4] == 'I') &&
+                        (htmlContent[i + 5] == 'p' || htmlContent[i + 5] == 'P') &&
+                        (htmlContent[i + 6] == 't' || htmlContent[i + 6] == 'T') &&
+                        (char.IsWhiteSpace(htmlContent[i + 7]) || htmlContent[i + 7] == '>'))
+                    {
+                        i += 6;
+                        insideScriptBlock = true;
+                        continue;
+                    }
+                }
+                else // inside script block
+                {
+                    if (i + 8 < htmlContent.Length &&
+                        htmlContent[i] == '<' &&
+                        htmlContent[i + 1] == '/' &&
+                        (htmlContent[i + 2] == 's' || htmlContent[i + 2] == 'S') &&
+                        (htmlContent[i + 3] == 'c' || htmlContent[i + 3] == 'C') &&
+                        (htmlContent[i + 4] == 'r' || htmlContent[i + 4] == 'R') &&
+                        (htmlContent[i + 5] == 'i' || htmlContent[i + 5] == 'I') &&
+                        (htmlContent[i + 6] == 'p' || htmlContent[i + 6] == 'P') &&
+                        (htmlContent[i + 7] == 't' || htmlContent[i + 7] == 'T') &&
+                        (char.IsWhiteSpace(htmlContent[i + 8]) || htmlContent[i + 8] == '>'))
+                    {
+                        if (htmlContent[i + 8] != '>')
+                        {
+                            i += 7;
+                            while (i < htmlContent.Length && htmlContent[i] != '>')
+                                i++;
+                        }
+                        else
+                            i += 8;
+                        insideScriptBlock = false;
+                    }
+                    continue;
+                }
+
+                // style block
+                if (!insideStyleBlock)
+                {
+                    if (i + 7 < htmlContent.Length &&
+                        htmlContent[i] == '<' &&
+                        (htmlContent[i + 1] == 's' || htmlContent[i + 1] == 'S') &&
+                        (htmlContent[i + 2] == 't' || htmlContent[i + 2] == 'T') &&
+                        (htmlContent[i + 3] == 'y' || htmlContent[i + 3] == 'Y') &&
+                        (htmlContent[i + 4] == 'l' || htmlContent[i + 4] == 'L') &&
+                        (htmlContent[i + 5] == 'e' || htmlContent[i + 5] == 'E') &&
+                        (char.IsWhiteSpace(htmlContent[i + 6]) || htmlContent[i + 6] == '>'))
+                    {
+                        i += 5;
+                        insideStyleBlock = true;
+                        continue;
+                    }
+                }
+                else // inside script block
+                {
+                    if (i + 8 < htmlContent.Length &&
+                        htmlContent[i] == '<' &&
+                        htmlContent[i + 1] == '/' &&
+                        (htmlContent[i + 2] == 's' || htmlContent[i + 2] == 'S') &&
+                        (htmlContent[i + 3] == 't' || htmlContent[i + 3] == 'C') &&
+                        (htmlContent[i + 4] == 'y' || htmlContent[i + 4] == 'R') &&
+                        (htmlContent[i + 5] == 'l' || htmlContent[i + 5] == 'I') &&
+                        (htmlContent[i + 6] == 'e' || htmlContent[i + 6] == 'P') &&
+                        (char.IsWhiteSpace(htmlContent[i + 7]) || htmlContent[i + 7] == '>'))
+                    {
+                        if (htmlContent[i + 7] != '>')
+                        {
+                            i += 7;
+                            while (i < htmlContent.Length && htmlContent[i] != '>')
+                                i++;
+                        }
+                        else
+                            i += 7;
+                        insideStyleBlock = false;
+                    }
+                    continue;
+                }
+
+                if (!insideTag)
+                {
+                    if (i < htmlContent.Length &&
+                        htmlContent[i] == '<')
+                    {
+                        insideTag = true;
+                        continue;
+                    }
+                }
+                else // inside tag
+                {
+                    if (!insideAttributeValue)
+                    {
+                        if (htmlContent[i] == '"' || htmlContent[i] == '\'')
+                        {
+                            attributeValueDelimiter = htmlContent[i];
+                            insideAttributeValue = true;
+                            continue;
+                        }
+                        if (htmlContent[i] == '>')
+                        {
+                            insideTag = false;
+                            sb.Append(' '); // prevent words from different tags (<td>s for example) from joining together
+                        }
+                    }
+                    else // inside tag and inside attribute value
+                    {
+                        if (htmlContent[i] == attributeValueDelimiter)
+                        {
+                            insideAttributeValue = false;
+                        }
+                    }
+                    continue;
+                }
+
+                sb.Append(htmlContent[i]);
+            }
+
+            if (replaceNamedEntities)
+                foreach (var htmlNamedEntity in HtmlNamedEntities)
+                    sb.Replace(htmlNamedEntity[0], htmlNamedEntity[1]);
+
+            if (replaceNumberedEntities)
+                for (var i = 0; i < 512; i++)
+                    sb.Replace("&#" + i + ";", ((char)i).ToString(CultureInfo.InvariantCulture));
+
+            return sb.ToString();
+        }
+
+        public static string StripHtml(string value)
+        {
+            return Regex.Replace(value, "<.*?>", string.Empty);
+        }
+
+        /// <summary>
+        /// აჭრის ტექსტს უნიკოდ და მსგავს სიმბოლოებს და ტოვებს მხოლოდ ([^a-z0-9_.-]+)|(-{2,})
+        /// </summary>
+        /// <param name="value">ტექსტის რომლის პარსირებაც გვინდა</param>
+        /// <returns>აბრუნებს პარსირებულ ტექსტს.</returns>
+        public static string ToAltName(string value)
+        {
+            return Regex.Replace(value, "([^a-z0-9_.-]+)|(-{2,})", "-", RegexOptions.IgnoreCase);
+        }
+
+
+        /// <summary>
+        /// Strips all illegal characters from the specified title.
+        /// </summary>
+        public static string RemoveIllegalCharacters(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            text = text.Replace(":", string.Empty);
+            text = text.Replace("/", string.Empty);
+            text = text.Replace("?", string.Empty);
+            text = text.Replace("#", string.Empty);
+            text = text.Replace("[", string.Empty);
+            text = text.Replace("]", string.Empty);
+            text = text.Replace("@", string.Empty);
+            text = text.Replace(".", string.Empty);
+            text = text.Replace(",", string.Empty);
+            text = text.Replace("\"", string.Empty);
+            text = text.Replace("&", string.Empty);
+            text = text.Replace("'", string.Empty);
+            text = text.Replace(" ", "-");
+            text = RemoveDiacritics(text);
+            text = RemoveExtraHyphen(text);
+
+            return HttpUtility.UrlEncode(text).Replace("%", string.Empty);
+        }
+        private static string RemoveExtraHyphen(string text)
+        {
+            if (text.Contains("--"))
+            {
+                text = text.Replace("--", "-");
+                return RemoveExtraHyphen(text);
+            }
+
+            return text;
+        }
+        private static string RemoveDiacritics(string text)
+        {
+            var normalized = text.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+
+            foreach (var ch in normalized)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(ch) != UnicodeCategory.NonSpacingMark)
+                    sb.Append(ch);
+            }
+
+            return sb.ToString();
+        }
+
+
+
+
+        /// <summary>
+        /// Creates and returns a generic link control.
+        /// </summary>
+        /// <param name="type">
+        /// The HtmlLink's "type" attribute value.
+        /// </param>
+        /// <param name="relation">
+        /// The HtmlLink's "rel" attribute value.
+        /// </param>
+        /// <param name="title">
+        /// The HtmlLink's "title" attribute value.
+        /// </param>
+        /// <param name="href">
+        /// The HtmlLink's "href" attribute value.
+        /// </param>
+        public static HtmlLink HtmlLink(string type, string relation, string title, string href)
+        {
+            var link = new HtmlLink();
+
+            if (type != null) { link.Attributes["type"] = type; }
+            link.Attributes["rel"] = relation;
+            link.Attributes["title"] = title;
+            link.Attributes["href"] = href;
+            return link;
+        }
+
+        ///// <summary>
+        ///// Converts an object to its JSON representation.
+        ///// </summary>
+        ///// <param name="obj"></param>
+        ///// <returns></returns>
+        //public static string ConvertToJson(object obj)
+        //{
+        //    return new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(obj);
+        //}
+    }
+
+}
